@@ -16,8 +16,8 @@ def register(request):
     return render(request, 'help_app/register.html', {})
 
 
-def parent_top(request):
-    return render(request, 'help_app/parent_top.html', {})
+# def parent_top(request):
+#     return render(request, 'help_app/parent_usersmanage.html', {})
 
 def parent_tasklist(request):
     return render(request, 'help_app/parent_tasklist.html', {})
@@ -32,8 +32,8 @@ def parent_complete(request):
     return render(request, 'help_app/parent_complete.html', {})
 
 
-def child_top(request):
-    return render(request, 'help_app/child_top.html', {})
+# def child_top(request):
+#     return render(request, 'help_app/child_top.html', {})
 
 def child_tasklist(request):
     return render(request, 'help_app/child_tasklist.html', {})
@@ -47,6 +47,9 @@ def child_history(request):
 
 def certification(request):
     return render(request, 'help_app/certification.html', {})
+
+def parent_usersmanage(request):
+    return render(request, 'help_app/parent_usersmanage.html', {})
 #
 # def (request):
 #     return render(request, 'help_app/.html', {})
