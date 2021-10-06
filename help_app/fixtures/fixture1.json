@@ -1,0 +1,72 @@
+[
+  {
+    "model": "help_app.Parents",
+    "pk": 1,
+    "fields": {
+        "name": "おや１",
+        "email": "aaa@mail",
+        "password": "oya1",
+        "authcode": "oya1da"
+    }
+  },
+  {
+    "model": "help_app.Children",
+    "pk": 1,
+    "fields": {
+        "name": "たろう",
+        "parent_id": 1
+    }
+  },
+  {
+    "model": "help_app.Children",
+    "pk": 2,
+    "fields": {
+        "name": "次郎",
+        "parent_id": 1
+    }
+  },
+  {
+    "model": "help_app.Children",
+    "pk": 3,
+    "fields": {
+        "name": "三郎",
+        "parent_id": 1
+    }
+  },
+  {
+    "model": "help_app.Children",
+    "pk": 3,
+    "fields": {
+        "name": "三郎",
+        "parent_id": 1
+    }
+  },
+
+  {
+    "model": "help_app.Houseworks",
+    "pk": 1,
+    "fields": {
+        "job_name": "皿洗い",
+        "point": 10,
+        "parent_id": 1
+    }
+  },
+  {
+    "model": "help_app.Houseworks",
+    "pk": 2,
+    "fields": {
+        "job_name": "ゴミ捨て",
+        "point": 10,
+        "parent_id": 1
+    }
+  },
+  {
+    "model": "help_app.Houseworks",
+    "pk": 3,
+    "fields": {
+        "job_name": "お掃除",
+        "point": 10,
+        "parent_id": 1
+    }
+  }
+]

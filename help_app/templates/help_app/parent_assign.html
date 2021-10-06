@@ -7,9 +7,53 @@
 
 </head>
 <body>
-    parent_assign
 
-    <a href="{% url 'help_app:parent_complete' %}">parent_complete</a>
-
+    {% block content %}
+    <form action="" method="post">{% csrf_token %}
+        <h1>ビルトインフォームサンプル</h1>
+            {% if ret %}
+                {% for key,val in results.items %}
+                    <tr>
+                        <td><h4>{{ key }}</h4></td>
+                        <td><h4>{{ val }}</h4></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+<!--                よくわからんとこstart　消しても問題なかった-->
+                {% for key,val in errors.items %}
+                    <tr>
+                        <td colspan="2">{{ key }} : {{ val }}</td>
+                    </tr>
+                {% endfor %}
+<!--                よくわからんとこEND-->
+                {% for field in form %}
+                {% if field.field.widget.input_type == "radio" %}
+                    <tr>
+                        <td>{{ field.label_tag }}</td>
+                        <td>
+                        {% for r in field %}
+                        {{ r }}</br>
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>{{ field.label_tag }}</td>
+                        <td>
+                            {% for c in field %}
+                                {{ c }}</br>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-primary">送信する</button>
+                </td>
+            </tr>
+             {% endif %}
+         </form>
+    {% endblock %}
 </body>
 </html>
