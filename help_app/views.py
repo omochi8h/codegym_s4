@@ -4,6 +4,8 @@ from . import forms
 from django.http.response import HttpResponse
 from django.template.context_processors import csrf
 from .models import Parents,Children,Houseworks,Tasks
+import datetime
+from django.utils import timezone
 # from django.contrib.staticfiles.templatetags.staticfiles import static
 
 # Create your views here.
@@ -25,8 +27,10 @@ def register(request):
 #     return render(request, 'help_app/parent_usersmanage.html', {})
 
 def parent_tasklist(request):
-    return render(request, 'help_app/parent_tasklist.html', {})
+    tasklist_houseworks = Houseworks.objects.filter(parent_id=1)
+    return render(request, 'help_app/parent_tasklist.html', {'tasks': tasklist_houseworks})
 
+# POSTのあとparent_assignにいくのができない
 def parent_assign(request):
     parent_id = 1
     labels = ['こども','任せる仕事']
@@ -38,20 +42,30 @@ def parent_assign(request):
         results[labels[0]] = request.POST.getlist("child")
         results[labels[1]] = request.POST.getlist("task")
         ret = 'OK'
-        c = {'results': results,'ret':ret}
+        # c = {'results': results,'ret':ret}
+        # results[labels[0]] = request.POST.getlist("child")
+        # results[labels[1]] = request.POST.getlist("task")
+        print(results[labels[1]])
+        print(results[labels[0]])
+        # child_result = results[labels[0]]
+        for result in results[labels[1]]:
+            print(result)
+            Tasks(child_id=int(results[labels[0]][0]), parent_id=1, work_id=int(result), comment='こんにちは').save()
+        return render(request, 'help_app/parent_assign.html')
+
 
     else:
         form = forms.ChkForm()
         assign_houseworks = Houseworks.objects.filter(parent_id=1)
         choice1 = []
         for work in assign_houseworks:
-            choice1.append((work, work.job_name))
+            choice1.append((work.id, work.job_name))
 
         assign_children = Children.objects.filter(parent_id=1)
         choice2 = []
         i = 1
         for child in assign_children:
-            choice2.append((i, child.name))
+            choice2.append((child.id, child.name))
             print(child)
             i=i+1
 
@@ -66,7 +80,8 @@ def parent_assign(request):
         c = {'form': form,'ret':ret}
         # CFRF対策（必須）
         c.update(csrf(request))
-    return render(request, 'help_app/parent_assign.html', c)
+        return render(request, 'help_app/parent_assign.html', c)
+
 
 def parent_taskregister(request):
     return render(request, 'help_app/parent_taskregister.html', {})

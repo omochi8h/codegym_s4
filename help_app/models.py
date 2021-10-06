@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import datetime
+from django.utils import timezone
 
 # Create your models here.
 class Parents(AbstractUser):
@@ -99,6 +101,7 @@ class Tasks(models.Model):
     )
 
     date = models.DateField(
+        default=timezone.now,
         blank=False,
         null=False
     )
