@@ -6,10 +6,10 @@
 
 </head>
 <body>
-    <a href="{% url 'help_app:parent_taskregister' %}">お手伝い追加</a></br>
+
     {% for task in tasks %}
         {{ task }}
-
+        <a href="{% url 'help_app:parent_taskregister' task.pk %}">編集</a>
         </br>
     {% endfor %}
 

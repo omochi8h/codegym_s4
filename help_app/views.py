@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from . import forms
 from django.http.response import HttpResponse
@@ -6,6 +6,7 @@ from django.template.context_processors import csrf
 from .models import Parents,Children,Houseworks,Tasks
 import datetime
 from django.utils import timezone
+from django.http import Http404
 # from django.contrib.staticfiles.templatetags.staticfiles import static
 
 # Create your views here.
@@ -20,7 +21,7 @@ def login(request):
     return render(request, 'help_app/login.html', {})
 
 def register(request):
-    return render(request, 'help_app/register.html', {})
+    return render(request, 'help_app/register.html')
 
 
 # def parent_top(request):
@@ -83,8 +84,21 @@ def parent_assign(request):
         return render(request, 'help_app/parent_assign.html', c)
 
 
-def parent_taskregister(request):
-    return render(request, 'help_app/parent_taskregister.html', {})
+def parent_taskregister(request,pk):
+    try:
+        houseworks = Houseworks.objects.get(pk=pk)
+    except Houseworks.DoesNotExist:
+        raise Http404
+
+    if request.method == "POST":
+        houseworks.job_name = request.POST["job_name"]
+        houseworks.save()
+        # return redirect(view_article,pk)
+        return render('help_app/parent_tasklist.html', {})
+        # return  redirect('parent_tasklist/')
+    context = {"housework": houseworks}
+
+    return render(request, 'help_app/parent_taskregister.html', context)
 
 def parent_complete(request):
     return render(request, 'help_app/parent_complete.html', {})
