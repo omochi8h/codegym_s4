@@ -10,6 +10,7 @@
     {% for task in tasks %}
         {{ task }}
         <a href="{% url 'help_app:parent_taskregister' task.pk %}">編集</a>
+        <a href="{% url 'help_app:task_delete' task.pk %}">削除</a>
         </br>
     {% endfor %}
 

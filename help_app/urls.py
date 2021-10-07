@@ -14,6 +14,7 @@ urlpatterns = [
 
     # path('parent_taskregister', views.parent_taskregister, name='parent_taskregister'),
     path('parent_taskregister/<int:pk>/', views.parent_taskregister, name='parent_taskregister'),
+    path('parent_tasklist/task_delete/<int:pk>/',views.task_delete,name="task_delete"),
     path('parent_usersmanage', views.parent_usersmanage, name='parent_usersmanage'),
     path('parent_complete', views.parent_complete, name='parent_complete'),
 

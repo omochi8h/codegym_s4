@@ -100,6 +100,14 @@ def parent_taskregister(request,pk):
 
     return render(request, 'help_app/parent_taskregister.html', context)
 
+def task_delete(request,pk):
+    try:
+        housework = Houseworks.objects.get(pk=pk)
+    except Houseworks.DoesNotExist:
+        raise Http404
+    housework.delete()
+    return redirect(parent_tasklist())
+
 def parent_complete(request):
     return render(request, 'help_app/parent_complete.html', {})
 
