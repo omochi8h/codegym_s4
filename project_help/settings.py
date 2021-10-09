@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-lu_y#q76#-=!d$vhg&3v1#+2mp34o34k&mz$v#r!0bhb&$&&44
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
 
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
 INSTALLED_APPS = [
+
     'help_app',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    #'help_app.apps.HelpAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -91,6 +93,7 @@ DATABASES = {
     }
 }
 
+
 AUTH_USER_MODEL = 'help_app.Parents'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -135,6 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

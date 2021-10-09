@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from . import models
 from .models import Parents
 
@@ -29,3 +30,6 @@ class HouseworksAdmin(admin.ModelAdmin):
 @admin.register(models.Days_comment)
 class Days_commentAdmin(admin.ModelAdmin):
     pass
+
+
+# Register your models here.

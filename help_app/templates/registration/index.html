@@ -9,6 +9,7 @@
 <p><a href="{% url 'password_reset' %}">パスワードを忘れた場合</a></p>
 
 <p><a href="{% url 'addwork' %}">お手伝いの追加</a></p>
+<p><a href="{% url 'child_complete' %}">お手伝いの追加</a></p>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
