@@ -12,7 +12,7 @@ urlpatterns = [
     path('parent_tasklist/', views.parent_tasklist, name='parent_tasklist'),
     path('parent_assign', views.parent_assign, name='parent_assign'),
 
-    # path('parent_taskregister', views.parent_taskregister, name='parent_taskregister'),
+    # path('parent_taskadd/', views.parent_taskadd, name="parent_taskadd"),
     path('parent_taskregister/<int:pk>/', views.parent_taskregister, name='parent_taskregister'),
     path('parent_tasklist/task_delete/<int:pk>/',views.task_delete,name="task_delete"),
     path('parent_usersmanage', views.parent_usersmanage, name='parent_usersmanage'),

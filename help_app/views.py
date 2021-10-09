@@ -23,10 +23,6 @@ def login(request):
 def register(request):
     return render(request, 'help_app/register.html')
 
-
-# def parent_top(request):
-#     return render(request, 'help_app/parent_usersmanage.html', {})
-
 def parent_tasklist(request):
     tasklist_houseworks = Houseworks.objects.filter(parent_id=1)
     return render(request, 'help_app/parent_tasklist.html', {'tasks': tasklist_houseworks})
@@ -44,17 +40,13 @@ def parent_assign(request):
         results[labels[1]] = request.POST.getlist("task")
         ret = 'OK'
         # c = {'results': results,'ret':ret}
-        # results[labels[0]] = request.POST.getlist("child")
-        # results[labels[1]] = request.POST.getlist("task")
         print(results[labels[1]])
         print(results[labels[0]])
         # child_result = results[labels[0]]
         for result in results[labels[1]]:
             print(result)
-            Tasks(child_id=int(results[labels[0]][0]), parent_id=1, work_id=int(result), comment='こんにちは').save()
+            Tasks(child_id=int(results[labels[0]][0]), parent_id=1, work_id=int(result)).save()
         return render(request, 'help_app/parent_assign.html')
-
-
     else:
         form = forms.ChkForm()
         assign_houseworks = Houseworks.objects.filter(parent_id=1)
@@ -83,6 +75,16 @@ def parent_assign(request):
         c.update(csrf(request))
         return render(request, 'help_app/parent_assign.html', c)
 
+# def parent_taskadd(request):
+#     if request.method == "POST":
+#         form = HouseworksForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('help_app:parent_tasklist')
+#     else:
+#         form = HouseworksForm
+#     return render(request, 'help_app/parent_taskadd.html', {'form': form})
+
 
 def parent_taskregister(request,pk):
     try:
@@ -94,11 +96,11 @@ def parent_taskregister(request,pk):
         houseworks.job_name = request.POST["job_name"]
         houseworks.save()
         # return redirect(view_article,pk)
-        return render('help_app/parent_tasklist.html', {})
+        return render(request,'help_app/parent_tasklist.html', {})
         # return  redirect('parent_tasklist/')
-    context = {"housework": houseworks}
-
-    return render(request, 'help_app/parent_taskregister.html', context)
+    else:
+        context = {"housework": houseworks}
+        return render(request, 'help_app/parent_taskregister.html', context)
 
 def task_delete(request,pk):
     try:
@@ -111,9 +113,6 @@ def task_delete(request,pk):
 def parent_complete(request):
     return render(request, 'help_app/parent_complete.html', {})
 
-
-# def child_top(request):
-#     return render(request, 'help_app/child_top.html', {})
 
 def child_tasklist(request):
     return render(request, 'help_app/child_tasklist.html', {})
