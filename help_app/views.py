@@ -39,14 +39,15 @@ def parent_assign(request):
         results[labels[0]] = request.POST.getlist("child")
         results[labels[1]] = request.POST.getlist("task")
         ret = 'OK'
-        # c = {'results': results,'ret':ret}
+        c = {'results': results,'ret':ret}
         print(results[labels[1]])
         print(results[labels[0]])
         # child_result = results[labels[0]]
         for result in results[labels[1]]:
             print(result)
             Tasks(child_id=int(results[labels[0]][0]), parent_id=1, work_id=int(result)).save()
-        return render(request, 'help_app/parent_assign.html')
+        # return render(request, 'help_app/parent_assign.html')
+        return render(request, 'help_app/parent_assign.html', c)
     else:
         form = forms.ChkForm()
         assign_houseworks = Houseworks.objects.filter(parent_id=1)
