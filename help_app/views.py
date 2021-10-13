@@ -1,4 +1,3 @@
-# from django.shortcuts import render
 from urllib import request
 
 from django.views import generic
@@ -17,6 +16,7 @@ from django.http.response import HttpResponse
 from django.template.context_processors import csrf
 from .models import Parents, Children, Houseworks, Tasks
 import datetime
+from datetime import date
 from django.utils import timezone
 from django.http import Http404
 
@@ -138,6 +138,12 @@ def parent_assign(request):
         print(results[labels[1]])
         print(results[labels[0]])
         # child_result = results[labels[0]]
+
+        # 今日既に割り振ったタスクを消去
+        old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=date.today())
+        print(old_task)
+        old_task.delete()
+
         for result in results[labels[1]]:
             print(result)
             Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result)).save()
