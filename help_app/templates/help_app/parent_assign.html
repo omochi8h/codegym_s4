@@ -1,15 +1,54 @@
+{% extends "base.html" %}
+{% block main %}
 
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>parent_assign</title>
+    {% block content %}
+    <form action="" method="post">{% csrf_token %}
+        <h1>タスクの振り分け</h1>
+            {% if ret %}
+                {% for key,val in results.items %}
+                    <tr>
+                        <td><h4>{{ key }}</h4></td>
+                        <td><h4>{{ val }}</h4></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+<!--                よくわからんとこstart　消しても問題なかった-->
+                {% for key,val in errors.items %}
+                    <tr>
+                        <td colspan="2">{{ key }} : {{ val }}</td>
+                    </tr>
+                {% endfor %}
+<!--                よくわからんとこEND-->
+                {% for field in form %}
+                {% if field.field.widget.input_type == "radio" %}
+                    <tr>
+<!--                        field.label_tagのとこは「こども：」の表示になる。ここ消して自分で文入れても大丈夫-->
+                        <td>{{ field.label_tag }}</td></br>
+                        <td>
+                        {% for r in field %}
+                        {{ r }}</br>
+                        {% endfor %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+<!--                        field.label_tagのとこは「任せる仕事：」の表示になる。ここ消して自分で文入れても大丈夫-->
+                        <td>{{ field.label_tag }}</td></br>
+                        <td>
+                            {% for c in field %}
+                                {{ c }}</br>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endif %}
+                {% endfor %}
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-primary">送信する</button>
+                </td>
+            </tr>
+             {% endif %}
+         </form>
+    {% endblock %}
 
-</head>
-<body>
-    parent_assign
-
-
-
-</body>
-</html>
+{% endblock %}

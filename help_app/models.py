@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -15,13 +17,6 @@ class Parents(AbstractUser):
         blank=False,
         null=True
     )
-
-    icon = models.ImageField(
-        upload_to="media/",
-        blank=False,
-        null=True
-    )
-
 
 class Children(models.Model):
     name = models.CharField(
@@ -39,7 +34,6 @@ class Children(models.Model):
 
     def __str__(self):
         return self.name
-
 
 
 class Houseworks(models.Model):
@@ -82,8 +76,10 @@ class Tasks(models.Model):
     )
 
     date = models.DateField(
+        default=timezone.now,
         blank=False,
         null=False
+
     )
 
     state = models.IntegerField(
@@ -98,7 +94,6 @@ class Tasks(models.Model):
         blank=False,
         null=True
     )
-
 
 class Days_comment(models.Model):
     parent = models.ForeignKey(
@@ -116,4 +111,3 @@ class Days_comment(models.Model):
         blank=False,
         null=False
     )
-

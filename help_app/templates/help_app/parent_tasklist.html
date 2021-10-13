@@ -1,14 +1,38 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>parent_tasklist</title>
+{% extends "base.html" %}
+{% block main %}
+   {% for task in tasks %}
+        {{ task }}
+        <a href="{% url 'parent_taskregister' task.pk %}">編集</a>
 
-</head>
-<body>
-    parent_tasklist
+        <!--ポップアップつき削除-->
+        <a data-toggle="modal" data-target="#sampleA">削除</a>
+<!--            ボタンバージョン-->
+<!--        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleA">削除</button>-->
+        <!-- モーダルダイアログ -->
+        <div class="modal fade" id="sampleA" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
 
-    <a href="{% url 'help_app:parent_taskregister' %}">parent_taskregister</a>
+              <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+              <h4 class="modal-title"></h4>
+              </div>
 
-</body>
-</html>
+              <div class="modal-body">
+              本当に削除しますか？
+              </div>
+
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                  <button type="button" class="btn btn-primary" onclick="location.href='{% url 'parent_task_delete' task.pk %}'">削除</button>
+              </div>
+
+            </div><!-- modal-content -->
+          </div><!-- modal-dialog -->
+        </div><!-- modal fade -->
+
+
+        </br>
+    {% endfor %}
+
+{% endblock %}
