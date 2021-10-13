@@ -3,7 +3,7 @@
     "model": "help_app.Parents",
     "pk": 1,
     "fields": {
-        "name": "おや１",
+        "username": "おや１",
         "email": "aaa@mail",
         "password": "oya1",
         "authcode": "oya1da"

@@ -25,12 +25,14 @@ SECRET_KEY = 'django-insecure-lu_y#q76#-=!d$vhg&3v1#+2mp34o34k&mz$v#r!0bhb&$&&44
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
 INSTALLED_APPS = [
+
+    'help_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'help_app.apps.HelpAppConfig',
+    #'help_app.apps.HelpAppConfig',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    #'help_app.apps.HelpAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +97,9 @@ AUTH_USER_MODEL = 'help_app.Parents'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+FRONTEND_URL = "http://127.0.0.1:8000"
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -127,6 +137,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login/"
+
+SITE_ID = 2
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

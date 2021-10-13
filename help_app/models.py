@@ -4,26 +4,11 @@ import datetime
 from django.utils import timezone
 
 # Create your models here.
-class Parents(AbstractUser):
-    name = models.CharField(
-        verbose_name='名前',
-        max_length=20,
-        blank=False,
-        null=False
-    )
 
+class Parents(AbstractUser):
     email = models.EmailField(
         verbose_name='メールアドレス',
-        max_length=255,
-        blank=False,
-        null=False,
         unique=True
-    )
-
-    password = models.TextField(
-        verbose_name='パスワード',
-        blank=False,
-        null=False
     )
 
     authcode = models.CharField(
@@ -32,16 +17,6 @@ class Parents(AbstractUser):
         blank=False,
         null=True
     )
-
-    # icon = models.ImageField(
-    #     upload_to="media/",
-    #     blank=False,
-    #     null=True
-    # )
-
-    def __str__(self):
-        return self.name
-
 
 class Children(models.Model):
     name = models.CharField(
@@ -61,7 +36,6 @@ class Children(models.Model):
         return self.name
 
 
-
 class Houseworks(models.Model):
     job_name = models.CharField(
         verbose_name='お手伝い名',
@@ -72,6 +46,7 @@ class Houseworks(models.Model):
 
     point = models.IntegerField(
         verbose_name='ポイント',
+        default=0,
         blank=False,
         null=True
     )
@@ -104,6 +79,7 @@ class Tasks(models.Model):
         default=timezone.now,
         blank=False,
         null=False
+
     )
 
     state = models.IntegerField(
@@ -119,8 +95,7 @@ class Tasks(models.Model):
         null=True
     )
 
-
-class days_comment(models.Model):
+class Days_comment(models.Model):
     parent = models.ForeignKey(
         Parents,
         on_delete=models.CASCADE

@@ -1,21 +1,10 @@
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="utf-8">
-    <title>parent_tasklist</title>
-
-</head>
-<body>
-
-    {% for task in tasks %}
+{% extends "base.html" %}
+{% block main %}
+   {% for task in tasks %}
         {{ task }}
-        <a href="{% url 'help_app:parent_taskregister' task.pk %}">編集</a>
-        <a href="{% url 'help_app:task_delete' task.pk %}">削除</a>
+        <a href="{% url 'parent_taskregister' task.pk %}">編集</a>
+        <a href="{% url 'parent_task_delete' task.pk %}">削除</a>
         </br>
     {% endfor %}
 
-
-
-
-</body>
-</html>
+{% endblock %}
