@@ -221,6 +221,21 @@ def certification(request):
 
 def parent_usersmanage(request):
     return render(request, 'help_app/parent_usersmanage.html', {})
+
+def parent_approval(request):
+    tasklist = Tasks.objects.filter(parent_id=request.user.id,state=-1).values()
+    print(tasklist)
+    childlist = Children.objects.filter(parent_id=request.user.id).values()
+    print(childlist)
+    return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist})
+
+def parent_approval_on(request, pk):
+    try:
+        task = Tasks.objects.get(pk=pk)
+    except Tasks.DoesNotExist:
+        raise Http404
+    # task.delete()
+    return redirect(parent_approval)
 #
 # def (request):
 #     return render(request, 'help_app/.html', {})
