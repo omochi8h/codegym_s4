@@ -4,6 +4,7 @@
 
 
     {% block content %}
+    <a href="{% url 'child_tasklist' %}">子どもページ</a>
     <form action="" method="post">{% csrf_token %}
         <h1>タスクの振り分け</h1>
             {% if ret %}
