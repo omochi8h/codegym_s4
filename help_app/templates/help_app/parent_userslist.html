@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block main %}
+ユーザー管理
+{% for child in children %}
+    <p>{{ child }}</p>
+    <p>編集</p>
+{% endfor %}
+<p><a href="{% url 'parent_usersmanage' %}">子供の追加</a></p>
+{% endblock %}

@@ -91,29 +91,13 @@ def addwork(request):
             new_work.parent = params['on_user']
             new_work.point = params['point']
             new_work.save()
+        return redirect(parent_tasklist)
     else:
         params['form'] = AddWork()
-    return render(request, 'registration/addwork.html', params)
-
-
-############
-
-# Create your views here.
+        return render(request, 'registration/addwork.html', params)
 
 class IndexView(generic.TemplateView):
     template_name = "index.html"
-
-
-def top(request):
-    return render(request, 'help_app/top.html', {})
-
-
-def login(request):
-    return render(request, 'help_app/login.html', {})
-
-
-def register(request):
-    return render(request, 'help_app/register.html')
 
 
 def parent_tasklist(request):
@@ -167,6 +151,7 @@ def parent_assign(request):
         form.fields['child'].initial = [assign_children[0].id]
         form.fields['task'].choices = choice1
         # ここでinitialに、選択済みのタスクを入れられるようにしたい
+        tasklist = Tasks.objects.filter(parent_id=request.user.id, state=-1).values()
         form.fields['task'].initial = ['0']
 
         c = {'form': form, 'ret': ret}
@@ -218,9 +203,28 @@ def child_history(request):
 def certification(request):
     return render(request, 'help_app/certification.html', {})
 
+def parent_userslist(request):
+    params = {'name': '', 'on_user': request.user, 'children': Children.objects.filter(parent=request.user).all()}
+    return render(request, 'help_app/parent_userslist.html', params)
 
 def parent_usersmanage(request):
-    return render(request, 'help_app/parent_usersmanage.html', {})
+    params = {'name': '', 'on_user': request.user, 'children': Children.objects.filter(parent=request.user).all(),
+              'form': None}
+    if request.method == 'POST':
+        form = AddChild(request.POST)
+        params['name'] = request.POST['name']
+        params['form'] = form
+        if params['name'] != '':
+            child = Children()
+            child.name = params['name']
+            child.parent = params['on_user']
+            child.save()
+        return redirect(parent_userslist)
+    else:
+        params['form'] = AddChild()
+        return render(request, 'help_app/parent_usersmanage.html', params)
+    # return render(request, 'help_app/parent_usersmanage.html', params)
+    # return render(request, 'help_app/parent_usersmanage.html', {})
 
 def parent_approval(request):
     tasklist = Tasks.objects.filter(parent_id=request.user.id,state=-1).values()

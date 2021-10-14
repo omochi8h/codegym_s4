@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
+    <p><a href="{% url 'addwork' %}">お手伝いの追加</a></p>
    {% for task in tasks %}
         {{ task }}
         <a href="{% url 'parent_taskregister' task.pk %}">編集</a>
