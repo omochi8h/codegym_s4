@@ -92,8 +92,6 @@ DATABASES = {
         'POST': '',
     }
 }
-
-
 AUTH_USER_MODEL = 'help_app.Parents'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
