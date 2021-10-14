@@ -35,10 +35,20 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", login_required(views.parent_assign), name="index"),
     path('addwork/', views.addwork, name="addwork"),
+    path('newwork/', views.newwork, name="new_work"),
+    path('child_tasklist/', views.child_page, name="child_page"),
     path('', include("django.contrib.auth.urls")),
 
     path("signup/", views.SignUpView.as_view(), name="signup"),
     path('activate/<uidb64>/<token>/', views.ActivateView.as_view(), name="activate"),
+
+
+
+
+
+    #path('', views.top, name='top'),
+    #path('login', views.login, name='login'),
+    #path('register', views.register, name='register'),
 
     # path('parent_top', views.parent_top, name='parent_top'),
     path('parent_tasklist/', views.parent_tasklist, name='parent_tasklist'),
@@ -52,7 +62,7 @@ urlpatterns = [
     path('parent_approval_on/<int:pk>/', views.parent_approval_on, name='parent_approval_on'),
 
     # path('child_top', views.child_top, name='child_top'),
-    path('child_tasklist', views.child_tasklist, name='child_tasklist'),
+    path('child_tasklist', views.child_page, name='child_tasklist'),
     path('child_complete', views.child_complete, name='child_complete'),
     path('child_history', views.child_history, name='child_history'),
     path('certification', views.certification, name='certification'),

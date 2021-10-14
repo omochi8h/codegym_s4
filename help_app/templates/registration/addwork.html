@@ -4,7 +4,7 @@
 
 お手伝いの追加
 
-<form method="POST">
+<form action = "{% url 'new_work'%}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">送信</button>

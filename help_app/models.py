@@ -102,6 +102,8 @@ class Days_comment(models.Model):
     )
 
     date = models.DateField(
+        auto_now_add=True,
+        editable=False,
         blank=False,
         null=False
     )
