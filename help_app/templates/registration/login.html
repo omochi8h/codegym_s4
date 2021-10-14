@@ -1,5 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block title %}ログイン{% endblock %}
+
 {% block main %}
-{% include "_form.html" with submit_label="ログイン" %}
-<p><a href="{% url 'signup' %}">サインアップ</a> </p>
+<div class="login">
+    {% include "_form.html" with submit_label="ログイン" %}
+</div>
 {% endblock %}
