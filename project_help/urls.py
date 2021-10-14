@@ -45,8 +45,8 @@ urlpatterns = [
 
 
     #path('', views.top, name='top'),
-    path('login', views.login, name='login'),
-    path('register', views.register, name='register'),
+    #path('login', views.login, name='login'),
+    #path('register', views.register, name='register'),
 
     # path('parent_top', views.parent_top, name='parent_top'),
     path('parent_tasklist', views.parent_tasklist, name='parent_tasklist'),

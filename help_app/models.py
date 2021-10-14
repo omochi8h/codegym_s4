@@ -16,12 +16,6 @@ class Parents(AbstractUser):
         null=True
     )
 
-    icon = models.ImageField(
-        upload_to="media/",
-        blank=False,
-        null=True
-    )
-
 
 class Children(models.Model):
     name = models.CharField(

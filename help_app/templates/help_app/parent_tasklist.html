@@ -3,12 +3,41 @@
 <head>
     <meta charset="utf-8">
     <title>parent_tasklist</title>
-
+    <link rel="stylesheet" type="text/css" href="parent.css"/>
 </head>
-<body>
-    parent_tasklist
+<body class="body_wrap">
 
-    <a href="{% url 'help_app:parent_taskregister' %}">parent_taskregister</a>
+  <header class="site-header">
+    <div class="header_wrap">
 
+      <div class="header_start">
+        <h3>プロダクト名</h3>
+      </div>
+
+      <div class="header_middle">
+        <nav class="nav">
+          <ul class="nav_wrapper">
+            <li class="nav__item"><a href="parent_assign.html">お手伝い依頼</a></li>
+            <li class="nav__item"><a href="#">お手伝い項目一覧</a></li>
+            <li class="nav__item"><a href="parent_userslist.html">ユーザー管理</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header_end">
+        <a class="button" href="#">こどもページ</a>
+      </div>
+
+    </div>
+  </header>
+
+  parent_tasklist
+
+  <a href="{% url 'help_app:parent_complete' %}">parent_complete</a>
+
+  <footer class="footer_wrap">
+
+  </footer><!-- /footer -->
 </body>
 </html>
+
