@@ -11,6 +11,14 @@
             <a class="navbar-brand" href="/">アカウント</a>
         </nav>
         <div class="container mt-4">
+                <p><a href="{% url 'logout' %}">ログアウト</a></p>
+    <p><a href="{% url 'password_change' %}">パスワードの変更</a></p>
+
+
+    <p><a href="{% url 'parent_tasklist' %}">お手伝い項目一覧</a></p>
+    <p><a href="{% url 'parent_assign' %}">お手伝い依頼</a></p>
+    <p><a href="{% url 'parent_userslist' %}">ユーザー管理</a></p>
+    <p><a href="{% url 'parent_approval' %}">承認待ちタスク</a></p>
         {% block main %}
         <p>※コンテンツがありません。</p>
         {% endblock %}
