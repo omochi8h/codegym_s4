@@ -51,6 +51,8 @@ urlpatterns = [
     path('parent_usersmanage', views.parent_usersmanage, name='parent_usersmanage'),
     path('parent_complete', views.parent_complete, name='parent_complete'),
     path('parent_task_delete/<int:pk>/', views.parent_task_delete, name='parent_task_delete'),
+    path('parent_approval/', views.parent_approval, name='parent_approval'),
+    path('parent_approval_on/<int:pk>/', views.parent_approval_on, name='parent_approval_on'),
 
     # path('child_top', views.child_top, name='child_top'),
     path('child_tasklist', views.child_tasklist, name='child_tasklist'),
