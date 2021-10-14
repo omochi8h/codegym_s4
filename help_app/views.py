@@ -224,11 +224,8 @@ def parent_usersmanage(request):
 
 def parent_approval(request):
     tasklist = Tasks.objects.filter(parent_id=request.user.id,state=-1).values()
-    print(tasklist)
     childlist = Children.objects.filter(parent_id=request.user.id).values()
-    print(childlist)
     houseworklist = Houseworks.objects.filter(parent_id=request.user.id).values()
-    print(houseworklist)
     return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist})
 
 def parent_approval_on(request, pk):
