@@ -19,6 +19,7 @@ from .forms import SignUpForm, AddChild, AddWork
 
 from django.shortcuts import render
 from django.views import generic
+import datetime
 
 
 # Create your views here.
@@ -88,6 +89,36 @@ def addwork(request):
     else:
         params['form'] = AddWork()
     return render(request, 'registration/addwork.html', params)
+
+
+def newwork(request):
+    params = {'name': '', 'point': ''}
+    if request.method == 'POST':
+        form = AddWork(request.POST)
+        params['name'] = request.POST['name']
+        params['point'] = request.POST['point']
+        params['form'] = form
+    return render(request, 'registration/newwork.html', params)
+
+def child_page(request):
+    params = {}
+    count = ['first', 'second', 'third', 'forth', 'fifth']
+    i = 0
+    if request.method == 'POST':
+        update_id = request.POST['complete_id']
+        task = Tasks.objects.filter(id=update_id).first()
+        task.state = -1
+        task.save()
+
+    params['children'] = Children.objects.filter(parent=request.user).all()
+    for child in params.get('children'):
+        d_today = datetime.date.today()
+        params[count[i]] = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=d_today).all()
+        i += 1
+
+    return render(request, 'registration/child_tasklist.html', params)
+
+
 ############
 
 # Create your views here.

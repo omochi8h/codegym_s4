@@ -99,7 +99,6 @@ class Tasks(models.Model):
         null=True
     )
 
-
 class Days_comment(models.Model):
     parent = models.ForeignKey(
         Parents,
@@ -107,6 +106,8 @@ class Days_comment(models.Model):
     )
 
     date = models.DateField(
+        auto_now_add=True,
+        editable=False,
         blank=False,
         null=False
     )

@@ -10,6 +10,7 @@
 
 <p><a href="{% url 'addwork' %}">お手伝いの追加</a></p>
 <p><a href="{% url 'child_complete' %}">お手伝いの追加</a></p>
+<p><a href="{% url 'child_page' %}">子どものページ</a></p>
 <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
