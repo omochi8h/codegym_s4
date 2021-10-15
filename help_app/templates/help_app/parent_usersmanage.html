@@ -1,12 +1,16 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>parent_usermanage</title>
+{% extends "parent_base.html" %}
+{% block main %}
+    <head>
+        <title>こどもの管理</title>
+    </head>
 
-</head>
-<body>
-    parent_usermanage
+    <h1 class="page_name">こどもの管理</h1>
 
-</body>
-</html>
+    <form method="POST" class="tasklist_form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">送信</button>
+    </form>
+
+
+{% endblock %}

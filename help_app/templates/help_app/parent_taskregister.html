@@ -1,0 +1,19 @@
+{% extends "parent_base.html" %}
+{% block main %}
+    <head>
+        <title>お手伝いの編集</title>
+    </head>
+
+　<h1 class="page_name">お手伝いの編集</h1>
+
+    <a href="{% url 'parent_tasklist' %}">編集の取りやめ</a>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <p><label for="title_input">お手伝い名</label></p>
+        <p><input type="text" name="job_name" id="title_input" value="{{ housework.job_name }}"></p>
+
+        <p><button type="submit">更新</button></p>
+    </form>
+
+{% endblock %}

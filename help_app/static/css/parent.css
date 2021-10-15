@@ -1,0 +1,165 @@
+.site-header a {
+  text-decoration: none;
+  color: #707070;
+  font-weight: bold;
+}
+
+.site-header a:hover{
+  color: #000;
+}
+
+.body_wrap{
+  background-color: #BEEBED;
+  margin: 0px;
+}
+
+.site-header {
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+}
+
+.header_wrap {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  list-style: none;
+  overflow: hidden;
+}
+
+.footer_wrap{
+  background-color: #B0D69F;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer_wrap a{
+  text-decoration: none;
+  color: #707070;
+  font-weight: bold;
+}
+
+.nav_wrapper {
+  list-style: none;
+  display: flex;
+  justify-content: right;
+}
+
+.nav__item{
+  padding: 0px 40px;
+}
+
+.header_start{
+  padding: 0px 40px;
+}
+
+.header_middle{
+  padding-left: 50px;
+}
+
+.header_end{
+  padding: 0px 40px;
+  margin-left: auto;
+}
+
+
+.assign_form{
+  background-color: #fff;
+  padding: 40px 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.assign_form p{
+  margin-top: 40px;
+}
+
+.tasklist_form{
+  background-color: #fff;
+  padding: 40px 60px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+.assign_form textarea{
+  width: 100%;
+}
+
+.page_name{
+  text-align: center;
+  color: #707070;
+}
+
+.tasktable{
+  width:100%;
+  height:100;
+}
+
+.users_form{
+  background-color: #fff;
+  padding: 20px;
+  margin: 50px 50px;
+  border: thin solid #000;
+  width: 10%;
+}
+
+
+.form_lead{
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.form_list{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.add_task{
+    text-decoration: none;
+    font-weight: bold;
+    color: #707070;
+    background-color: #A5D6FF;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em
+}
+.add_task:hover {
+    color: #303030;
+    background: #7DC4FF;
+}
+
+.user{
+    background-color: #fff;
+
+    height:150px;
+    width:200px;
+    border-radius:45%;
+    margin: 50px;
+    text-align:center;
+}
+
+.user p{
+    margin-top: 50px;
+}
+
+.users{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* 通常時はホバー時の文字を非表示にする */
+.hover{
+    display: none;
+}
+/* ホバー時に、ホバー時の文字を表示する */
+.user:hover .hover{
+    display: inline;
+}
+.user:hover{
+    background-color: #d8d8d8;
+}

@@ -1,0 +1,23 @@
+{% extends "parent_base.html" %}
+{% block main %}
+    <head>
+        <title>ユーザー管理</title>
+    </head>
+
+    <h1 class="page_name">ユーザー管理</h1>
+
+    <div class="users">
+        {% for child in children %}
+            <div class="user">
+                <p style="font-weight:bold; font-size:25px; color: #707070;">{{ child }}</p>
+                <p class="hover">編集</p>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+    <div style="text-align: center;">
+        <p><a href="{% url 'parent_usersmanage' %}" class="add_task">子供の追加</a></p>
+    </div>
+{% endblock %}
