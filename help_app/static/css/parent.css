@@ -8,8 +8,8 @@
   color: #000;
 }
 
-.header_wrap  a:hover{
-  color: #000;
+.footer_wrap  a:hover{
+  color: #ff122e;
 }
 
 .body_wrap{
@@ -111,7 +111,6 @@
   width: 10%;
 }
 
-
 .form_lead{
     margin-bottom: 20px;
     font-weight: bold;
@@ -136,6 +135,32 @@
 .add_task:hover {
     color: #303030;
     background: #7DC4FF;
+}
+/*ボタンタグの初期化
+button {
+	background: none;
+	border: none;
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+*/
+
+.back_btn{
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    background-color: #e3364a;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em
+}
+.back_btn:hover {
+    color: #fff;
+    background: #ff122e;
 }
 
 .user{
@@ -180,4 +205,12 @@
     position: relative;/*←相対位置*/
     padding-bottom: 100px;/*←footerの高さ*/
     box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+.edit_btn a:hover{
+    color:#000;
+    background-color:#fff;
+}
+.delete_btn a:hover{
+    color:#fff;
+    background-color:#f00;
 }
