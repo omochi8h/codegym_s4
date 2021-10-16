@@ -73,19 +73,6 @@ def index(request):
 
 
 def addwork(request):
-    if Houseworks.objects.filter(parent=request.user).all().count() == 0:
-        default_work1 = Houseworks()
-        default_work1.job_name = 'お皿洗い'
-        default_work1.point = 3
-        default_work1.parent = request.user
-        default_work1.save()
-
-        default_work2 = Houseworks()
-        default_work2.job_name = 'お片付け'
-        default_work2.point = 3
-        default_work2.parent = request.user
-        default_work2.save()
-
     params = {'name': '', 'on_user': request.user, 'works': Houseworks.objects.filter(parent=request.user).all(),
               'point': '',
               'form': None}
@@ -153,6 +140,18 @@ def parent_tasklist(request):
 
 # POSTのあとparent_assignにいくのができない
 def parent_assign(request):
+    if Houseworks.objects.filter(parent=request.user).all().count() == 0:
+        default_work1 = Houseworks()
+        default_work1.job_name = 'お皿洗い'
+        default_work1.point = 3
+        default_work1.parent = request.user
+        default_work1.save()
+
+        default_work2 = Houseworks()
+        default_work2.job_name = 'お片付け'
+        default_work2.point = 3
+        default_work2.parent = request.user
+        default_work2.save()
     labels = ['こども', '任せる仕事']
     # 入力結果を格納する辞書
     results = {}
@@ -270,6 +269,28 @@ def parent_usersmanage(request):
         return render(request, 'help_app/parent_usersmanage.html', params)
     # return render(request, 'help_app/parent_usersmanage.html', params)
     # return render(request, 'help_app/parent_usersmanage.html', {})
+
+def parent_usersedit(request, pk):
+    try:
+        child = Children.objects.get(pk=pk)
+    except Children.DoesNotExist:
+        raise Http404
+
+    if request.method == "POST":
+        child.name = request.POST["name"]
+        child.save()
+        return redirect(parent_userslist)
+    else:
+        context = {"child": child}
+        return render(request, 'help_app/parent_usersedit.html', context)
+
+def parent_users_delete(request, pk):
+    try:
+        child = Children.objects.get(pk=pk)
+    except Children.DoesNotExist:
+        raise Http404
+    child.delete()
+    return redirect(parent_userslist)
 
 def parent_approval(request):
     tasklist = Tasks.objects.filter(parent_id=request.user.id,state=-1).values()
