@@ -1,11 +1,10 @@
 {% extends "base.html" %}
 {% block main %}
 {% csrf_token %}
-<h2>会員ページ</h2>
-<p>{{ user }}さん、こんにちは！</p>
 
+お手伝いの追加
 
-<form method="POST">
+<form action = "{% url 'new_work'%}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">送信</button>
@@ -13,7 +12,4 @@
 
 <p>{{ name }}</p>
 <p>{{ point }}</p>
-{% for work in works %}
-    <p>{{ work }}</p>
-{% endfor %}
 {% endblock %}
