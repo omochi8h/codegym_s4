@@ -290,6 +290,27 @@ def parent_approval(request):
     childlist = Children.objects.filter(parent_id=request.user.id).values()
     houseworklist = Houseworks.objects.filter(parent_id=request.user.id).values()
     return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist})
+def parent_usersedit(request, pk):
+    try:
+        child = Children.objects.get(pk=pk)
+    except Children.DoesNotExist:
+        raise Http404
+
+    if request.method == "POST":
+        child.name = request.POST["name"]
+        child.save()
+        return redirect(parent_userslist)
+    else:
+        context = {"child": child}
+        return render(request, 'help_app/parent_usersedit.html', context)
+
+def parent_users_delete(request, pk):
+    try:
+        child = Children.objects.get(pk=pk)
+    except Children.DoesNotExist:
+        raise Http404
+    child.delete()
+    return redirect(parent_userslist)
 
 def parent_approval_on(request, pk):
     try:

@@ -3,6 +3,10 @@
 
 {% block title %}ログイン{% endblock %}
 
+{% block link %}
+<li><a href="{% url 'login' %}">ログイン</a></li>
+<li><a href="{% url 'signup' %}">サインアップ</a></li>
+{% endblock %}
 {% block main %}
 
 <div class="login">

@@ -1,37 +1,43 @@
 
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'script.js' %}" defer></script>
-</head>
-<body>
-{% csrf_token %}
-<h2>子どもページ</h2>
-<p>{{ user }}さん、こんにちは！</p>
+{% block title %}こどもーおてつだいリスト{% endblock %}
 
-<p><a href="{% url 'logout' %}">ログアウト</a></p>
-<a href="{% url 'index' %}">親ページ</a>
-<main>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script src="{% static 'js/script.js' %}" defer></script>
+{% endblock %}
+
+{% block link %}
+
+                <li><a href="{% url 'index' %}">がんばりをみる</a></li>
+                <li><a href="{% url 'index' %}">おやページへ</a></li>
+                <li><a href="{% url 'logout' %}">ログアウト</a></li>
+{% endblock%}
+
+
+{% block h1 %}おてつだいをしよう！{% endblock %}
+{% block main %}
+
+{% csrf_token %}
     <div class="area">
         {% for child in children %}
             {% if forloop.counter == 1 %}
                 <input type="radio" name="tab_name" id='tab1' checked>
                 <label class="tab_class" for='tab1'>{{ child }}</label>
+                <!--タブのコンテンツ-->
                 <div class="content_class">
                     {% for task in first %}
                        <a class="open_modal" onclick="window.open();">{{ task.work }}</a>
 
                         <div class="main_modal" id="modal">
-                            <h2>確認</h2>
                             <div class="modalContents">
-                                <h5>お手伝いできた？</h5>
+                                <h4>お手伝いできた？</h4>
                                 {% csrf_token %}
                                 <form method="post">
-                                    <a class="close_modal" onclick="window.close();">できてない</a>
                                     <button type="submit" class="complete_task" value="{{ task.id}}" name="complete_id">できた！</button>
+                                    <button type="button" class="close_modal" onclick="window.close();">できてない！</button>
+
                                 </form>
                             </div>
                         </div>
@@ -122,6 +128,8 @@
     </div>
 
     <div class="mask" id="mask"></div>
-</main>
-</body>
-</html>
+
+{% endblock %}
+
+    {% block footer %}
+        {% endblock %}
