@@ -9,32 +9,31 @@
         {% block head %}
         {% endblock %}
     </head>
+
     <body class="body_wrap">
 
-        <header class="site-header">
-            <div class="header_wrap">
-                <div class="header_start">
-                    <h3>プロダクト名</h3>
-                </div>
-
-                <div class="header_middle">
-                    <nav class="nav">
-                        <ul class="nav_wrapper">
-                            <li class="nav__item"><a href="{% url 'parent_assign' %}">お手伝い依頼</a></li>
-                            <li class="nav__item"><a href="{% url 'parent_tasklist' %}">お手伝い項目一覧</a></li>
-                            <li class="nav__item"><a href="{% url 'parent_userslist' %}">ユーザー管理</a></li>
-                            <li class="nav__item"><a href="{% url 'parent_approval' %}">承認待ちタスク</a></li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="header_end">
-                    <a class="button" href="{% url 'child_tasklist' %}">こどもページ</a>
-                </div>
+        <div class="header_wrap">
+            <div class="header_start">
+                <h3>プロダクト名</h3>
             </div>
-        </header>
 
-        <div class="container mt-4">
+            <div class="header_middle">
+                <nav class="nav">
+                    <ul class="nav_wrapper">
+                        <li class="nav__item"><a href="{% url 'parent_assign' %}">お手伝い依頼</a></li>
+                        <li class="nav__item"><a href="{% url 'parent_tasklist' %}">お手伝い項目一覧</a></li>
+                        <li class="nav__item"><a href="{% url 'parent_userslist' %}">ユーザー管理</a></li>
+                        <li class="nav__item"><a href="{% url 'parent_approval' %}">承認待ちタスク</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="header_end">
+                <a class="button" href="{% url 'child_tasklist' %}">こどもページ</a>
+            </div>
+        </div>
+
+        <div class="main_wrap">
             {% block main %}
             <p>※コンテンツがありません。</p>
             {% endblock %}
@@ -48,7 +47,6 @@
                 </ul>
             </nav>
         </div>
-
 
     </body>
 </html>
