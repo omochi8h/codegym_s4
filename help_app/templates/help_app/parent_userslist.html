@@ -10,8 +10,8 @@
         {% for child in children %}
             <div class="user">
                 <p style="font-weight:bold; font-size:25px; color: #707070;">{{ child }}</p>
-                <p class="hover"><a href="{% url 'parent_usersedit' child.pk %}">編集</a></p>
-                <p class="hover"><a href="{% url 'parent_users_delete' child.pk %}">削除</a></p>
+                <p class="hover edit_btn"><a href="{% url 'parent_usersedit' child.pk %}">編集</a></p>
+                <p class="hover delete_btn"><a href="{% url 'parent_users_delete' child.pk %}">削除</a></p>
             </div>
         {% endfor %}
     </div>

@@ -140,7 +140,6 @@
 
 .user{
     background-color: #fff;
-
     height:150px;
     width:200px;
     border-radius:45%;
@@ -150,6 +149,14 @@
 
 .user p{
     margin-top: 50px;
+}
+
+.user a{
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
+    border: thin solid #707070;
+    padding: 1px 3px;
 }
 
 .users{

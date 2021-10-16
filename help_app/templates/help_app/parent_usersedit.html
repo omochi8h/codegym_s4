@@ -1,12 +1,20 @@
 {% extends "parent_base.html" %}
 {% block main %}
-    <a href="{% url 'parent_tasklist' %}">編集の取りやめ</a>
+    <head>
+        <title>ユーザーの編集</title>
+    </head>
 
-    <form action="" method="post">
+    <h1 class="page_name">ユーザーの編集</h1>
+
+    <form action="" method="post" class="tasklist_form">
         {% csrf_token %}
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="{% url 'parent_userslist' %}" class="add_task">編集の取りやめ</a>
+        </div>
         <p><label for="title_input">子供の名前</label></p>
         <p><input type="text" name="name" id="title_input" value="{{ child.name }}"></p>
 
         <p><button type="submit">更新</button></p>
+
     </form>
 {% endblock %}
