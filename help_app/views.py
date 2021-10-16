@@ -193,7 +193,7 @@ def parent_assign(request):
             i = i + 1
 
         form.fields['child'].choices = choice2
-        form.fields['child'].initial = [assign_children[0].id]
+        # form.fields['child'].initial = [assign_children[0].id]
         form.fields['task'].choices = choice1
         # ここでinitialに、選択済みのタスクを入れられるようにしたい
         tasklist = Tasks.objects.filter(parent_id=request.user.id, state=-1).values()
