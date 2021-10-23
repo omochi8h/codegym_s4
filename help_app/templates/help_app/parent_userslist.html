@@ -1,4 +1,29 @@
 {% extends "parent_base.html" %}
+{% block head %}
+<!--        モーダルダイアログ用-->
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script>
+            var column = 0;
+            $(function () {
+              "use strict";
+              $('.task-check').click(function () {
+                //data-columns(child.pk)を取得
+                column=$(this).attr('data-columns')
+                console.log(column);
+              });
+            });
+            function jump(){
+                console.log(column);
+                location.href='/parent_users_delete/' + column + '/'
+            }
+        </script>
+{% endblock %}
 {% block main %}
     <head>
         <title>ユーザー管理</title>
@@ -10,8 +35,33 @@
         {% for child in children %}
             <div class="user">
                 <p style="font-weight:bold; font-size:25px; color: #707070;">{{ child }}</p>
-                <p class="hover edit_btn"><a href="{% url 'parent_usersedit' child.pk %}">編集</a></p>
-                <p class="hover delete_btn"><a href="{% url 'parent_users_delete' child.pk %}">削除</a></p>
+                <p class="hover"><a href="{% url 'parent_usersedit' child.pk %}">編集</a></p>
+                <!--                class名(task-check)変更しないでください。-->
+                <p class="hover"><a class="task-check" data-toggle="modal" data-target="#sampleA" data-columns="{{ child.pk }}">削除</a></p>
+
+            <!--ポップアップつき削除-->
+            <!-- モーダルダイアログ -->
+                <div class="modal fade" id="sampleA" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+
+                            <div class="modal-body">
+                                 本当に削除しますか？
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                                <button type="button" class="btn btn-primary" onclick="jump()">削除</button>
+                            </div>
+
+                        </div><!-- modal-content -->
+                    </div><!-- modal-dialog -->
+                </div><!-- modal fade -->
             </div>
         {% endfor %}
     </div>
