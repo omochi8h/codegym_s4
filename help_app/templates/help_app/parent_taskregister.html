@@ -6,14 +6,18 @@
 
 　<h1 class="page_name">お手伝いの編集</h1>
 
-    <a href="{% url 'parent_tasklist' %}">編集の取りやめ</a>
-
-    <form action="" method="post">
+    <form action="" method="post" class="tasklist_form">
         {% csrf_token %}
-        <p><label for="title_input">お手伝い名</label></p>
+
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="{% url 'parent_tasklist' %}" class="back_btn">編集の取りやめ</a>
+        </div>
+
+        <p><label for="title_input" class="form_lead">お手伝い名</label></p>
         <p><input type="text" name="job_name" id="title_input" value="{{ housework.job_name }}"></p>
 
-        <p><button type="submit">更新</button></p>
+        <p><button type="submit" class="send_btn">更新</button></p>
+
     </form>
 
 {% endblock %}
