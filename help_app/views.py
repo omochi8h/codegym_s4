@@ -370,35 +370,12 @@ def parent_approval(request):
     tasklist = Tasks.objects.filter(parent_id=request.user.id,state=-1).values()
     childlist = Children.objects.filter(parent_id=request.user.id).values()
     houseworklist = Houseworks.objects.filter(parent_id=request.user.id).values()
-
-    return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist})
-
-def parent_usersedit(request, pk):
-    try:
-        child = Children.objects.get(pk=pk)
-    except Children.DoesNotExist:
-        raise Http404
-
-    if request.method == "POST":
-        child.name = request.POST["name"]
-        child.save()
-        return redirect(parent_userslist)
-    else:
-        context = {"child": child}
-        return render(request, 'help_app/parent_usersedit.html', context)
-
-def parent_users_delete(request, pk):
-    try:
-        child = Children.objects.get(pk=pk)
-    except Children.DoesNotExist:
-        raise Http404
-    child.delete()
-    return redirect(parent_userslist)
-
-    if Tasks.objects.filter(parent_id=request.user.id,state=-1).count == 0:
-        count = 0
-    else:
-        count = 1
+    count = {}
+    for child in childlist:
+        if Tasks.objects.filter(parent_id=request.user.id, child_id=child['id'] ,state=-1).all().count() == 0:
+            count[child['id']] = 0
+        else:
+            count[child['id']] = 1
     return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist, 'count': count})
 
 def parent_approval_on(request, pk):
