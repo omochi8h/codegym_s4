@@ -20,8 +20,9 @@
                 const task = data[child]
                 task.forEach(function(elem, index) {
                   console.log(`"${elem}"`);
-                  console.log($('input[value="' + elem + '"]').attr('class'));
-                  document.querySelector(`input[type="checkbox"][value="' + elem + '"]`).checked = true;
+                  console.log($('input[value="' + elem + '"]'));
+                  console.log($('#task_3'));
+                  $(`input[value="' + elem + '"]`).attr('checked', 'checked');
                 });
             }
         </script>
