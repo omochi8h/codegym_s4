@@ -1,11 +1,46 @@
 {% extends "parent_base.html" %}
+{% block head %}
+        <script>
+            var data;
+            var child_id;
+            window.onload = function(){
+                var checkOption = document.getElementsByName('child');
+
+                checkOption.forEach(function(e) {
+                    e.addEventListener("click", function() {
+                        console.log(document.querySelector("input:checked[name=child]").value);
+                        child_id = document.querySelector("input:checked[name=child]").value;
+                        sample(child_id);
+                    });
+                });
+            };
+            function sample(child){
+                const data = JSON.parse('{{ dataset|safe }}');
+                console.log(data[child]);
+                const task = data[child]
+                task.forEach(function(elem, index) {
+                  console.log(`"${elem}"`);
+                  console.log($('input[value="' + elem + '"]'));
+                  console.log($('#task_3'));
+                  $(`input[value="' + elem + '"]`).attr('checked', 'checked');
+                });
+            }
+        </script>
+{% endblock %}
 {% block main %}
     <head>
         <title>お手伝いを依頼する</title>
     </head>
 
+
     {% block content %}
     <h1 class="page_name">お手伝いを依頼する</h1>
+    {% if count == 0 %}
+    <div class="tasklist_form">
+        <p>子供を登録してください。</p>
+        <p><a href="{% url 'parent_userslist' %}">ユーザー管理</a></p>
+    </div>
+    {% else %}
 
     <form action="" method="post" class="assign_form">{% csrf_token %}
             {% if ret %}
@@ -59,6 +94,7 @@
             </div>
              {% endif %}
          </form>
+{% endif %}
     {% endblock %}
 
 {% endblock %}

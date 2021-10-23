@@ -26,7 +26,9 @@
         <nav style="background">
 	       <ul class="main-nav" style="list-style: none; padding-left:0px;">
 		        <li><a href="#" class="logo">Logo</a></li>
+                {% if request.user.is_authenticated %}
                　<li><a href="#" class="hello">{{ user }}さん、<br>こんにちは！</a></li>
+               {% endif %}
 
                {% block link %}
                {% endblock%}

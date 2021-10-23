@@ -96,7 +96,7 @@ input[name="tab_name"] {
 }
 
 input:checked + .tab_class {
-  background-color:#e3acae ;
+  background-color:#a4a8d4 ;
   color:#000;
 }
 

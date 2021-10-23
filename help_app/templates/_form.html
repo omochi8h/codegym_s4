@@ -1,5 +1,11 @@
 <form method="post" class="login__form">
     {% csrf_token %}
-    {{ form.as_p }}
+    {% for field in form %}
+            <p>
+                <label>{{ field.label }}</label>
+                {{ field }}
+            </p>
+            {% endfor %}
+    <!--{{ form.as_p }}-->
     <input type="submit" class="btn btn-warning"　value="{{ submit_label }}" />
 </form>

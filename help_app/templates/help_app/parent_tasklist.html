@@ -1,4 +1,29 @@
 {% extends "parent_base.html" %}
+{% block head %}
+<!--        モーダルダイアログ用-->
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script>
+            var column = 0;
+            $(function () {
+              "use strict";
+              $('.task-check').click(function () {
+                //data-columns(task.pk)を取得
+                column=$(this).attr('data-columns')
+                console.log(column);
+              });
+            });
+            function jump(){
+                console.log(column);
+                location.href='/parent_task_delete/' + column + '/'
+            }
+        </script>
+{% endblock %}
 {% block main %}
     <head>
         <title>お手伝い項目一覧</title>
@@ -14,11 +39,10 @@
         {% for task in tasks %}
             {{ task }}
                 <a href="{% url 'parent_taskregister' task.pk %}">編集</a>
+<!--                class名(task-check)変更しないでください。-->
+                <a class="task-check" data-toggle="modal" data-target="#sampleA" data-columns="{{ task.pk }}">削除</a>
             <!--ポップアップつき削除-->
-                <a data-toggle="modal" data-target="#sampleA">削除</a>
-            <!--ボタンバージョン-->
-        <!--    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#sampleA">削除</button>-->
-            <!-- モーダルダイアログ -->
+              <!-- モーダルダイアログ -->
                 <div class="modal fade" id="sampleA" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -34,7 +58,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                                <button type="button" class="btn btn-primary" onclick="location.href='{% url 'parent_task_delete' task.pk %}'">削除</button>
+                                <button type="button" class="btn btn-primary" onclick="jump()">削除</button>
                             </div>
 
                         </div><!-- modal-content -->
