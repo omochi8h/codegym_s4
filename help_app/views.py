@@ -104,21 +104,28 @@ def newwork(request):
 
 def child_page(request):
     params = {}
-    count = ['first', 'second', 'third', 'forth', 'fifth']
-    i = 0
+    data = {}
     if request.method == 'POST':
         update_id = request.POST['complete_id']
         task = Tasks.objects.filter(id=update_id).first()
         task.state = -1
         task.save()
 
+    child_data = []
     params['children'] = Children.objects.filter(parent=request.user).all()
     for child in params.get('children'):
-        d_today = datetime.date.today()
-        params[count[i]] = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=d_today).all()
-        i += 1
+        child_list = []
+        child_list.append(child.name)
+        today = datetime.date.today()
+        task_list = []
+        tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
+        for task in tasks:
+            task_list.append(task)
+        child_list.append(task_list)
+        child_data.append(child_list)
+    data['children'] = child_data
 
-    return render(request, 'registration/child_tasklist.html', params)
+    return render(request, 'registration/child_tasklist.html', data)
 
 
 ############
@@ -259,7 +266,56 @@ def child_complete(request):
 
 
 def child_history(request):
-    return render(request, 'help_app/child_history.html', {})
+    params = {}
+
+    today = datetime.date.today()
+    year = today.year
+    month = today.month
+    firstDay = str(year) + '-' + str(month) + '-' + '01'
+    last = datetime.date(year, month + 1, 1) - datetime.timedelta(days=1)
+    lastDay = str(year) + '-' + str(month) + '-' + str(last.day)
+    dayCount = int(last.day)
+
+    all_data = []
+    children = Children.objects.filter(parent=request.user).all()
+    for child in children:
+        child_data = []
+        child_data.append(child.name)
+        child_data.append(0)
+        child_data.append(0)
+        child_data.append(0)
+
+        task_all = Tasks.objects.filter(parent=request.user, child=child.id, state=1)
+        for point in task_all:
+            child_data[1] += point.work.point
+
+        task_month = Tasks.objects.filter(parent=request.user, child=child.id, state=1, date__gte=firstDay,
+                                          date__lte=lastDay)
+        for point in task_month:
+            child_data[2] += point.work.point
+
+        task_today = Tasks.objects.filter(parent=request.user, child=child.id, state=1, date=today)
+        for point in task_today:
+            child_data[3] += point.work.point
+
+        task_data = []
+        for i in range(dayCount):
+            task_data.append(0)
+        tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=1, date__gte=firstDay,
+                                     date__lte=lastDay)
+        for task in tasks:
+            day = int(task.date.day) - 1
+            if task_data[day] == 0:
+                task_data[day] = []
+                task_name = task.work.job_name
+                task_data[day].append(task_name)
+            else:
+                task_name = task.work.job_name
+                task_data[day].append(task_name)
+        child_data.append(task_data)
+        all_data.append(child_data)
+    params['histry'] = all_data
+    return render(request, 'help_app/child_history.html', params)
 
 
 def certification(request):
