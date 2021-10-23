@@ -6,6 +6,8 @@ from django.utils import timezone
 # Create your models here.
 
 class Parents(AbstractUser):
+
+
     email = models.EmailField(
         verbose_name='メールアドレス',
         unique=True
@@ -113,3 +115,4 @@ class Days_comment(models.Model):
         blank=False,
         null=False
     )
+
