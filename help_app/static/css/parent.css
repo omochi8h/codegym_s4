@@ -135,6 +135,7 @@
 .send_btn:hover {
     color: #303030;
     background: #7DC4FF;
+    text-decoration: none;
 }
 
 .add_task{
@@ -150,6 +151,7 @@
 .add_task:hover {
     color: #303030;
     background: #7DC4FF;
+    text-decoration: none;
 }
 
 /*ボタンタグの初期化*/
@@ -230,3 +232,4 @@
     color:#fff;
     background-color:#f00;
 }
+

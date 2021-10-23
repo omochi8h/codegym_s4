@@ -1,8 +1,6 @@
 {% extends "parent_base.html" %}
 {% block head %}
 <!--        モーダルダイアログ用-->
-        <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         <!-- jQuery JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Bootstrap JS -->
@@ -41,27 +39,29 @@
 
             <!--ポップアップつき削除-->
             <!-- モーダルダイアログ -->
-                <div class="modal fade" id="sampleA" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                <div class="bootstrap">
+                    <div class="modal fade" id="sampleA" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                                <h4 class="modal-title"></h4>
-                            </div>
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                                    <h4 class="modal-title"></h4>
+                                </div>
 
-                            <div class="modal-body">
-                                 本当に削除しますか？
-                            </div>
+                                <div class="modal-body">
+                                     本当に削除しますか？
+                                </div>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                                <button type="button" class="btn btn-primary" onclick="jump()">削除</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="edit_btn" data-dismiss="modal">閉じる</button>
+                                    <button type="button" class="delete_btn" onclick="jump()">削除</button>
+                                </div>
 
-                        </div><!-- modal-content -->
-                    </div><!-- modal-dialog -->
-                </div><!-- modal fade -->
+                            </div><!-- modal-content -->
+                        </div><!-- modal-dialog -->
+                    </div><!-- modal fade -->
+                </div>
             </div>
         {% endfor %}
     </div>
