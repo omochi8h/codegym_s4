@@ -33,9 +33,9 @@
         {% for child in children %}
             <div class="user">
                 <p style="font-weight:bold; font-size:25px; color: #707070;">{{ child }}</p>
-                <p class="hover"><a href="{% url 'parent_usersedit' child.pk %}">編集</a></p>
+                <p class="hover edit_btn"><a href="{% url 'parent_usersedit' child.pk %}">編集</a></p>
                 <!--                class名(task-check)変更しないでください。-->
-                <p class="hover"><a class="task-check" data-toggle="modal" data-target="#sampleA" data-columns="{{ child.pk }}">削除</a></p>
+                <p class="hover delete_btn"><a class="task-check" data-toggle="modal" data-target="#sampleA" data-columns="{{ child.pk }}">削除</a></p>
 
             <!--ポップアップつき削除-->
             <!-- モーダルダイアログ -->
@@ -54,8 +54,8 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="edit_btn" data-dismiss="modal">閉じる</button>
-                                    <button type="button" class="delete_btn" onclick="jump()">削除</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                                    <button type="button" class="btn back_btn" onclick="jump()">削除</button>
                                 </div>
 
                             </div><!-- modal-content -->
