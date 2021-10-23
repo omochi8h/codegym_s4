@@ -3,6 +3,7 @@
 
     {% for child in children %}
         {{ child.name }}</br>
+        {{ count.child.id }}
 
        {% for task in tasks %}
             {% if child.id == task.child_id %}

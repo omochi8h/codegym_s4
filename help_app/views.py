@@ -314,10 +314,12 @@ def parent_approval(request):
     tasklist = Tasks.objects.filter(parent_id=request.user.id,state=-1).values()
     childlist = Children.objects.filter(parent_id=request.user.id).values()
     houseworklist = Houseworks.objects.filter(parent_id=request.user.id).values()
-    if Tasks.objects.filter(parent_id=request.user.id,state=-1).count == 0:
-        count = 0
-    else:
-        count = 1
+    count = {}
+    for child in childlist:
+        if Tasks.objects.filter(parent_id=request.user.id, child_id=child['id'] ,state=-1).all().count() == 0:
+            count[child['id']] = 0
+        else:
+            count[child['id']] = 1
     return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist, 'count': count})
 
 def parent_approval_on(request, pk):
