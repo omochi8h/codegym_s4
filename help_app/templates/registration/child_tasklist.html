@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <script src="{% static 'script.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+    <script src="{% static 'js/calendar.js' %}" defer></script>
 </head>
 <body>
 {% csrf_token %}
@@ -13,113 +13,56 @@
 
 <p><a href="{% url 'logout' %}">ログアウト</a></p>
 <a href="{% url 'index' %}">親ページ</a>
+<a href="{% url 'child_history' %}">カレンダー</a>
 <main>
     <div class="area">
         {% for child in children %}
             {% if forloop.counter == 1 %}
                 <input type="radio" name="tab_name" id='tab1' checked>
-                <label class="tab_class" for='tab1'>{{ child }}</label>
+                <label class="tab_class" for='tab1'>{{ child.0 }}</label>
                 <div class="content_class">
-                    {% for task in first %}
-                       <a class="open_modal" onclick="window.open();">{{ task.work }}</a>
-
-                        <div class="main_modal" id="modal">
-                            <h2>確認</h2>
-                            <div class="modalContents">
-                                <h5>お手伝いできた？</h5>
-                                {% csrf_token %}
-                                <form method="post">
-                                    <a class="close_modal" onclick="window.close();">できてない</a>
-                                    <button type="submit" class="complete_task" value="{{ task.id}}" name="complete_id">できた！</button>
-                                </form>
-                            </div>
-                        </div>
+                   {% for task in child.1 %}
+                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
                     {% endfor%}
                 </div>
             {% elif forloop.counter == 2 %}
                 <input type="radio" name="tab_name" id='tab2'>
-                <label class="tab_class" for='tab2'>{{ child }}</label>
+                <label class="tab_class" for='tab2'>{{ child.0 }}</label>
                 <div class="content_class">
-                    {% for task in second %}
-                        <a class="open_modal" onclick="window.open1();">{{ task.work }}</a>
-
-                        <div class="main_modal" id="modal1">
-                            <h2>確認</h2>
-                            <div class="modalContents">
-                                <h5>お手伝いできた？</h5>
-                                {% csrf_token %}
-                                <form method="post">
-                                    <a class="close_modal" onclick="window.close1();">できてない</a>
-                                    <button type="submit" class="complete_task" value="{{ task.id}}" name="complete_id">できた！</button>
-                                </form>
-                            </div>
-                        </div>
+                    {% for task in child.1 %}
+                        <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
                     {% endfor%}
                 </div>
             {% elif forloop.counter == 3 %}
                 <input type="radio" name="tab_name" id='tab3'>
-                <label class="tab_class" for='tab3'>{{ child }}</label>
+                <label class="tab_class" for='tab3'>{{ child.0 }}</label>
                 <div class="content_class">
-                    {% for task in third %}
-                       <a class="open_modal" onclick="window.open2();">{{ task.work }}</a>
+                    {% for task in child.1%}
+                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
 
-                        <div class="main_modal" id="modal2">
-                            <h2>確認</h2>
-                            <div class="modalContents">
-                                <h5>お手伝いできた？</h5>
-                                {% csrf_token %}
-                                <form method="post">
-                                    <a class="close_modal" onclick="window.close2();">できてない</a>
-                                    <button type="submit" class="complete_task" value="{{ task.id}}" name="complete_id">できた！</button>
-                                </form>
-                            </div>
-                        </div>
+
                     {% endfor%}
                 </div>
             {% elif forloop.counter == 4 %}
                 <input type="radio" name="tab_name" id='tab4'>
-                <label class="tab_class" for='tab4'>{{ child }}</label>
+                <label class="tab_class" for='tab4'>{{ child.0 }}</label>
                 <div class="content_class">
-                    {% for task in forth %}
-                       <a class="open_modal" onclick="window.open3();">{{ task.work }}</a>
-
-                        <div class="main_modal" id="modal3">
-                            <h2>確認</h2>
-                            <div class="modalContents">
-                                <h5>お手伝いできた？</h5>
-                                {% csrf_token %}
-                                <form method="post">
-                                    <a class="close_modal" onclick="window.close3();">できてない</a>
-                                    <button type="submit" class="complete_task" value="{{ task.id}}" name="complete_id">できた！</button>
-                                </form>
-                            </div>
-                        </div>
+                    {% for task in child.1 %}
+                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
                     {% endfor%}
                 </div>
             {% elif forloop.counter == 5 %}
                 <input type="radio" name="tab_name" id='tab5'>
-                <label class="tab_class" for='tab5'>{{ child }}</label>
+                <label class="tab_class" for='tab5'>{{ child.0 }}</label>
                 <div class="content_class">
-                    {% for task in fifth %}
-                      <a class="open_modal" onclick="window.open4();">{{ task.work }}</a>
-
-                        <div class="main_modal" id="modal4">
-                            <h2>確認</h2>
-                            <div class="modalContents">
-                                <h5>お手伝いできた？</h5>
-                                {% csrf_token %}
-                                <form method="post">
-                                    <a class="close_modal" onclick="window.close4();">できてない</a>
-                                    <button type="submit" class="complete_task" value="{{ task.id}}" name="complete_id">できた！</button>
-                                </form>
-                            </div>
-                        </div>
+                    {% for task in child.1 %}
+                      <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
                     {% endfor%}
                 </div>
             {% endif %}
-        {% endfor %}
+        {% endfor%}
     </div>
-
+    <div id="modal"></div>
     <div class="mask" id="mask"></div>
 </main>
 </body>
