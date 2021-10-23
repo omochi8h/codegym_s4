@@ -13,10 +13,10 @@
             <a href="{% url 'parent_tasklist' %}" class="back_btn">編集の取りやめ</a>
         </div>
 
-        <p><label for="title_input" style="font-weight: bold;">お手伝い名</label></p>
+        <p><label for="title_input" class="form_lead">お手伝い名</label></p>
         <p><input type="text" name="job_name" id="title_input" value="{{ housework.job_name }}"></p>
 
-        <p><button type="submit">更新</button></p>
+        <p><button type="submit" class="send_btn">更新</button></p>
 
     </form>
 

@@ -112,7 +112,7 @@
 }
 
 .form_lead{
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
@@ -120,6 +120,47 @@
     margin-left: 20px;
     margin-bottom: 20px;
 }
+
+.send_btn{
+    font-weight: bold;
+    color: #707070;
+    background-color: #A5D6FF;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+}
+
+.send_btn:hover {
+    color: #303030;
+    background: #7DC4FF;
+}
+
+.add_task{
+    text-decoration: none;
+    font-weight: bold;
+    color: #707070;
+    background-color: #A5D6FF;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.add_task:hover {
+    color: #303030;
+    background: #7DC4FF;
+}
+
+/*ボタンタグの初期化*/
+/*button {
+	background: none;
+	border: none;
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}*/
 
 .back_btn{
     text-decoration: none;
@@ -163,7 +204,7 @@
     justify-content: center;
     flex-wrap: wrap;
 }
-/* 通常時はホバー時の文字を非表示にする
+
 .hover{
     display: none;
 }
@@ -180,6 +221,7 @@
     padding-bottom: 100px;/*←footerの高さ*/
     box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
+
 .edit_btn a:hover{
     color:#000;
     background-color:#fff;
