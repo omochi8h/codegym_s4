@@ -2,7 +2,7 @@
 {% block head %}
 <!--        モーダルダイアログ用-->
         <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
         <!-- jQuery JS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Bootstrap JS -->
@@ -36,8 +36,10 @@
             <a href="{% url 'addwork' %}" class="add_task">お手伝いの追加</a>
         </div>
 
+        <div class="bootstrap">
         {% for task in tasks %}
             {{ task }}
+
                 <a href="{% url 'parent_taskregister' task.pk %}">編集</a>
 <!--                class名(task-check)変更しないでください。-->
                 <a class="task-check" data-toggle="modal" data-target="#sampleA" data-columns="{{ task.pk }}">削除</a>
@@ -58,7 +60,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                                <button type="button" class="btn btn-primary" onclick="jump()">削除</button>
+                                <button type="button" class="btn back_btn" onclick="jump()">削除</button>
                             </div>
 
                         </div><!-- modal-content -->
@@ -66,5 +68,6 @@
                 </div><!-- modal fade -->
             </br>
         {% endfor %}
+        </div>
     </div>
 {% endblock %}

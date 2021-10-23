@@ -1,22 +1,24 @@
-.site-header a {
+.header_wrap  a {
   text-decoration: none;
   color: #707070;
   font-weight: bold;
 }
 
-.site-header a:hover{
+.header_wrap  a:hover{
   color: #000;
 }
 
-.body_wrap{
-  background-color: #BEEBED;
-  margin: 0px;
+.footer_wrap  a:hover{
+  color: #ff122e;
 }
 
-.site-header {
-  position: relative;
-  background-color: #fff;
-  width: 100%;
+.body_wrap{
+    background-color: #BEEBED;
+    margin: 0px;
+    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+    position: relative;/* ←相対位置 */
+    padding-bottom: 10px; /* ←フッターの高さを指定 */
+    box-sizing: border-box;
 }
 
 .header_wrap {
@@ -25,13 +27,16 @@
   padding-top: 20px;
   list-style: none;
   overflow: hidden;
+  position: relative;
+  background-color: #fff;
+  width: 100%;
 }
 
 .footer_wrap{
-  background-color: #B0D69F;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+    background-color: #B0D69F;
+    width: 100%;
+    position: absolute;/* ←絶対位置 */
+    bottom: 0;
 }
 
 .footer_wrap a{
@@ -106,15 +111,31 @@
   width: 10%;
 }
 
-
 .form_lead{
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
 .form_list{
     margin-left: 20px;
     margin-bottom: 20px;
+}
+
+.send_btn{
+    font-weight: bold;
+    color: #707070;
+    background-color: #A5D6FF;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border:none;
+}
+
+.send_btn:hover {
+    color: #303030;
+    background: #7DC4FF;
+    text-decoration: none;
 }
 
 .add_task{
@@ -126,16 +147,41 @@
     padding: 10px 30px;
     margin-left: auto;
     margin-right: auto;
-    width: 8em
 }
 .add_task:hover {
     color: #303030;
     background: #7DC4FF;
+    text-decoration: none;
+}
+
+/*ボタンタグの初期化*/
+/*button {
+	background: none;
+	border: none;
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}*/
+
+.back_btn{
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    background-color: #e3364a;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em
+}
+.back_btn:hover {
+    color: #fff;
+    background: #ff122e;
 }
 
 .user{
     background-color: #fff;
-
     height:150px;
     width:200px;
     border-radius:45%;
@@ -147,12 +193,20 @@
     margin-top: 50px;
 }
 
+.user a{
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
+    border: thin solid #707070;
+    padding: 1px 3px;
+}
+
 .users{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
-/* 通常時はホバー時の文字を非表示にする */
+
 .hover{
     display: none;
 }
@@ -163,3 +217,19 @@
 .user:hover{
     background-color: #d8d8d8;
 }
+
+.main_wrap{
+    position: relative;/*←相対位置*/
+    padding-bottom: 100px;/*←footerの高さ*/
+    box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
+}
+
+.edit_btn a:hover{
+    color:#000;
+    background-color:#fff;
+}
+.delete_btn a:hover{
+    color:#fff;
+    background: #ff122e;
+}
+
