@@ -18,3 +18,8 @@ nav{
   text-decoration: none;
 }
 
+.main-nav .hello {
+	visibility:hidden;
+}
+
+

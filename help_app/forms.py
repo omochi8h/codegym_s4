@@ -31,6 +31,17 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2", "authcode")
 
+    '''
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            self.fields["username"].widget.attrs["class"] = "form-control"
+            self.fields["email"].widget.attrs["class"] = "form-control"
+            self.fields["password1"].widget.attrs["class"] = "form-control"
+            self.fields["password2"].widget.attrs["class"] = "form-control"
+            self.fields["authcode"].widget.attrs["class"] = "form-control"
+    '''
+
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data["email"]
