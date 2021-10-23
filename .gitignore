@@ -6,4 +6,4 @@ myvenv
 db.sqlite3
 .DS_Store
 .idea/
-.help_app/migrations/
+/help_app/migrations
