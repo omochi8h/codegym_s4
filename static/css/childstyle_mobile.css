@@ -19,7 +19,9 @@ nav{
 }
 
 .main-nav .hello {
-	visibility:hidden;
+    display:none;
 }
 
-
+main{
+margin:0 10px;
+}

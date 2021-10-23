@@ -4,7 +4,12 @@ body{
 	max-height: 100vh;
 	color:#000;
 }
-
+/*footer固定のため*/
+.content{
+display:flex;
+flex-direction: column;
+min-height: 100vh;
+}
 /*header*/
 nav{
 	background:white;
@@ -89,10 +94,12 @@ main
 {
     /* Scroll horizontally as needed */
     overflow-x: auto;
-	min-height:70vh;
+	/*min-height:55vh;*/
 	margin:0 auto;
 	display: flex;
 	align-items: center;
+	padding-top:0px;
+	padding-bottom:0px;
 }
 
 
@@ -111,11 +118,11 @@ main
 }
 
 footer{
-	height :10vh;
 	/*position: absolute;/*←絶対位置*/
     /*bottom: 0; /*下に固定*/
 	/*background-color: #8fbc8f;*/
 	background-color: #B0D69F;
+	 margin-top: auto;
 }
 
 
@@ -219,4 +226,7 @@ input[name="tab_item"] {
   color: #fff;
 }
 
-
+.grass{
+background-color: #B0D69F;
+height :2vh;
+}
