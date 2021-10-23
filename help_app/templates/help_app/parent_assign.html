@@ -1,0 +1,99 @@
+{% extends "parent_base.html" %}
+{% block head %}
+        <script>
+            var data;
+            var child_id;
+            window.onload = function(){
+                var checkOption = document.getElementsByName('child');
+
+                checkOption.forEach(function(e) {
+                    e.addEventListener("click", function() {
+                        console.log(document.querySelector("input:checked[name=child]").value);
+                        child_id = document.querySelector("input:checked[name=child]").value;
+                        sample(child_id);
+                    });
+                });
+            };
+            function sample(child){
+                const data = JSON.parse('{{ dataset|safe }}');
+                console.log(data[child]);
+                const task = data[child]
+                task.forEach(function(elem, index) {
+                  console.log(`"${elem}"`);
+                  console.log($('input[value="' + elem + '"]').attr('class'));
+                  document.querySelector(`input[type="checkbox"][value="' + elem + '"]`).checked = true;
+                });
+            }
+        </script>
+{% endblock %}
+{% block main %}
+    <head>
+        <title>お手伝いを依頼する</title>
+    </head>
+
+
+    {% block content %}
+    <h1 class="page_name">お手伝いを依頼する</h1>
+    {% if count == 0 %}
+    <div class="tasklist_form">
+        <p>子供を登録してください。</p>
+        <p><a href="{% url 'parent_userslist' %}">ユーザー管理</a></p>
+    </div>
+    {% else %}
+
+    <form action="" method="post" class="assign_form">{% csrf_token %}
+            {% if ret %}
+                {% for key,val in results.items %}
+                    <tr>
+                        <td><h4>{{ key }}</h4></td>
+                        <td><h4>{{ val }}</h4></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+<!--                よくわからんとこstart　消しても問題なかった-->
+                {% for key,val in errors.items %}
+                    <tr>
+                        <td colspan="2">{{ key }} : {{ val }}</td>
+                    </tr>
+                {% endfor %}
+<!--                よくわからんとこEND-->
+                {% for field in form %}
+                {% if field.field.widget.input_type == "radio" %}
+                    <tr>
+                        <div class="form_lead"><td class="form_lead">誰に依頼しますか</td></div>
+                    </tr>
+                    <tr>
+                        <div class="form_list">
+                            <td>
+                                {% for r in field %}
+                                {{ r }}</br>
+                                {% endfor %}
+                            </td>
+                        </div>
+
+                    </tr>
+                {% else %}
+                    <tr>
+<!--                        field.label_tagのとこは「任せる仕事：」の表示になる。ここ消して自分で文入れても大丈夫-->
+
+                        <div class="form_lead"><td>お手伝いを選択してください</td></br></div>
+                        <div class="form_list">
+                            <td>
+                                {% for c in field %}
+                                    {{ c }}</br>
+                                {% endfor %}
+                            </td>
+                        </div>
+                    </tr>
+                {% endif %}
+                {% endfor %}
+
+            <div style="text-align: center;">
+                <button type="submit" style="padding: 5px 15px;">送信する</button>
+            </div>
+             {% endif %}
+         </form>
+{% endif %}
+    {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "parent_base.html" %}
+{% block main %}
+{% csrf_token %}
+ <head>
+        <title>お手伝いの追加</title>
+    </head>
+
+    <h1 class="page_name">お手伝いの追加</h1>
+
+    <form action = "{% url 'addwork'%}" method="POST" class="tasklist_form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">送信</button>
+    </form>
+
+    <p>{{ name }}</p>
+    <p>{{ point }}</p>
+
+{% endblock %}

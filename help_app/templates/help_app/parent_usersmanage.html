@@ -1,0 +1,16 @@
+{% extends "parent_base.html" %}
+{% block main %}
+    <head>
+        <title>こどもの管理</title>
+    </head>
+
+    <h1 class="page_name">こどもの管理</h1>
+
+    <form method="POST" class="tasklist_form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">送信</button>
+    </form>
+
+
+{% endblock %}
