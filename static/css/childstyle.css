@@ -13,7 +13,7 @@ min-height: 100vh;
 /*header*/
 nav{
 	background:white;
-	min-height:12vh;
+	min-height:5vh;
 }
 
 .main-nav {
@@ -228,5 +228,6 @@ input[name="tab_item"] {
 
 .grass{
 background-color: #B0D69F;
-height :2vh;
+height :1vh;
+z-index:2;
 }
