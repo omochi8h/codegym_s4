@@ -1,0 +1,19 @@
+.tab_class {
+  width: calc(100%/5);
+  height: 50px;
+  line-height: 50px;
+  font-size: 15px;
+  text-align: center;
+  display: block;
+  float: left;
+  order: -1;
+   /*display: inline-block;            /* インラインブロック化 */
+   border-width: 1px 1px 0px 1px;    /* 下以外の枠線を引く */
+   border-style: solid;              /* 枠線の種類：実線 */
+   border-color: gray;
+   border-radius: 0.75em 0.75em 0 0; /* 枠線の左上角と右上角だけを丸く */
+   padding: 0.2em 1em;              /* 内側の余白 */
+   margin:2px;
+   color: black;                     /* 文字色：黒色 */
+   background-color: #fff;          /* 背景色：白色 */
+}

@@ -1,4 +1,4 @@
-/*画面サイズが600px以上のスタイル*/
+/*画面サイズが600px以下のスタイル*/
 
 .login {
 	width:72vw;
@@ -18,3 +18,10 @@ nav{
   text-decoration: none;
 }
 
+.main-nav .hello {
+    display:none;
+}
+
+main{
+margin:0 10px;
+}

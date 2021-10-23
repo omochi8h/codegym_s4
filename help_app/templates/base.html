@@ -1,53 +1,72 @@
-
 <!doctype HTML>
 {% load static %}
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
         <link rel="stylesheet" href="{% static 'css/childstyle.css' %}"/>
-		<link rel="stylesheet" href="{% static 'css/childstyle_mobile.css' %}" media="(max-width: 600px) "type="text/css">
+		<link rel="stylesheet" href="{% static 'css/childstyle_mobile.css' %}" media="(max-width: 601px) "type="text/css">
+        {% block head %}
+        {% endblock %}
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
 
 
         <title>{% block title %}{% endblock %}</title>
 
     </head>
     <body>
+    <div class="content">
         <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/">アカウント</a>
         </nav>-->
-        <nav>
+        <nav style="background">
 	       <ul class="main-nav" style="list-style: none; padding-left:0px;">
 		        <li><a href="#" class="logo">Logo</a></li>
-		        <li><a href="#">ログイン</a></li>
-                <li><a href="{% url 'signup' %}">サインアップ</a></li>
+                {% if request.user.is_authenticated %}
+               　<li><a href="#" class="hello">{{ user }}さん、<br>こんにちは！</a></li>
+               {% endif %}
+
+               {% block link %}
+               {% endblock%}
 	        </ul>
         </nav>
 
-{% block main %}
+        <h2 style="text-align:center;margin-top:70px;" >{% block h2 %}{% endblock %}</h2>
+        <main>
 
-        <main class="container p-5">
-                <p><a href="{% url 'logout' %}">ログアウト</a></p>
-    <p><a href="{% url 'password_change' %}">パスワードの変更</a></p>
-
-
-    <p><a href="{% url 'parent_tasklist' %}">お手伝い項目一覧</a></p>
-    <p><a href="{% url 'parent_assign' %}">お手伝い依頼</a></p>
-    <p><a href="{% url 'parent_userslist' %}">ユーザー管理</a></p>
-    <p><a href="{% url 'parent_approval' %}">承認待ちタスク</a></p>
-
-
-        <p>※コンテンツがありません。</p>
+        {% block main %}
         {% endblock %}
+
         </main>
 
+
+
         <footer>
+            <div class="hiyoko">
+            <img src="{% static 'img/hiyoko.gif' %}" style="width:100px;margin-left:50px;">
+        </div>
+        <div class="grass">
+        </div>
+            {% block footer %}
+        {% endblock %}
 
         </footer>
 
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+        <script>
+{% block script %}
+{% endblock %}
+</script>
+
+
+</div>
     </body>
+
 </html>
