@@ -319,7 +319,16 @@ def child_history(request):
 
 
 def certification(request):
-    return render(request, 'help_app/certification.html', {})
+    if request.method == 'GET':
+        return render(request, 'help_app/certification.html', {})
+    else:
+        user_input = request.POST['auth_code']
+        authCode = Parents.objects.filter(id=request.user.id).first()
+
+        if user_input == authCode.authcode:
+            return redirect('parent_assign')
+        else:
+            return render(request, 'help_app/certification.html', {})
 
 def parent_userslist(request):
     params = {'name': '', 'on_user': request.user, 'children': Children.objects.filter(parent=request.user).all()}
