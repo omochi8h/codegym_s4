@@ -1,25 +1,32 @@
 {% extends "parent_base.html" %}
 {% block main %}
+    <head>
+        <title>承認待ちタスク</title>
+    </head>
 
-    {% for child in children %}
-        {{ child.name }}</br>
+    <h1 class="page_name">承認待ちタスク</h1>
 
-       {% for task in tasks %}
-            {% if child.id == task.child_id %}
+    <div class="tasklist_form">
+        {% for child in children %}
+            {{ child.name }}</br>
 
-                {{ task.date }}<!--日付表示-->
+           {% for task in tasks %}
+                {% if child.id == task.child_id %}
 
-                {% for housework in houseworks %}
-                    {% if task.work_id == housework.id %}
-                         {{ housework.job_name }}<!--仕事名表示-->
-                    {% endif %}
-                {% endfor %}
+                    {{ task.date }}<!--日付表示-->
 
-                <a href="{% url 'parent_approval_on' task.id %}">承認</a>
+                    {% for housework in houseworks %}
+                        {% if task.work_id == housework.id %}
+                             {{ housework.job_name }}<!--仕事名表示-->
+                        {% endif %}
+                    {% endfor %}
+
+                    <a href="{% url 'parent_approval_on' task.id %}">承認</a>
+                </br>
+                {% endif %}
+            {% endfor %}
             </br>
-            {% endif %}
         {% endfor %}
-        </br>
-    {% endfor %}
+    </div>
 
 {% endblock %}
