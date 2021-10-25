@@ -1,3 +1,8 @@
+/*コメントアウト*/
+/*1427*/
+/*59*/
+/*229*/
+
 .bootstrap {
   /*!
    * Bootstrap v3.3.6 (http://getbootstrap.com)
@@ -53,9 +58,9 @@
   display: none;
 }
 /* line 45, ../sass/_bootstrap.scss */
-.bootstrap a {
+/*.bootstrap a {
   background-color: transparent;
-}
+}*/
 /* line 48, ../sass/_bootstrap.scss */
 .bootstrap a:active,
 .bootstrap a:hover {
@@ -222,10 +227,10 @@
   font-weight: bold;
 }
 /* line 182, ../sass/_bootstrap.scss */
-.bootstrap table {
+/*.bootstrap table {
   border-spacing: 0;
   border-collapse: collapse;
-}
+}*/
 /* line 186, ../sass/_bootstrap.scss */
 .bootstrap td,
 .bootstrap th {
@@ -1424,9 +1429,9 @@
   line-height: inherit;
 }
 /* line 1099, ../sass/_bootstrap.scss */
-.bootstrap a {
+/*.bootstrap a {
   color: #337ab7;
-  text-decoration: none;
+  text-decoration: none;*/
 }
 /* line 1103, ../sass/_bootstrap.scss */
 .bootstrap a:hover,

@@ -1,3 +1,7 @@
+html {
+    font-family:  “メイリオ”, Meiryo;
+}
+
 .header_wrap  a {
   text-decoration: none;
   color: #707070;
@@ -99,8 +103,12 @@
 }
 
 .tasktable{
-  width:100%;
-  height:100;
+    display: flex;
+    border-bottom: solid 3px #B0D69F;
+    margin-top: 0px;       /* 上線の外側の余白はナシ */
+    padding-top: 0px;      /* 上線の内側の余白はナシ */
+ /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
 
 .users_form{
@@ -205,6 +213,18 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.task{
+    margin-left: auto;
+}
+
+.task a{
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
+    border: thin solid #707070;
+    padding: 1px 3px;
 }
 
 .hover{
