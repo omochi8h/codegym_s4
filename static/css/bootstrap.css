@@ -2,6 +2,7 @@
 /*1427*/
 /*59*/
 /*229*/
+/*148*/
 
 .bootstrap {
   /*!
@@ -148,7 +149,7 @@
 .bootstrap textarea {
   margin: 0;
   font: inherit;
-  color: inherit;
+  /*color: inherit;*/
 }
 /* line 120, ../sass/_bootstrap.scss */
 .bootstrap button {

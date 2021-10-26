@@ -8,12 +8,38 @@
 
     <form method="POST" class="tasklist_form">
         {% csrf_token %}
-        <div style="text-align: center; margin-bottom: 30px;">
+        {{ form.as_p }}
+        <div>
+            <button type="submit" class="send_btn">送信</button>
             <a href="{% url 'parent_userslist' %}" class="back_btn">追加をやめる</a>
         </div>
-        {{ form.as_p }}
-        <button type="submit">送信</button>
     </form>
 
 
 {% endblock %}
+
+    <!-- モーダルダイアログ -->
+    <div class="modal fade" id="sampleA" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                    <h4 class="modal-title">こどもの管理</h4>
+                </div>
+
+                <div class="modal-body">
+                     <form method="POST" class="tasklist_form">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="modal-footer">
+                            <button type="submit" class="send_btn">送信</button>
+                            <a href="{% url 'parent_userslist' %}" class="back_btn">追加をやめる</a>
+                        </div>
+                    </form>
+                </div>
+
+            </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+    </div><!-- modal fade -->
+    </br>

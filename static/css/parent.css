@@ -1,19 +1,28 @@
 html {
     font-family:  “メイリオ”, Meiryo;
+    font-size:1vw;
 }
 
+button {
+	background: none;
+	border: none;
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
 .header_wrap  a {
-  text-decoration: none;
-  color: #707070;
-  font-weight: bold;
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
 }
 
 .header_wrap  a:hover{
-  color: #000;
+    color: #000;
 }
 
 .footer_wrap  a:hover{
-  color: #ff122e;
+    color: #ff122e;
 }
 
 .body_wrap{
@@ -26,14 +35,14 @@ html {
 }
 
 .header_wrap {
-  display: flex;
-  align-items: center;
-  padding-top: 20px;
-  list-style: none;
-  overflow: hidden;
-  position: relative;
-  background-color: #fff;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 20px;
+    list-style: none;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    min-width: 100vh;
 }
 
 .footer_wrap{
@@ -44,79 +53,79 @@ html {
 }
 
 .footer_wrap a{
-  text-decoration: none;
-  color: #707070;
-  font-weight: bold;
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
 }
 
 .nav_wrapper {
-  list-style: none;
-  display: flex;
-  justify-content: right;
+    list-style: none;
+    display: flex;
+    justify-content: right;
 }
 
 .nav__item{
-  padding: 0px 40px;
+    padding: 0px 40px;
 }
 
 .header_start{
-  padding: 0px 40px;
+    padding: 0px 40px;
 }
 
 .header_middle{
-  padding-left: 50px;
+    padding-left: 50px;
 }
 
 .header_end{
-  padding: 0px 40px;
-  margin-left: auto;
+    padding: 0px 40px;
+    margin-left: auto;
 }
 
 
 .assign_form{
-  background-color: #fff;
-  padding: 40px 60px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
+    background-color: #fff;
+    padding: 40px 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
 
 .assign_form p{
-  margin-top: 40px;
+    margin-top: 40px;
 }
 
 .tasklist_form{
-  background-color: #fff;
-  padding: 40px 60px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
+    background-color: #fff;
+    padding: 40px 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
 }
 
 .assign_form textarea{
-  width: 100%;
+    width: 100%;
 }
 
 .page_name{
-  text-align: center;
-  color: #707070;
+    text-align: center;
+    color: #707070;
 }
 
-.tasktable{
+.task_table{
     display: flex;
     border-bottom: solid 3px #B0D69F;
     margin-top: 0px;       /* 上線の外側の余白はナシ */
     padding-top: 0px;      /* 上線の内側の余白はナシ */
- /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
     padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
 
 .users_form{
-  background-color: #fff;
-  padding: 20px;
-  margin: 50px 50px;
-  border: thin solid #000;
-  width: 10%;
+    background-color: #fff;
+    padding: 20px;
+    margin: 50px 50px;
+    border: thin solid #000;
+    width: 10%;
 }
 
 .form_lead{
@@ -131,6 +140,7 @@ html {
 
 .send_btn{
     font-weight: bold;
+    font-size:1vw;
     color: #707070;
     background-color: #A5D6FF;
     border-radius: 0.5rem;
@@ -149,6 +159,7 @@ html {
 .add_task{
     text-decoration: none;
     font-weight: bold;
+    font-size:1vw;
     color: #707070;
     background-color: #A5D6FF;
     border-radius: 0.5rem;
@@ -156,6 +167,7 @@ html {
     margin-left: auto;
     margin-right: auto;
 }
+
 .add_task:hover {
     color: #303030;
     background: #7DC4FF;
@@ -182,6 +194,7 @@ html {
     margin-left: auto;
     margin-right: auto;
     width: 8em
+    cursor: pointer;
 }
 .back_btn:hover {
     color: #fff;
@@ -244,12 +257,19 @@ html {
     box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
-.edit_btn a:hover{
+.user_edit a:hover{
     color:#000;
     background-color:#fff;
 }
-.delete_btn a:hover{
+
+.task_edit a:hover{
+    color:#000;
+    background-color:#d8d8d8;
+}
+
+.delete a:hover{
     color:#fff;
     background: #ff122e;
 }
+
 
