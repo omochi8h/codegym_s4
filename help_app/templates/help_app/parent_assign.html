@@ -20,10 +20,10 @@
                 const task = data[child]
                 $('.form-check-input').attr('checked', false);
                 task.forEach(function(elem, index) {
-                  console.log(`"${elem}"`);
-                console.log($('input[value="' + elem + '"]').attr('id'));
-                  var id = $('input[value="' + elem + '"]').attr('id')
-                  $(`#${id}`).attr('checked', 'checked');
+                    console.log(`"${elem}"`);
+                    console.log($('input[value="' + elem + '"]').attr('id'));
+                    var id = $('input[value="' + elem + '"]').attr('id')
+                    $(`#${id}`).attr('checked', 'checked');
                 });
             }
         </script>
@@ -74,7 +74,7 @@
                         </div>
 
                     </tr>
-                {% else %}
+                {% elif field.field.widget.input_type == "checkbox" %}
                     <tr>
 <!--                        field.label_tagのとこは「任せる仕事：」の表示になる。ここ消して自分で文入れても大丈夫-->
 
@@ -87,8 +87,22 @@
                             </td>
                         </div>
                     </tr>
+                {% else %}
+                    <tr>
+<!--                        field.label_tagのとこは「任せる仕事：」の表示になる。ここ消して自分で文入れても大丈夫-->
+
+                        <div class="form_lead"><td>コメントを入れてください</td></br></div>
+                        <div class="form_list">
+                            <td>
+                                {{ field }}
+
+                            </td>
+                        </div>
+                    </tr>
                 {% endif %}
                 {% endfor %}
+
+
 
             <div style="text-align: center;">
                 <button type="submit" class="send_btn">お願いする</button>

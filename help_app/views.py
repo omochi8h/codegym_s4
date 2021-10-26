@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from . import forms
 from django.http.response import HttpResponse
 from django.template.context_processors import csrf
-from .models import Parents, Children, Houseworks, Tasks
+from .models import Parents, Children, Houseworks, Tasks, Days_comment, Comment
 import datetime
 from datetime import date
 from django.utils import timezone
@@ -119,9 +119,11 @@ def child_page(request):
         today = datetime.date.today()
         task_list = []
         tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
+        comments = Comment.objects.filter(parent=request.user, child=child.id, date=today).all()
         for task in tasks:
             task_list.append(task)
         child_list.append(task_list)
+        child_list.append(comments)
         child_data.append(child_list)
     data['children'] = child_data
 
@@ -161,7 +163,7 @@ def parent_assign(request):
         default_work2.save()
 
     dataset = {}
-    labels = ['こども', '任せる仕事']
+    labels = ['こども', '任せる仕事','コメント']
     # 入力結果を格納する辞書
     results = {}
     radios = {}
@@ -170,6 +172,7 @@ def parent_assign(request):
 
         results[labels[0]] = request.POST.getlist("child")
         results[labels[1]] = request.POST.getlist("task")
+        results[labels[2]]  = request.POST['text']
         ret = 'OK'
         c = {'results': results, 'ret': ret}
         print(results[labels[1]])
@@ -180,6 +183,12 @@ def parent_assign(request):
         old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=date.today())
         print(old_task)
         old_task.delete()
+
+        if Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today()).count() > 0:
+            old_comment = Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today())
+            old_comment.delete()
+
+        Comment(parent_id=request.user.id,child_id=int(results[labels[0]][0]),comment=results[labels[2]]).save()
 
         for result in results[labels[1]]:
             print(result)
@@ -201,7 +210,7 @@ def parent_assign(request):
         for child in assign_children:
             data = []
             choice2.append((child.id, child.name))
-            init_tasks = Tasks.objects.filter(child_id=child.id)
+            init_tasks = Tasks.objects.filter(child_id=child.id,date=date.today())
             for task in init_tasks:
                 for housework in assign_houseworks:
                     if task.work_id == housework.id:

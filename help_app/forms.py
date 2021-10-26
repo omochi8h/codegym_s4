@@ -77,7 +77,7 @@ class AddWork(forms.Form):
     point = forms.IntegerField()
 
 class ChkForm(forms.Form):
-    labels = ['こども', '任せる仕事']
+    labels = ['こども', '任せる仕事','コメント']
 
     child = forms.MultipleChoiceField(
         label=labels[0],
@@ -92,6 +92,8 @@ class ChkForm(forms.Form):
         disabled=False,
         widget=forms.CheckboxSelectMultiple(attrs={
             'id': 'task', 'class': 'form-check-input'}))
+
+    text = forms.CharField(required=False,widget=forms.Textarea)
 
 
 
