@@ -13,6 +13,9 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
+import datetime
+from django.utils import timezone
+
 User = get_user_model()
 
 subject = "登録確認"
@@ -93,7 +96,11 @@ class ChkForm(forms.Form):
         widget=forms.CheckboxSelectMultiple(attrs={
             'id': 'task', 'class': 'form-check-input'}))
 
-    text = forms.CharField(required=False,widget=forms.Textarea)
+    text = forms.CharField(
+        label='コメントを入れてください',
+        required=False,
+        widget=forms.Textarea
+    )
 
 
 

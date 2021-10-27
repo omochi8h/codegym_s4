@@ -76,6 +76,7 @@
                     </tr>
                 {% endfor %}
 <!--                よくわからんとこEND-->
+
                 {% for field in form %}
                 {% if field.field.widget.input_type == "radio" %}
                     <tr>
@@ -108,7 +109,7 @@
                     <tr>
 <!--                        field.label_tagのとこは「任せる仕事：」の表示になる。ここ消して自分で文入れても大丈夫-->
 
-                        <div class="form_lead"><td>コメントを入れてください</td></br></div>
+                        <div class="form_lead"><td>{{ field.label_tag }}</td></br></div>
                         <div class="form_list">
                             <td>
                                 {{ field }}
