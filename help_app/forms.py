@@ -104,7 +104,7 @@ class ChkForm(forms.Form):
             'id': 'task', 'class': 'form-check-input'}))
 
     text = forms.CharField(
-        label='コメントを入れてください',
+        label='コメント',
         required=False,
         widget=forms.Textarea
     )

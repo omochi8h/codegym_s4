@@ -28,6 +28,8 @@ from django.shortcuts import render
 from django.views import generic
 import datetime
 
+# from datetime import datetime, date, timedelta
+
 # from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
@@ -176,20 +178,13 @@ def parent_assign(request):
         results[labels[3]] = request.POST['date']
         ret = 'OK'
         c = {'results': results, 'ret': ret}
-        # print(results[labels[1]])
-        print(results[labels[3]])
-        # child_result = results[labels[0]]
-
         # 今日既に割り振ったタスクを消去
         old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=results[labels[3]])
-        print(old_task)
         old_task.delete()
 
         if Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today()).count() > 0:
             old_comment = Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=results[labels[3]])
             old_comment.delete()
-
-
 
         Comment(parent_id=request.user.id,child_id=int(results[labels[0]][0]),comment=results[labels[2]],date=results[labels[3]]).save()
 
@@ -209,39 +204,52 @@ def parent_assign(request):
         assign_children = Children.objects.filter(parent_id=request.user.id)
         choice2 = []
 
+        dataset2 = {}
         comment_data = {}
         # 子供に割り振られたタスクのデータ化
         for child in assign_children:
             data = []
             choice2.append((child.id, child.name))
-            init_tasks = Tasks.objects.filter(child_id=child.id,date=date.today())
-            for task in init_tasks:
-                for housework in assign_houseworks:
-                    if task.work_id == housework.id:
-                        data.append(housework.id)
-            dataset[child.id] = data
-            print(dataset)
-            comments = Comment.objects.filter(child_id=child.id,date=date.today())
-            # if comment:
-            for comment in comments:
-                print(comment.comment)
-                comment_data[child.id] = comment.comment
-                print(comment_data)
+            insert_data = {}
+            for i in range(7):
+                day = datetime.date.today() + datetime.timedelta(days=i)
+                date_data = datetime.datetime.strftime(day, '%Y-%m-%d')
+                task_data = []
+
+                init_tasks = Tasks.objects.filter(child_id=child.id,date=date_data)
+                print(init_tasks)
+                for task in init_tasks:
+                    for housework in assign_houseworks:
+                        if task.work_id == housework.id:
+                            task_data.append(housework.id)
+                insert_data[date_data]=task_data
+                print(insert_data)
+            dataset2[child.id] = insert_data
+
+            insert_comedata = {}
+            for i in range(7):
+                day = datetime.date.today() + datetime.timedelta(days=i)
+                date_data = datetime.datetime.strftime(day, '%Y-%m-%d')
+                comments = Comment.objects.filter(child_id=child.id, date=date_data)
+                for comment in comments:
+                    insert_comedata[date_data]=comment.comment
+                comment_data[child.id] = insert_comedata
 
         form.fields['child'].choices = choice2
-        # form.fields['child'].initial = [assign_children[0].id]
         form.fields['task'].choices = choice1
-        # ここでinitialに、選択済みのタスクを入れられるようにしたい
-        tasklist = Tasks.objects.filter(parent_id=request.user.id, state=-1).values()
-        form.fields['task'].initial = ['0']
 
+        init_child = 0
         if Children.objects.filter(parent=request.user).all().count() == 0:
             count = 0
         else:
             count = 1
+            form.fields['child'].initial = [assign_children[0].id]
+            init_child = next(iter(dataset2))
 
 
-        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset), 'count': count, 'comment_data': json.dumps(comment_data)}
+        init_date = datetime.datetime.strftime(datetime.date.today(), '%Y-%m-%d')
+
+        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset2), 'count': count, 'comment_data': json.dumps(comment_data), 'init_child':init_child, 'init_date':init_date}
         # CFRF対策（必須）
         c.update(csrf(request))
         return render(request, 'help_app/parent_assign.html', c)

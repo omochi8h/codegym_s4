@@ -129,8 +129,7 @@ class Comment(models.Model):
     )
 
     date = models.DateField(
-        auto_now_add=True,
-        editable=False,
+        default=timezone.now,
         blank=False,
         null=False
     )
