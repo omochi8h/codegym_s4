@@ -81,6 +81,13 @@ class AddWork(forms.Form):
 
 class ChkForm(forms.Form):
     labels = ['こども', '任せる仕事','コメント']
+    date = forms.DateTimeField(
+        label='依頼日',
+        required=True,
+        initial=timezone.now,
+        widget=forms.DateInput(attrs={"type": "date","onchange":"try_event(event);"}),
+        input_formats=['%Y-%m-%d']
+    )
 
     child = forms.MultipleChoiceField(
         label=labels[0],
