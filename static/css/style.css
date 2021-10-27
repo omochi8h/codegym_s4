@@ -45,7 +45,7 @@
 
 }
 
-.mask {
+#mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -64,7 +64,7 @@
   z-index: 2;
 }
 
-.mask.active {
+#mask.active {
   opacity: 0.7;
   visibility: visible;
 }

@@ -59,7 +59,7 @@ function createCalendar(histry) {
   createHtml = '<h1>' + year + '/' + month + '</h1>';
   createHtml += '<table>' + '<tr>';
 
-  const weeks = ['日','月','火','水','木','金','土'];
+  const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
   for (let i = 0; i < weeks.length; i++) {
       createHtml += '<td>' + weeks[i] + '</td>';
   }

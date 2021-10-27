@@ -13,7 +13,7 @@ min-height: 100vh;
 /*header*/
 nav{
 	background:white;
-	/*min-height:5vh;*/
+	min-height:8vh;
 }
 
 .main-nav {
@@ -37,7 +37,7 @@ nav{
 .main-nav .logo {
 	background: #fff;
 	color:#000;
-	padding:0;
+	padding-left:0;
 }
 .main-nav .hello {
 	background: #fff;
