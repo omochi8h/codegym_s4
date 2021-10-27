@@ -163,7 +163,7 @@ def parent_assign(request):
         default_work2.save()
 
     dataset = {}
-    labels = ['こども', '任せる仕事','コメント']
+    labels = ['こども', '任せる仕事','コメント','日にち']
     # 入力結果を格納する辞書
     results = {}
     radios = {}
@@ -173,26 +173,29 @@ def parent_assign(request):
         results[labels[0]] = request.POST.getlist("child")
         results[labels[1]] = request.POST.getlist("task")
         results[labels[2]]  = request.POST['text']
+        results[labels[3]] = request.POST['date']
         ret = 'OK'
         c = {'results': results, 'ret': ret}
         # print(results[labels[1]])
-        print(results[labels[0]])
+        print(results[labels[3]])
         # child_result = results[labels[0]]
 
         # 今日既に割り振ったタスクを消去
-        old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=date.today())
+        old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=results[labels[3]])
         print(old_task)
         old_task.delete()
 
         if Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today()).count() > 0:
-            old_comment = Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today())
+            old_comment = Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=results[labels[3]])
             old_comment.delete()
 
-        Comment(parent_id=request.user.id,child_id=int(results[labels[0]][0]),comment=results[labels[2]]).save()
+
+
+        Comment(parent_id=request.user.id,child_id=int(results[labels[0]][0]),comment=results[labels[2]],date=results[labels[3]]).save()
 
         for result in results[labels[1]]:
             print(result)
-            Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result)).save()
+            Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result),date=results[labels[3]]).save()
         return redirect(parent_assign)
         # return render(request, 'help_app/parent_assign.html', c)
     else:
