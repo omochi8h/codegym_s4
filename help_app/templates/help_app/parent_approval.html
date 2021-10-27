@@ -8,25 +8,42 @@
 
     <div class="tasklist_form">
         {% for child in children %}
-            {{ child.name }}</br>
+            <div class="approval_child">{{ child.name }}</div>
+            <div class="childform_list">
 
-           {% for task in tasks %}
-                {% if child.id == task.child_id %}
-
-                    {{ task.date }}<!--日付表示-->
-
+        {% for task in tasks %}
+            {% if child.id == task.child_id %}
+                <div class="task_table">
                     {% for housework in houseworks %}
                         {% if task.work_id == housework.id %}
-                             {{ housework.job_name }}<!--仕事名表示-->
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span class="updated_datetime">
+                                            {{ housework.job_name }}<!--仕事名表示-->
+                                        </span>
+                                    </th>
+                                </tr>
+                            </table>
+
+                    <table style="margin-left: auto;">
+                        <tr>
+                            <td>
+                                {{ task.date }}<!--日付表示-->
+                            </td>
+                            <td>
+                                 <a href="{% url 'parent_approval_on' task.id %}" class="task_approval">承認</a>
+                            </td>
+                        </tr>
+                    </table>
                         {% endif %}
                     {% endfor %}
-
-                    <a href="{% url 'parent_approval_on' task.id %}">承認</a>
-                </br>
-                {% endif %}
-            {% endfor %}
-            </br>
+                </div>
+            {% endif %}
+        {% endfor %}
+            </div>
         {% endfor %}
     </div>
 
 {% endblock %}
+

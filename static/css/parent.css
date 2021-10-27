@@ -272,4 +272,30 @@ button {
     background: #ff122e;
 }
 
+.task_approval{
+    text-decoration: none;
+    font-weight: bold;
+    font-size:1vw;
+    color: #fff;
+    background-color: #ffb443;
+    border-radius: 0.5rem;
+    padding: 5px 15px;
+    text-align: right;
+}
 
+.task_approval:hover {
+    background: #ff9900;
+    text-decoration: none;
+}
+
+.updated_datetime{　/*日付の装飾*/
+
+}
+.childform_list{
+    margin-left: 20px;
+}
+
+.approval_child{
+    font-weight:bold;
+    margin-bottom:1vh;
+}
