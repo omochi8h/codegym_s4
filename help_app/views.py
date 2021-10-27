@@ -175,7 +175,7 @@ def parent_assign(request):
         results[labels[2]]  = request.POST['text']
         ret = 'OK'
         c = {'results': results, 'ret': ret}
-        print(results[labels[1]])
+        # print(results[labels[1]])
         print(results[labels[0]])
         # child_result = results[labels[0]]
 
@@ -206,6 +206,7 @@ def parent_assign(request):
         assign_children = Children.objects.filter(parent_id=request.user.id)
         choice2 = []
 
+        comment_data = {}
         # 子供に割り振られたタスクのデータ化
         for child in assign_children:
             data = []
@@ -216,8 +217,13 @@ def parent_assign(request):
                     if task.work_id == housework.id:
                         data.append(housework.id)
             dataset[child.id] = data
-            # print(dataset)
-
+            print(dataset)
+            comments = Comment.objects.filter(child_id=child.id,date=date.today())
+            # if comment:
+            for comment in comments:
+                print(comment.comment)
+                comment_data[child.id] = comment.comment
+                print(comment_data)
 
         form.fields['child'].choices = choice2
         # form.fields['child'].initial = [assign_children[0].id]
@@ -232,7 +238,7 @@ def parent_assign(request):
             count = 1
 
 
-        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset), 'count': count}
+        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset), 'count': count, 'comment_data': json.dumps(comment_data)}
         # CFRF対策（必須）
         c.update(csrf(request))
         return render(request, 'help_app/parent_assign.html', c)

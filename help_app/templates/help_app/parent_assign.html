@@ -9,12 +9,20 @@
                 checkOption.forEach(function(e) {
                     e.addEventListener("click", function() {
                         console.log(document.querySelector("input:checked[name=child]").value);
-                        child_id = document.querySelector("input:checked[name=child]").value;
-                        sample(child_id);
+                        child_name = document.querySelector("input:checked[name=child]").value;
+                        sample(child_name);
                     });
                 });
             };
             function sample(child){
+
+                let child_data = []
+                $('input[name="child"]').each(function(i, elem) {
+                    const child_key = $(elem).val()
+                    child_data.push(child_key);
+                });
+                $('input[name="child"]').val('value-a');
+
                 const data = JSON.parse('{{ dataset|safe }}');
                 console.log(data[child]);
                 const task = data[child]
@@ -24,6 +32,15 @@
                     console.log($('input[value="' + elem + '"]').attr('id'));
                     var id = $('input[value="' + elem + '"]').attr('id')
                     $(`#${id}`).attr('checked', 'checked');
+                });
+
+                const comment = JSON.parse('{{ comment_data|safe }}');
+                console.log(comment[child]);
+                let element = document.getElementById('id_text');
+                element.value = comment[child];
+
+                $('input[name="child"]').each(function(i, elem) {
+                    $(elem).val(child_data[i]);
                 });
             }
         </script>
