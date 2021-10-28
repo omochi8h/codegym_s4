@@ -36,4 +36,9 @@ class CommentAdmin(admin.ModelAdmin):
     pass
 
 
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
+
+
 # Register your models here.
