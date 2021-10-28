@@ -12,8 +12,9 @@
 <p>{{ user }}さん、こんにちは！</p>
 
 <p><a href="{% url 'logout' %}">ログアウト</a></p>
-<a href="{% url 'index' %}">親ページ</a>
+<a href="{% url 'certification' %}">親ページ</a>
 <a href="{% url 'child_history' %}">カレンダー</a>
+<a href="{% url 'child_test' %}">改良版</a>
 <main>
     <div class="area">
         {% for child in children %}
@@ -47,7 +48,7 @@
 
             {% elif forloop.counter == 4 %}
                 <input type="radio" name="tab_name" id='tab4' checked>
-                <label class="tab_class" for='tab3'>{{ child.0 }}</label>
+                <label class="tab_class" for='tab4'>{{ child.0 }}</label>
                 <div class="content_class">
                    {% for task in child.1 %}
                        <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
@@ -65,6 +66,7 @@
             {% endif %}
         {% endfor %}
 
+        {% csrf_token %}
         <div id="modal"></div>
         <div id="mask"></div>
 </main>

@@ -64,6 +64,8 @@ urlpatterns = [
     path('parent_approval_on/<int:pk>/', views.parent_approval_on, name='parent_approval_on'),
 
     # path('child_top', views.child_top, name='child_top'),
+    path('child_test', views.child_test, name='child_test'),
+    path('child_test/<idName>', views.child_test, name='child_test'),
     path('child_tasklist', views.child_page, name='child_tasklist'),
     path('child_complete', views.child_complete, name='child_complete'),
     path('child_history', views.child_history, name='child_history'),

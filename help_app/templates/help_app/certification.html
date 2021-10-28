@@ -1,14 +1,12 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>certification</title>
+{% extends "base.html" %}
 
-</head>
-<body>
-    certification
+{% block main %}
+<form method="post">
+    {% csrf_token%}
+    <p>認証コード(数字4桁)を入力してください</p>
+    <input type="number" name="auth_code">
+    <br><br><br>
+    <button type="submit" value="送信する">送信する</button>
+</form>
 
-
-
-</body>
-</html>
+{% endblock %}
