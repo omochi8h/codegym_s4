@@ -42,6 +42,9 @@
   justify-content: space-around;
   align-content: center;
   text-align:center;
+  color:#f2d58a;
+  background-color: #800000;
+  border: double 5px #f2d58a;
 }
 
 .list{

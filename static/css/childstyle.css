@@ -21,9 +21,9 @@ margin-bottom:0px;
 }
 
 .main-nav {
-min-height:12vh;
-  display: flex;
-  align-items: center;
+height:12vh;
+display: flex;
+align-items: center;
 justify-content: space-around;
 align-content: center;
 }

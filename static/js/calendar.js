@@ -27,11 +27,11 @@ function open_modal(work_list) {
   var work = work_list;
   let createHtml = '';
 
-  createHtml = '<div class="main_modal active"><div class="modalContents"><h5>頑張ったね！</h5><div class="list">';
+  createHtml = '<div class="main_modal active"><div class="modalContents"><h5>さすが！！</h5><div class="list">';
   for (let i = 0; i < work.length; i++){
     createHtml += '<p>' +'＊'+ work[i] + '</p>';
   }
-  createHtml += '</div><a class="close_modal" onclick="window.close_modal();">閉じる</a>';
+  createHtml += '</div><a class="close_modal" onclick="window.close_modal();" style="background-color:#f2d58a;color:#800000;">閉じる</a>';
   createHtml += '</div></div>';
 
   document.querySelector('#modal').innerHTML = createHtml;
