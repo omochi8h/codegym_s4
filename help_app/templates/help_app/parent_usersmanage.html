@@ -10,11 +10,12 @@
         <div>
             {% csrf_token %}
             {% for field in form %}
-                    <p class="edit_lead">子供の名前</p>
-                        <div class="cp_iptxt">{{ field }}</div>
+                    <p class="edit_lead">-名前を入力してください-</p>
+                    <p class="edit_lead2">子供の名前</p>
+                    <div class="cp_iptxt">{{ field }}</div>
                     {% endfor %}
-            <div>
-                <button type="submit" class="send_btn">　追加　</button>
+            <div class="end_btn">
+                <button type="submit" class="send_btn">　　追加　　</button>
                 <a href="{% url 'parent_userslist' %}" class="back_btn">追加をやめる</a>
             </div>
         </div>

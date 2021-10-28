@@ -15,15 +15,15 @@
 
         {% for task in child.1 %}
                 <div class="task_table">
-                            <table>
-                                <tr>
-                                    <th>
-                                        <span class="updated_datetime">
-                                            {{ task.0 }}<!--仕事名表示-->
-                                        </span>
-                                    </th>
-                                </tr>
-                            </table>
+                    <table>
+                        <tr>
+                            <th>
+                                <span class="updated_datetime">
+                                    {{ task.0 }}<!--仕事名表示-->
+                                </span>
+                            </th>
+                        </tr>
+                    </table>
 
                     <table style="margin-left: auto;">
                         <tr>
@@ -37,7 +37,7 @@
                     </table>
                 </div>
         {% empty %}
-            <p style="color:#ffb443;font-weight:bold;">--承認待ちタスクはありません--</p>
+            <p style="color:#ffb443;font-weight:bold;margin:0px;">--承認待ちタスクはありません--</p>
         {% endfor %}
             </div>
         {% endfor %}

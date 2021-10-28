@@ -23,10 +23,6 @@ button {
     color: #000;
 }
 
-.footer_wrap  a:hover{
-    color: #e9457a;
-}
-
 .body_wrap{
     background-color: #BEEBED;
     margin: 0px;
@@ -50,7 +46,7 @@ button {
 .footer_wrap{
     background-color: #B0D69F;
     width: 100%;
-    min-height: 8vh;
+    height: 8vh;
     position: absolute;/* ←絶対位置 */
     bottom: 0;
 }
@@ -60,6 +56,9 @@ button {
     color: #707070;
     font-weight: bold;
     white-space: nowrap;
+}
+.footer_wrap  a:hover{
+    color: #e9457a;
 }
 
 .nav_wrapper {
@@ -91,10 +90,21 @@ button {
     margin-left: auto;
 }
 
+.header_end a{
+    font-weight: bold;
+    color: #707070;
+    background-color: #ffe897;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+}
+.header_end a:hover{
+    color: #000;
+    background-color: #f2c714;
+}
+
 .footer_end{
 /*    padding-top:3vh;*/
 }
-
 
 .assign_form{
     background-color: #fff;
@@ -204,7 +214,7 @@ button {
     text-decoration: none;
     font-weight: bold;
     color: #fff;
-    background-color: #e9457a;
+    background-color: #ed7fa3;
     border-radius: 0.5rem;
     padding: 10px 30px;
     margin-left: auto;
@@ -338,7 +348,7 @@ button {
 .cp_iptxt input[type=text] {
 	font: bold 15px/24px YuGothic;
 	box-sizing: border-box;
-	width: 60%;
+	width: 100%;
 /*	margin: 8px 0;*/
 	padding: 0.3em;
 	transition: 0.3s;
@@ -377,3 +387,35 @@ button {
     font-weight:bold;
     color:#707070;
 }
+.edit_lead2{
+    margin:0px;
+    font-weight:bold;
+    color:#000;
+    background-color:#ecedf2;
+    padding: 0px 10px;
+    margin-top:10px;
+}
+
+.end_btn{
+    margin-top:30px;
+    display: flex;
+    justify-content: center;
+}
+
+.cp_point input{
+/*大きさ*/
+	width: 15%;
+	height:40px;
+	margin: 5px 0px;
+	font-size:1.25vw;
+}
+
+/*
+.cp_point i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}*/
