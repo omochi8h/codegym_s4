@@ -40,11 +40,16 @@ function open_modal(work_list) {
 
 
 
-function createCalendar(histry) {
-  console.log(histry);
+function createCalendar(histry, p_year, p_month) {
   const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  if (year != p_year) {
+    year = p_year
+  }
+  var month = date.getMonth() + 1;
+  if (month != p_month) {
+    month = p_month
+  }
   //最初の日付
   const firstDate = new Date(year, month-1, 1);
   //最初の曜日
@@ -74,7 +79,6 @@ function createCalendar(histry) {
           } else if (dayCount > lastDayCount) {
               createHtml += '<td></td>';
           } else {
-              console.log(histry[dayCount - 1]);
               if (histry[dayCount - 1] == 0) {
                 createHtml += '<td>' + dayCount + '</td>';
                 dayCount += 1;
@@ -109,14 +113,19 @@ function createCalendar(histry) {
   }
   createHtml += '</table>';
 
-  console.log(createHtml);
   document.querySelector('#calendar').innerHTML = createHtml;
 }
 
-function createCalendar2(histry) {
+function createCalendar2(histry, p_year, p_month) {
   const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  if (year != p_year) {
+    year = p_year
+  }
+  var month = date.getMonth() + 1;
+  if (month != p_month) {
+    month = p_month
+  }
   //最初の日付
   const firstDate = new Date(year, month-1, 1);
   //最初の曜日
@@ -150,9 +159,9 @@ function createCalendar2(histry) {
                 createHtml += '<td>' + dayCount + '</td>';
                 dayCount += 1;
               } else {
-                var work_list = histry[dayCount - 1];
-                var len = work_list.length;
-                var array = [];
+                let work_list = histry[dayCount - 1];
+                let len = work_list.length;
+                let array = [];
                 for (let i = 0; i < len; i++){
                   if(len == 1) {
                     var work = '[\'' + String(work_list[i]) + '\']';
@@ -180,14 +189,19 @@ function createCalendar2(histry) {
   }
   createHtml += '</table>';
 
-  console.log(createHtml);
   document.querySelector('#calendar2').innerHTML = createHtml;
 }
 
-function createCalendar3(histry) {
+function createCalendar3(histry, p_year, p_month) {
   const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  if (year != p_year) {
+    year = p_year
+  }
+  var month = date.getMonth() + 1;
+  if (month != p_month) {
+    month = p_month
+  }
   //最初の日付
   const firstDate = new Date(year, month-1, 1);
   //最初の曜日
@@ -221,9 +235,9 @@ function createCalendar3(histry) {
                 createHtml += '<td>' + dayCount + '</td>';
                 dayCount += 1;
               } else {
-                var work_list = histry[dayCount - 1];
-                var len = work_list.length;
-                var array = [];
+                let work_list = histry[dayCount - 1];
+                let len = work_list.length;
+                let array = [];
                 for (let i = 0; i < len; i++){
                   if(len == 1) {
                     var work = '[\'' + String(work_list[i]) + '\']';
@@ -251,14 +265,19 @@ function createCalendar3(histry) {
   }
   createHtml += '</table>';
 
-  console.log(createHtml);
   document.querySelector('#calendar3').innerHTML = createHtml;
 }
 
-function createCalendar4(histry) {
+function createCalendar4(histry, p_year, p_month) {
   const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  if (year != p_year) {
+    year = p_year
+  }
+  var month = date.getMonth() + 1;
+  if (month != p_month) {
+    month = p_month
+  }
   //最初の日付
   const firstDate = new Date(year, month-1, 1);
   //最初の曜日
@@ -292,9 +311,9 @@ function createCalendar4(histry) {
                 createHtml += '<td>' + dayCount + '</td>';
                 dayCount += 1;
               } else {
-                var work_list = histry[dayCount - 1];
-                var len = work_list.length;
-                var array = [];
+                let work_list = histry[dayCount - 1];
+                let len = work_list.length;
+                let array = [];
                 for (let i = 0; i < len; i++){
                   if(len == 1) {
                     var work = '[\'' + String(work_list[i]) + '\']';
@@ -322,14 +341,19 @@ function createCalendar4(histry) {
   }
   createHtml += '</table>';
 
-  console.log(createHtml);
   document.querySelector('#calendar4').innerHTML = createHtml;
 }
 
-function createCalendar5(histry) {
+function createCalendar5(histry, p_year, p_month) {
   const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  if (year != p_year) {
+    year = p_year
+  }
+  var month = date.getMonth() + 1;
+  if (month != p_month) {
+    month = p_month
+  }
   //最初の日付
   const firstDate = new Date(year, month-1, 1);
   //最初の曜日
@@ -363,9 +387,9 @@ function createCalendar5(histry) {
                 createHtml += '<td>' + dayCount + '</td>';
                 dayCount += 1;
               } else {
-                var work_list = histry[dayCount - 1];
-                var len = work_list.length;
-                var array = [];
+                let work_list = histry[dayCount - 1];
+                let len = work_list.length;
+                let array = [];
                 for (let i = 0; i < len; i++){
                   if(len == 1) {
                     var work = '[\'' + String(work_list[i]) + '\']';
@@ -393,8 +417,8 @@ function createCalendar5(histry) {
   }
   createHtml += '</table>';
 
-  console.log(createHtml);
   document.querySelector('#calendar5').innerHTML = createHtml;
 }
 
-console.log('読み込みはできてる');
+
+

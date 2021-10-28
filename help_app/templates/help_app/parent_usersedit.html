@@ -8,13 +8,14 @@
 
     <form action="" method="post" class="tasklist_form">
         {% csrf_token %}
-        <div style="text-align: center; margin-bottom: 30px;">
-            <a href="{% url 'parent_userslist' %}" class="back_btn">編集の取りやめ</a>
-        </div>
         <p><label for="title_input" class="form_lead">子供の名前</label></p>
         <p><input type="text" name="name" id="title_input" value="{{ child.name }}"></p>
 
-        <p><button type="submit">更新</button></p>
+        <div>
+            <button type="submit" class="send_btn">更新</button>
+            <a href="{% url 'parent_userslist' %}" class="back_btn">編集の取りやめ</a>
+        </div>
+
 
     </form>
 {% endblock %}
