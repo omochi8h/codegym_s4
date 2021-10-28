@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 import datetime
 from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 
@@ -50,7 +51,8 @@ class Houseworks(models.Model):
         verbose_name='ポイント',
         default=0,
         blank=False,
-        null=True
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(100000)]
     )
 
     parent = models.ForeignKey(
