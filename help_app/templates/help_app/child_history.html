@@ -11,8 +11,7 @@
 {% block link %}
 
                 <li><a href="{% url 'child_tasklist' %}">おてつだいをする！</a></li>
-                <li><a href="{% url 'index' %}">おやページへ</a></li>
-                <li><a href="{% url 'logout' %}">ログアウト</a></li>
+                <li><a href="{% url 'certification' %}">おやページへ</a></li>
 {% endblock%}
 
 
@@ -28,16 +27,15 @@
                 <label class="tab_class" for='tab1'>{{ child.0 }}</label>
                 <!--タブのコンテンツ-->
                 <div class="content_class">
+
                     <div id="calendar"></div>
                     <script>
                         {% autoescape off %}
-                            createCalendar({{ child.4 }}, {{ child.5 }}, {{ child.6}});
+                            createCalendar({{ child.4 }}, {{ child.5 }}, {{ child.6}}, {{ child.7 }});
                         {% endautoescape %}
                     </script>
-                    <form method="post">
-                        <button name="key" value="-,0,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">前の月</button>
-                        <button name="key" value="+,0,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">次の月</button>
-                    </form>
+
+
                 </div>
 
             {% elif forloop.counter == 2 %}
@@ -48,13 +46,9 @@
                     <div id="calendar2"></div>
                     <script>
                         {% autoescape off %}
-                            createCalendar2({{ child.4 }}, {{ child.5 }}, {{ child.6}});
+                            createCalendar2({{ child.4 }}, {{ child.5 }}, {{ child.6}}, {{ child.7 }});
                         {% endautoescape %}
                     </script>
-                    <form method="post">
-                        <button name="key" value="-,1,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">前の月</button>
-                        <button name="key" value="+,1,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">次の月</button>
-                    </form>
                 </div>
 
             {% elif forloop.counter == 3 %}
@@ -65,13 +59,9 @@
                     <div id="calendar3"></div>
                     <script>
                         {% autoescape off %}
-                            createCalendar3({{ child.4 }}, {{ child.5 }}, {{ child.6}});
+                            createCalendar3({{ child.4 }}, {{ child.5 }}, {{ child.6}}, {{ child.7 }});
                         {% endautoescape %}
                     </script>
-                    <form method="post">
-                        <button name="key" value="-,2,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">前の月</button>
-                        <button name="key" value="+,2,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">次の月</button>
-                    </form>
                 </div>
 
             {% elif forloop.counter == 4 %}
@@ -82,13 +72,9 @@
                     <div id="calendar4"></div>
                     <script>
                         {% autoescape off %}
-                            createCalendar4({{ child.4 }}, {{ child.5 }}, {{ child.6}});
+                            createCalendar4({{ child.4 }}, {{ child.5 }}, {{ child.6}}, {{ child.7 }});
                         {% endautoescape %}
                     </script>
-                    <form method="post">
-                        <button name="key" value="-,3,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">前の月</button>
-                        <button name="key" value="+,3,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">次の月</button>
-                    </form>
                 </div>
 
             {% elif forloop.counter == 5 %}
@@ -99,19 +85,15 @@
                     <div id="calendar5"></div>
                     <script>
                         {% autoescape off %}
-                            createCalendar5({{ child.4 }}, {{ child.5 }}, {{ child.6}});
+                            createCalendar5({{ child.4 }}, {{ child.5 }}, {{ child.6}}, {{ child.7 }});
                         {% endautoescape %}
                     </script>
-                    <form method="post">
-                        <button name="key" value="-,4,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">前の月</button>
-                        <button name="key" value="+,4,{{ child.5 }}-{{ child.6 }},{{ child.7 }}">次の月</button>
-                    </form>
                 </div>
             {% endif %}
         {% endfor %}
 
     </div>
     <div id="modal"></div>
-    <div id="mask"></div>
+    <div id="mask"　onclick="window.close_modal();"></div>
 
 {% endblock %}

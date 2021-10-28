@@ -27,11 +27,11 @@ function open_modal(work_list) {
   var work = work_list;
   let createHtml = '';
 
-  createHtml = '<div class="main_modal active"><h2>がんばり</h2><div class="modalContents"><h5>頑張ったね！</h5>';
+  createHtml = '<div class="main_modal active"><div class="modalContents"><h5>さすが！！</h5><div class="list">';
   for (let i = 0; i < work.length; i++){
-    createHtml += '<p>' + work[i] + '</p>';
+    createHtml += '<p>' +'＊'+ work[i] + '</p>';
   }
-  createHtml += '<a class="close_modal" onclick="window.close_modal();">閉じる</a>';
+  createHtml += '</div><a class="close_modal" onclick="window.close_modal();" style="background-color:#f2d58a;color:#800000;">閉じる</a>';
   createHtml += '</div></div>';
 
   document.querySelector('#modal').innerHTML = createHtml;
@@ -40,7 +40,9 @@ function open_modal(work_list) {
 
 
 
-function createCalendar(histry, p_year, p_month) {
+
+function createCalendar(histry, p_year, p_month, get_child_id) {
+
   const date = new Date();
   var year = date.getFullYear();
   if (year != p_year) {
@@ -61,7 +63,10 @@ function createCalendar(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h3>' + year + 'ねん' + month + 'がつ' + '</h3>';
+  createHtml = '<form method="post"><button class="mae" name="key" value=\"-,0,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
+  createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,0,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
+
   createHtml += '<table>' + '<tr>';
 
   const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
@@ -116,7 +121,7 @@ function createCalendar(histry, p_year, p_month) {
   document.querySelector('#calendar').innerHTML = createHtml;
 }
 
-function createCalendar2(histry, p_year, p_month) {
+function createCalendar2(histry, p_year, p_month, get_child_id) {
   const date = new Date();
   var year = date.getFullYear();
   if (year != p_year) {
@@ -137,7 +142,9 @@ function createCalendar2(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h3>' + year + 'ねん' + month + 'がつ' + '</h3>';
+  createHtml = '<form method="post"><button name="key" class="mae"　class="mae" value=\"-,1,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
+  createHtml += '<form method="post"><button name="key"  class ="usiro" value=\"+,1,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
 
   const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
@@ -192,7 +199,7 @@ function createCalendar2(histry, p_year, p_month) {
   document.querySelector('#calendar2').innerHTML = createHtml;
 }
 
-function createCalendar3(histry, p_year, p_month) {
+function createCalendar3(histry, p_year, p_month, get_child_id) {
   const date = new Date();
   var year = date.getFullYear();
   if (year != p_year) {
@@ -213,7 +220,9 @@ function createCalendar3(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h3>' + year + 'ねん' + month + 'ねん' + '</h3>';
+  createHtml = '<form method="post"><button name="key"　class="mae" value=\"-,2,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
+  createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,2,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
 
   const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
@@ -268,7 +277,7 @@ function createCalendar3(histry, p_year, p_month) {
   document.querySelector('#calendar3').innerHTML = createHtml;
 }
 
-function createCalendar4(histry, p_year, p_month) {
+function createCalendar4(histry, p_year, p_month, get_child_id) {
   const date = new Date();
   var year = date.getFullYear();
   if (year != p_year) {
@@ -288,8 +297,9 @@ function createCalendar4(histry, p_year, p_month) {
 
   let dayCount = 1;
   let createHtml = '';
-
-  createHtml = '<h3>' + year + 'ねん' + month + 'がつ' +'</h3>';
+  createHtml = '<form method="post"><button name="key" class="mae"　value=\"-,3,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
+  createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,3,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
 
   const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
@@ -344,7 +354,7 @@ function createCalendar4(histry, p_year, p_month) {
   document.querySelector('#calendar4').innerHTML = createHtml;
 }
 
-function createCalendar5(histry, p_year, p_month) {
+function createCalendar5(histry, p_year, p_month, get_child_id) {
   const date = new Date();
   var year = date.getFullYear();
   if (year != p_year) {
@@ -364,8 +374,9 @@ function createCalendar5(histry, p_year, p_month) {
 
   let dayCount = 1;
   let createHtml = '';
-
-  createHtml = '<h3>' + year + 'ねん' + month + 'げつ' +'</h3>';
+  createHtml = '<form method="post"><button name="key" value=\"-,4,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
+  createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,4,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
 
   const weeks = ['にち','げつ','か','すい','もく','きん','ど'];

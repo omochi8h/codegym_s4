@@ -1,23 +1,31 @@
 body{
 	/*background-color:#add8e6;*/
 	background-color:#BEEBED;
-	max-height: 100vh;
 	color:#000;
+	display:flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 /*footer固定のため*/
 .content{
-display:flex;
-flex-direction: column;
-min-height: 100vh;
+
 }
 /*header*/
 nav{
 	background:white;
-	min-height:8vh;
+
+
+}
+ul{
+margin-bottom:0px;
 }
 
 .main-nav {
-  display: flex;
+height:12vh;
+display: flex;
+align-items: center;
+justify-content: space-around;
+align-content: center;
 }
 
 .main-nav li:first-child {
@@ -26,7 +34,7 @@ nav{
 
 .main-nav a {
   display:inline-block;
-  margin: 25px;
+  margin:0px 25px;
   border-radius: 5px;
   background: #fa8072;
   color: #fff;
@@ -37,7 +45,6 @@ nav{
 .main-nav .logo {
 	background: #fff;
 	color:#000;
-	padding-left:0;
 }
 .main-nav .hello {
 	background: #fff;
@@ -69,7 +76,7 @@ nav{
 .login input[type="text"],
 .login input[type="email"],
 .login input[type="password"],
-.login input[type="number"]{
+.login input[type ="number"]{
   background-color: #eee;
   color: #777;
   padding: 0.25em 0.625em;
@@ -230,6 +237,11 @@ input[name="tab_item"] {
 
 .grass{
 background-color: #B0D69F;
-height :1vh;
-z-index:2;
+height :5vh;
+}
+
+.hiyoko{
+position:fixed;
+bottom:0;
+z-index:6;
 }

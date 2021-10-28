@@ -3,23 +3,22 @@
 {% block title %}こどもーおてつだいリスト{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" media="(min-width: 600px)" href="{% static 'css/chtaskliststyle_web.css' %}">
 <script src="{% static 'js/script.js' %}" defer></script>
-<script src="{% static 'js/calendar.js' %}" defer></script>
+
 {% endblock %}
 
 {% block link %}
 
                 <li><a href="{% url 'child_history' %}">がんばりをみる</a></li>
                 <li><a href="{% url 'certification' %}">おやページへ</a></li>
-                <li><a href="{% url 'logout' %}">ログアウト</a></li>
-                <li><a href="{% url 'child_test' %}">改良版</a></li>
-{% endblock%}
 
+{% endblock %}
 
 {% block h2 %}おてつだいをしよう！{% endblock %}
+
+
 {% block main %}
 
 
@@ -41,14 +40,16 @@
                                 <p>{{ comment.comment }}</p>
                                 {% endfor %}
                             </div>
-                            <img src="static/img/exampleIcon.png" style="width:30px;">
+                            <img src="static/img/icon.PNG" style="width:100px;">
                         </div>
 
-                    <div id="tasks">
+                    <div class="tasks">
                     {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
-                                <a class="open_modal" id ="{{ task.work }}" onclick="window.open({{ task.id }});">{{ task.work }}</a><br>
+
+                        <div class="task" onclick="window.open({{ task.id }},'tab1');">
+                            <div class="taskContent">
+                                <a class="open_modal">{{ task.work }}</a><br>
+
 
                                 <!--{% if id == "お片付け" %}
                             <img src="static/img/katduke.png" style="width:100px;">
@@ -64,26 +65,32 @@
                         </div>
                     {% endfor%}
                     </div>
-
-
                 </div>
-
-
-
                 </div>
 
             {% elif forloop.counter == 2 %}
                 <input type="radio" name="tab_name" id='tab2'>
                 <label class="tab_class" for='tab2'>{{ child.0 }}</label>
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/icon.PNG" style="width:100px;">
+                        </div>
+
+                    <div class="tasks">
                    {% for task in child.1 %}
-                         <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
-                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+
+                         <div class="task" onclick="window.open({{ task.id }},'tab2');">
+                            <div class="taskContent">
+                                <a class="open_modal">{{ task.work }}</a>
+
                             </div>
                          </div>
                     {% endfor%}
+                    </div>
                     </div>
                 </div>
 
@@ -91,42 +98,73 @@
                 <input type="radio" name="tab_name" id='tab3' >
                 <label class="tab_class" for='tab3'>{{ child.0 }}</label>
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/icon.PNG" style="width:100px;">
+                        </div>
+                    <div class="tasks">
+
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
-                       <a class="open_modal" >{{ task.work }}</a>
+
+                        <div class="task" onclick="window.open({{ task.id }},'tab3');">
+                            <div class="taskContent">
+                       <a class="open_modal">{{ task.work }}</a>
                             </div>
                         </div>
                     {% endfor %}
                     </div>
+                    </div>
                 </div>
 
             {% elif forloop.counter == 4 %}
-                <input type="radio" name="tab_name" id='tab4' checked>
+
+                <input type="radio" name="tab_name" id='tab4'>
                 <label class="tab_class" for='tab4'>{{ child.0 }}</label>
 
+
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/icon.PNG" style="width:100px;">
+                        </div>
+                    <div class="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
-                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+
+                        <div class="task" onclick="window.open({{ task.id }},'tab4');">
+                            <div class="taskContent">
+                       <a class="open_modal">{{ task.work }}</a>
+
                             </div>
                         </div>
                     {% endfor%}
                     </div>
+                </div>
                 </div>
 
             {% elif forloop.counter == 5 %}
                 <input type="radio" name="tab_name" id='tab5'>
                 <label class="tab_class" for='tab5'>{{ child.0 }}</label>
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/icon.PNG" style="width:100px;">
+                        </div>
+                    <div class="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
-                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+
+                        <div class="task" onclick="window.open({{ task.id }},'tqab5');">
+                            <div class="taskContent">
+                                <a class="open_modal">{{ task.work }}</a>
+
                             </div>
                         </div>
                     {% endfor%}
@@ -134,8 +172,8 @@
                 </div>
             {% endif %}
         {% endfor %}
-
-</div>
+                </div>
+    </div>
 
 
         {% csrf_token %}
@@ -143,3 +181,6 @@
         <div id="modal"></div>
         <div id="mask"></div>
 {% endblock %}
+
+
+ </div>
