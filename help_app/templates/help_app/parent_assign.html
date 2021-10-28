@@ -18,11 +18,12 @@
                 const data = JSON.parse('{{ dataset|safe }}');
                 console.log(data[child]);
                 const task = data[child]
+                $('.form-check-input').attr('checked', false);
                 task.forEach(function(elem, index) {
                   console.log(`"${elem}"`);
-                  console.log($('input[value="' + elem + '"]'));
-                  console.log($('#task_3'));
-                  $(`input[value="' + elem + '"]`).attr('checked', 'checked');
+                console.log($('input[value="' + elem + '"]').attr('id'));
+                  var id = $('input[value="' + elem + '"]').attr('id')
+                  $(`#${id}`).attr('checked', 'checked');
                 });
             }
         </script>
