@@ -63,7 +63,7 @@
 
 
 .area {
-  width: 500px;
+  width: 60vw;
   margin: auto;
   flex-wrap: wrap;
   display: flex;
@@ -94,7 +94,7 @@ input:checked + .tab_class {
 
 .content_class {
   display: none;
-  width: 100%;
+  width:100%;
   background:white;
 }
 
@@ -102,25 +102,35 @@ input:checked + .tab_class + .content_class {
   display: block;
 }
 
-#calendar{
+#calendar,#calendar2,#calendar3,#calendar4,#calendar5
+{
 display:flex;
 flex-wrap: wrap;
-/*flex-flow: column;*/
-align-items: center;
+flex-flow: column;
+/*align-items: center;
 justify-content: space-around;
-align-content: center;
-margin:10px;
+align-content: center;*/
+margin:20px 100px 40px 100px;
+text-align:center;
 
 }
 
 td{
-width:3vw;
-height:3vw;
+width:5vw;
+height:5vh;
 border:solid;
 border-width:1px;
+border-color:#4e454a;
 }
 
 table{
 border:solid;
 border-width:1px;
+
+background: #f6f5f4;
 }
+
+h3{
+margin-bottom:40px;
+}
+

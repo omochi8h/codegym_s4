@@ -28,26 +28,41 @@
                 <label class="tab_class" for='tab1'>{{ child.0 }}</label>
 
                 <div class="content_class">
+                <div class="nakami">
+
+                    <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/exampleIcon.png" style="width:30px;">
+                        </div>
+
                     <div id="tasks">
                     {% for task in child.1 %}
                         <div id="task" onclick="window.open({{ task.id }});">
                             <div id="taskContent">
-                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a><br>
+                                <a class="open_modal" id ="{{ task.work }}" onclick="window.open({{ task.id }});">{{ task.work }}</a><br>
 
-                                {% if work == "お片付け" %}
+                                <!--{% if id == "お片付け" %}
                             <img src="static/img/katduke.png" style="width:100px;">
-                            {% elif work == "お皿洗い" %}
+                            {% elif id == "お皿洗い" %}
                             <img src="static/img/osaraarai.png" style="width:100px;">
-                            {% elif work == "お洗濯"%}
+                            {% elif id == "お洗濯"%}
                             <img src="static/img/sentaku.png" style="width:100px;">
                             {% else %}
                                 <img src="static/img/osaraarai.png" style="width:100px;">
-                            {% endif %}
+                            {% endif %}-->
 
                             </div>
                         </div>
                     {% endfor%}
                     </div>
+
+
+                </div>
+
+
+
                 </div>
 
             {% elif forloop.counter == 2 %}
