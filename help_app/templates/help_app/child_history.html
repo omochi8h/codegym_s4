@@ -1,14 +1,25 @@
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
-     <script src="{% static 'js/calendar.js' %}"></script>
-    <title>child_history</title>
+{% block title %}こどもーおてつだいリスト{% endblock %}
 
-</head>
-<body>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+<link rel="stylesheet" media="(min-width: 600px)" href="{% static 'css/chtaskliststyle_web.css' %}">
+<script src="{% static 'js/calendar.js' %}"></script>
+{% endblock %}
+
+{% block link %}
+
+                <li><a href="{% url 'child_tasklist' %}">おてつだいをする！</a></li>
+                <li><a href="{% url 'index' %}">おやページへ</a></li>
+                <li><a href="{% url 'logout' %}">ログアウト</a></li>
+{% endblock%}
+
+
+{% block h2 %}がんばりをみよう！{% endblock %}
+{% block main %}
+
+
     <div class="area">
         {% for child in histry %}
 
@@ -30,7 +41,7 @@
                 </div>
 
             {% elif forloop.counter == 2 %}
-                <input type="radio" name="tab_name" id='tab2' checked>
+                <input type="radio" name="tab_name" id='tab2'>
                 <label class="tab_class" for='tab2'>{{ child.0 }}</label>
                 <!--タブのコンテンツ-->
                 <div class="content_class">
@@ -102,5 +113,5 @@
     </div>
     <div id="modal"></div>
     <div id="mask"></div>
-</body>
-</html>
+
+{% endblock %}

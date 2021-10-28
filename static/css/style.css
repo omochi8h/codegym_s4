@@ -45,7 +45,7 @@
 
 }
 
-.mask {
+#mask {
   position: fixed;
   top: 0;
   left: 0;
@@ -64,12 +64,12 @@
   z-index: 2;
 }
 
-.mask.active {
+
+#mask.active {
   z-index: 1;
   opacity: 0.7;
   visibility: visible;
 }
-
 .area {
   width: 500px;
   margin: 0 auto;
@@ -204,4 +204,38 @@ padding:3px;
 .slick-prev:before,
 .slick-next:before {
     color: #000;
+}
+
+.balloon1-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 15px 15px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 10px;
+}
+
+.balloon1-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -10px;
+  border: 10px solid transparent;
+  border-left: 10px solid #e0edff;
+}
+
+.balloon1-right p {
+  margin: 0;
+  padding: 0;
+}
+
+.nakami{
+display:flex;
+flex-wrap: wrap;
+flex-flow: column;
 }

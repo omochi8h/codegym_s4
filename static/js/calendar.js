@@ -61,10 +61,10 @@ function createCalendar(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h1>' + year + '/' + month + '</h1>';
+  createHtml = '<h3>' + year + 'ねん' + month + 'がつ' + '</h3>';
   createHtml += '<table>' + '<tr>';
 
-  const weeks = ['日','月','火','水','木','金','土'];
+  const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
   for (let i = 0; i < weeks.length; i++) {
       createHtml += '<td>' + weeks[i] + '</td>';
   }
@@ -137,10 +137,10 @@ function createCalendar2(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h1>' + year + '/' + month + '</h1>';
+  createHtml = '<h3>' + year + 'ねん' + month + 'がつ' + '</h3>';
   createHtml += '<table>' + '<tr>';
 
-  const weeks = ['日','月','火','水','木','金','土'];
+  const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
   for (let i = 0; i < weeks.length; i++) {
       createHtml += '<td>' + weeks[i] + '</td>';
   }
@@ -213,10 +213,10 @@ function createCalendar3(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h1>' + year + '/' + month + '</h1>';
+  createHtml = '<h3>' + year + 'ねん' + month + 'ねん' + '</h3>';
   createHtml += '<table>' + '<tr>';
 
-  const weeks = ['日','月','火','水','木','金','土'];
+  const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
   for (let i = 0; i < weeks.length; i++) {
       createHtml += '<td>' + weeks[i] + '</td>';
   }
@@ -289,10 +289,10 @@ function createCalendar4(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h1>' + year + '/' + month + '</h1>';
+  createHtml = '<h3>' + year + 'ねん' + month + 'がつ' +'</h3>';
   createHtml += '<table>' + '<tr>';
 
-  const weeks = ['日','月','火','水','木','金','土'];
+  const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
   for (let i = 0; i < weeks.length; i++) {
       createHtml += '<td>' + weeks[i] + '</td>';
   }
@@ -365,10 +365,10 @@ function createCalendar5(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<h1>' + year + '/' + month + '</h1>';
+  createHtml = '<h3>' + year + 'ねん' + month + 'げつ' +'</h3>';
   createHtml += '<table>' + '<tr>';
 
-  const weeks = ['日','月','火','水','木','金','土'];
+  const weeks = ['にち','げつ','か','すい','もく','きん','ど'];
   for (let i = 0; i < weeks.length; i++) {
       createHtml += '<td>' + weeks[i] + '</td>';
   }
