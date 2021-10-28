@@ -126,9 +126,37 @@ def child_page(request):
         child_list.append(comments)
         child_data.append(child_list)
     data['children'] = child_data
+    data['tab_name'] = ['1', '2', '3', '4', '5']
 
     return render(request, 'registration/child_tasklist.html', data)
 
+def child_page_tab(request, idName):
+    params = {}
+    data = {}
+    if request.method == 'POST':
+        update_id = request.POST['complete_id']
+        task = Tasks.objects.filter(id=update_id).first()
+        task.state = -1
+        task.save()
+
+    child_data = []
+    params['children'] = Children.objects.filter(parent=request.user).all()
+    for child in params.get('children'):
+        child_list = []
+        child_list.append(child.name)
+        today = datetime.date.today()
+        task_list = []
+        tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
+        comments = Comment.objects.filter(parent=request.user, child=child.id, date=today).all()
+        for task in tasks:
+            task_list.append(task)
+        child_list.append(task_list)
+        child_list.append(comments)
+        child_data.append(child_list)
+    data['children'] = child_data
+    data['tab_name'] = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5']
+
+    return render(request, 'registration/child_tasklist.html', data)
 
 ############
 

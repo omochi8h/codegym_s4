@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <link rel="stylesheet" media="(min-width: 600px)" href="{% static 'css/chtaskliststyle_web.css' %}">
 <script src="{% static 'js/script.js' %}" defer></script>
-<script src="{% static 'js/calendar.js' %}" defer></script>
 {% endblock %}
 
 {% block link %}
@@ -15,7 +14,6 @@
                 <li><a href="{% url 'child_history' %}">がんばりをみる</a></li>
                 <li><a href="{% url 'certification' %}">おやページへ</a></li>
                 <li><a href="{% url 'logout' %}">ログアウト</a></li>
-                <li><a href="{% url 'child_test' %}">改良版</a></li>
 {% endblock%}
 
 
@@ -46,9 +44,9 @@
 
                     <div id="tasks">
                     {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
+                        <div id="task" onclick="window.open({{ task.id }},'tab1');">
                             <div id="taskContent">
-                                <a class="open_modal" id ="{{ task.work }}" onclick="window.open({{ task.id }});">{{ task.work }}</a><br>
+                                <a class="open_modal">{{ task.work }}</a><br>
 
                                 <!--{% if id == "お片付け" %}
                             <img src="static/img/katduke.png" style="width:100px;">
@@ -78,9 +76,9 @@
                 <div class="content_class">
                     <div id="tasks">
                    {% for task in child.1 %}
-                         <div id="task" onclick="window.open({{ task.id }});">
+                         <div id="task" onclick="window.open({{ task.id }},'tab2');">
                             <div id="taskContent">
-                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                                <a class="open_modal">{{ task.work }}</a>
                             </div>
                          </div>
                     {% endfor%}
@@ -93,9 +91,9 @@
                 <div class="content_class">
                     <div id="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
+                        <div id="task" onclick="window.open({{ task.id }},'tab3');">
                             <div id="taskContent">
-                       <a class="open_modal" >{{ task.work }}</a>
+                       <a class="open_modal">{{ task.work }}</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -103,15 +101,15 @@
                 </div>
 
             {% elif forloop.counter == 4 %}
-                <input type="radio" name="tab_name" id='tab4' checked>
+                <input type="radio" name="tab_name" id='tab4'>
                 <label class="tab_class" for='tab4'>{{ child.0 }}</label>
 
                 <div class="content_class">
                     <div id="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
+                        <div id="task" onclick="window.open({{ task.id }},'tab4');">
                             <div id="taskContent">
-                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                       <a class="open_modal">{{ task.work }}</a>
                             </div>
                         </div>
                     {% endfor%}
@@ -124,9 +122,9 @@
                 <div class="content_class">
                     <div id="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
+                        <div id="task" onclick="window.open({{ task.id }},'tqab5');">
                             <div id="taskContent">
-                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                                <a class="open_modal">{{ task.work }}</a>
                             </div>
                         </div>
                     {% endfor%}
