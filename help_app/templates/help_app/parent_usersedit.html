@@ -6,7 +6,7 @@
 
     <h1 class="page_name">ユーザーの編集</h1>
 
-    <form action="" method="post" class="tasklist_form">
+    <form action="" method="post" class="edit_form">
         {% csrf_token %}
         <p><label for="title_input" class="form_lead">子供の名前</label></p>
         <p><input type="text" name="name" id="title_input" value="{{ child.name }}"></p>
