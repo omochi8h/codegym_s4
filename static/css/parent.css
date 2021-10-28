@@ -1,5 +1,5 @@
 html {
-    font-family:  “メイリオ”, Meiryo;
+    font-family:  "游ゴシック体", "Yu Gothic", YuGothic;
     font-size:1vw;
 }
 
@@ -11,10 +11,12 @@ button {
 	-moz-appearance: none;
 	appearance: none;
 }
+
 .header_wrap  a {
     text-decoration: none;
     color: #707070;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .header_wrap  a:hover{
@@ -22,7 +24,7 @@ button {
 }
 
 .footer_wrap  a:hover{
-    color: #ff122e;
+    color: #e9457a;
 }
 
 .body_wrap{
@@ -30,24 +32,25 @@ button {
     margin: 0px;
     min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
     position: relative;/* ←相対位置 */
-    padding-bottom: 10px; /* ←フッターの高さを指定 */
     box-sizing: border-box;
 }
 
 .header_wrap {
     display: flex;
     align-items: center;
-    padding-top: 20px;
+/*    padding-top: 20px;*/
     list-style: none;
     overflow: hidden;
     position: relative;
     background-color: #fff;
     min-width: 100vh;
+    min-height: 12vh;
 }
 
 .footer_wrap{
     background-color: #B0D69F;
     width: 100%;
+    min-height: 8vh;
     position: absolute;/* ←絶対位置 */
     bottom: 0;
 }
@@ -56,12 +59,17 @@ button {
     text-decoration: none;
     color: #707070;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .nav_wrapper {
     list-style: none;
     display: flex;
     justify-content: right;
+}
+
+.nav_wrapper a{
+    font-size:17px;
 }
 
 .nav__item{
@@ -73,12 +81,18 @@ button {
 }
 
 .header_middle{
-    padding-left: 50px;
+    padding-top:3vh;
+/*    padding-left: 50px;*/
 }
 
 .header_end{
     padding: 0px 40px;
+    padding-top:3vh;
     margin-left: auto;
+}
+
+.footer_end{
+/*    padding-top:3vh;*/
 }
 
 
@@ -113,7 +127,7 @@ button {
 
 .task_table{
     display: flex;
-    border-bottom: solid 3px #B0D69F;
+    border-bottom: solid 1px #B0D69F;
     margin-top: 0px;       /* 上線の外側の余白はナシ */
     padding-top: 0px;      /* 上線の内側の余白はナシ */
     /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
@@ -188,7 +202,7 @@ button {
     text-decoration: none;
     font-weight: bold;
     color: #fff;
-    background-color: #e3364a;
+    background-color: #e9457a;
     border-radius: 0.5rem;
     padding: 10px 30px;
     margin-left: auto;
@@ -198,7 +212,7 @@ button {
 }
 .back_btn:hover {
     color: #fff;
-    background: #ff122e;
+    background: #ef2868;
 }
 
 .user{
@@ -253,7 +267,8 @@ button {
 
 .main_wrap{
     position: relative;/*←相対位置*/
-    padding-bottom: 100px;/*←footerの高さ*/
+/*    padding-top: 12vh;*//*←headerの高さ*/
+    padding-bottom: 12vh;/*←footerの高さ*/
     box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
@@ -269,7 +284,7 @@ button {
 
 .delete a:hover{
     color:#fff;
-    background: #ff122e;
+    background: #e9457a;
 }
 
 .task_approval{
@@ -291,11 +306,23 @@ button {
 .updated_datetime{　/*日付の装飾*/
 
 }
-.childform_list{
+.approval_list{
     margin-left: 20px;
+    margin-bottom:20px;
 }
 
 .approval_child{
     font-weight:bold;
-    margin-bottom:1vh;
+    font-size:2.5vh;
+    color:#707070;
+    /*margin-bottom:1vh;*/
+}
+
+.approval_table{
+    display: flex;
+    border-bottom: solid 1px #B0D69F;
+    margin-top: 0px;       /* 上線の外側の余白はナシ */
+    padding-top: 0.3em;      /* 上線の内側の余白はナシ */
+    /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
