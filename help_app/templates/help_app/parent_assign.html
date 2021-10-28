@@ -1,5 +1,12 @@
 {% extends "parent_base.html" %}
 {% block head %}
+<!--        モーダルダイアログ用-->
+        <!-- Bootstrap CSS -->
+
+        <!-- jQuery JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
         <script>
             const data = JSON.parse('{{ dataset|safe }}');
@@ -67,6 +74,7 @@
 
 {% endblock %}
 {% block main %}
+
     <head>
         <title>お手伝いを依頼する</title>
     </head>
@@ -148,7 +156,7 @@
                 {% endfor %}
 
 
-
+    <div class="bootstrap">
             <div style="text-align: center;">
                 <button type="submit" data-toggle="modal" data-target="#sampleA" class="add_task">お願いする</button>
             </div>
@@ -175,7 +183,7 @@
                         </div><!-- modal-content -->
                     </div><!-- modal-dialog -->
                 </div><!-- modal fade -->
-
+    </div>
 
              {% endif %}
          </form>
