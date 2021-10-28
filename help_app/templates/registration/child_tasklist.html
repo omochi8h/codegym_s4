@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
-<<<<<<< HEAD
 {% block title %}こどもーおてつだいリスト{% endblock %}
 
-<<<<<<< HEAD
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -39,7 +37,9 @@
 
                     <div class ="comment">
                             <div class="balloon1-right">
-                                <p>こんにちは。これは例です。</p>
+                                 {% for comment in child.2 %}
+                                <p>{{ comment.comment }}</p>
+                                {% endfor %}
                             </div>
                             <img src="static/img/exampleIcon.png" style="width:30px;">
                         </div>
