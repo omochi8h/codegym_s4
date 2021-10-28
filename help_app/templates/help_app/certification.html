@@ -1,12 +1,17 @@
 {% extends "base.html" %}
 
+{% block link %}
+                <li><a href="{% url 'child_tasklist' %}">こどもページへ</a></li>
+{% endblock%}
+
 {% block main %}
-<form method="post">
+<div class="login">
+<form method="post" class="login__form">
     {% csrf_token%}
     <p>認証コード(数字4桁)を入力してください</p>
-    <input type="number" name="auth_code">
-    <br><br><br>
-    <button type="submit" value="送信する">送信する</button>
+    <input  type="number" name="auth_code">
+    <br>
+    <input type="submit" value="送信" class="btn btn-warning"></input>
 </form>
-
+</div>
 {% endblock %}

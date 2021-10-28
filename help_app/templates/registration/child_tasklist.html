@@ -1,89 +1,145 @@
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
-    <script src="{% static 'js/calendar.js' %}" defer></script>
-</head>
-<body>
-{% csrf_token %}
-<h2>子どもページ</h2>
-<p>{{ user }}さん、こんにちは！</p>
+{% block title %}こどもーおてつだいリスト{% endblock %}
 
-<p><a href="{% url 'logout' %}">ログアウト</a></p>
-<a href="{% url 'certification' %}">親ページ</a>
-<a href="{% url 'child_history' %}">カレンダー</a>
-<a href="{% url 'child_test' %}">改良版</a>
-<main>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" media="(min-width: 600px)" href="{% static 'css/chtaskliststyle_web.css' %}">
+<script src="{% static 'js/script.js' %}" defer></script>
+<script src="{% static 'js/calendar.js' %}" defer></script>
+{% endblock %}
+
+{% block link %}
+
+                <li><a href="{% url 'child_history' %}">がんばりをみる</a></li>
+                <li><a href="{% url 'certification' %}">おやページへ</a></li>
+                <li><a href="{% url 'logout' %}">ログアウト</a></li>
+                <li><a href="{% url 'child_test' %}">改良版</a></li>
+{% endblock%}
+
+
+{% block h2 %}おてつだいをしよう！{% endblock %}
+{% block main %}
+
+
+{% csrf_token %}
+
     <div class="area">
         {% for child in children %}
 
             {% if forloop.counter == 1 %}
                 <input type="radio" name="tab_name" id='tab1' checked>
                 <label class="tab_class" for='tab1'>{{ child.0 }}</label>
+
                 <div class="content_class">
-                   {% for task in child.1 %}
-                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                <div class="nakami">
+
+                    <div class ="comment">
+                            <div class="balloon1-right">
+                                 {% for comment in child.2 %}
+                                <p>{{ comment.comment }}</p>
+                                {% endfor %}
+                            </div>
+                            <img src="static/img/exampleIcon.png" style="width:30px;">
+                        </div>
+
+                    <div id="tasks">
+                    {% for task in child.1 %}
+                        <div id="task" onclick="window.open({{ task.id }});">
+                            <div id="taskContent">
+                                <a class="open_modal" id ="{{ task.work }}" onclick="window.open({{ task.id }});">{{ task.work }}</a><br>
+
+                                <!--{% if id == "お片付け" %}
+                            <img src="static/img/katduke.png" style="width:100px;">
+                            {% elif id == "お皿洗い" %}
+                            <img src="static/img/osaraarai.png" style="width:100px;">
+                            {% elif id == "お洗濯"%}
+                            <img src="static/img/sentaku.png" style="width:100px;">
+                            {% else %}
+                                <img src="static/img/osaraarai.png" style="width:100px;">
+                            {% endif %}-->
+
+                            </div>
+                        </div>
                     {% endfor%}
-                     {% for comment in child.2 %}
-                        {{ comment.comment }}
-                    {% endfor %}
+                    </div>
+
+
+                </div>
+
+
+
                 </div>
 
             {% elif forloop.counter == 2 %}
-                <input type="radio" name="tab_name" id='tab2' checked>
+                <input type="radio" name="tab_name" id='tab2'>
                 <label class="tab_class" for='tab2'>{{ child.0 }}</label>
                 <div class="content_class">
+                    <div id="tasks">
                    {% for task in child.1 %}
-                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                         <div id="task" onclick="window.open({{ task.id }});">
+                            <div id="taskContent">
+                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                            </div>
+                         </div>
                     {% endfor%}
-                     {% for comment in child.2 %}
-                        {{ comment.comment }}
-                    {% endfor %}
+                    </div>
                 </div>
 
             {% elif forloop.counter == 3 %}
-                <input type="radio" name="tab_name" id='tab3' checked>
+                <input type="radio" name="tab_name" id='tab3' >
                 <label class="tab_class" for='tab3'>{{ child.0 }}</label>
                 <div class="content_class">
+                    <div id="tasks">
                    {% for task in child.1 %}
-                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
-                    {% endfor%}
-                     {% for comment in child.2 %}
-                        {{ comment.comment }}
+                        <div id="task" onclick="window.open({{ task.id }});">
+                            <div id="taskContent">
+                       <a class="open_modal" >{{ task.work }}</a>
+                            </div>
+                        </div>
                     {% endfor %}
+                    </div>
                 </div>
 
             {% elif forloop.counter == 4 %}
                 <input type="radio" name="tab_name" id='tab4' checked>
                 <label class="tab_class" for='tab4'>{{ child.0 }}</label>
+
                 <div class="content_class">
+                    <div id="tasks">
                    {% for task in child.1 %}
+                        <div id="task" onclick="window.open({{ task.id }});">
+                            <div id="taskContent">
                        <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                            </div>
+                        </div>
                     {% endfor%}
-                     {% for comment in child.2 %}
-                        {{ comment.comment }}
-                    {% endfor %}
+                    </div>
                 </div>
 
             {% elif forloop.counter == 5 %}
-                <input type="radio" name="tab_name" id='tab5' checked>
+                <input type="radio" name="tab_name" id='tab5'>
                 <label class="tab_class" for='tab5'>{{ child.0 }}</label>
                 <div class="content_class">
+                    <div id="tasks">
                    {% for task in child.1 %}
-                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                        <div id="task" onclick="window.open({{ task.id }});">
+                            <div id="taskContent">
+                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                            </div>
+                        </div>
                     {% endfor%}
-                     {% for comment in child.2 %}
-                        {{ comment.comment }}
-                    {% endfor %}
+                    </div>
                 </div>
             {% endif %}
         {% endfor %}
 
+</div>
+
+
         {% csrf_token %}
+
         <div id="modal"></div>
         <div id="mask"></div>
-</main>
-</body>
-</html>
+{% endblock %}
