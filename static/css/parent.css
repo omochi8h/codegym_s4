@@ -15,6 +15,7 @@ button {
     text-decoration: none;
     color: #707070;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .header_wrap  a:hover{
@@ -56,6 +57,7 @@ button {
     text-decoration: none;
     color: #707070;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .nav_wrapper {
@@ -113,7 +115,7 @@ button {
 
 .task_table{
     display: flex;
-    border-bottom: solid 3px #B0D69F;
+    border-bottom: solid 1px #B0D69F;
     margin-top: 0px;       /* 上線の外側の余白はナシ */
     padding-top: 0px;      /* 上線の内側の余白はナシ */
     /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
@@ -291,11 +293,23 @@ button {
 .updated_datetime{　/*日付の装飾*/
 
 }
-.childform_list{
+.approval_list{
     margin-left: 20px;
+    margin-bottom:20px;
 }
 
 .approval_child{
     font-weight:bold;
-    margin-bottom:1vh;
+    font-size:2.5vh;
+    color:#707070;
+    /*margin-bottom:1vh;*/
+}
+
+.approval_table{
+    display: flex;
+    border-bottom: solid 1px #B0D69F;
+    margin-top: 0px;       /* 上線の外側の余白はナシ */
+    padding-top: 0.3em;      /* 上線の内側の余白はナシ */
+    /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
