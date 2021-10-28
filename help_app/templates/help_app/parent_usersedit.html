@@ -6,16 +6,17 @@
 
     <h1 class="page_name">ユーザーの編集</h1>
 
-    <form action="" method="post" class="tasklist_form">
+    <form action="" method="post" class="edit_form">
         {% csrf_token %}
-        <p><label for="title_input" class="form_lead">子供の名前</label></p>
-        <p><input type="text" name="name" id="title_input" value="{{ child.name }}"></p>
+        <p class="edit_lead">-変更する名前を入力してください-</p>
+        <p class="edit_lead2"><label for="title_input">子供の名前</label></p>
 
-        <div>
-            <button type="submit" class="send_btn">更新</button>
-            <a href="{% url 'parent_userslist' %}" class="back_btn">編集の取りやめ</a>
+        <p class="cp_iptxt"><input type="text" name="name" id="title_input" value="{{ child.name }}"></p>
+
+        <div class="end_btn">
+            <button type="submit" class="send_btn">　　更新　　</button>
+            <a href="{% url 'parent_userslist' %}" class="back_btn">編集をやめる</a>
         </div>
-
 
     </form>
 {% endblock %}

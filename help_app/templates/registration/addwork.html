@@ -7,19 +7,23 @@
 
     <h1 class="page_name">お手伝いの追加</h1>
 
-    <form action = "{% url 'addwork'%}" method="POST" class="tasklist_form">
+    <form action = "{% url 'addwork'%}" method="POST" class="edit_form">
         {% csrf_token %}
         {% for field in form %}
             {% if field.label == '名前' %}
-                    <p>名前を入力してください</p>
-                        {{ field }}
+                    <p class="edit_lead">-名前を入力してください-</p>
+                    <p class="edit_lead2">お手伝い名</p>
+                    <div class="cp_iptxt">{{ field }}</div>
+
             {% elif field.label == 'ポイント' %}
-                    <p>ポイントを入力してください</p>
-                        {{ field }}
+                    <p class="edit_lead" style="margin-top:3vh;">-ポイントを入力してください-</p>
+                    <p class="edit_lead2">ポイント</p>
+
+                    <div class="cp_point">{{ field }}</div>
             {% endif %}
         {% endfor %}
-        <div>
-            <button type="submit" class="send_btn">追加</button>
+        <div class="end_btn">
+            <button type="submit" class="send_btn">　　追加　　</button>
             <a href="{% url 'parent_tasklist' %}" class="back_btn">追加をやめる</a>
         </div>
     </form>

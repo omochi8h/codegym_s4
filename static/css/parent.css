@@ -23,10 +23,6 @@ button {
     color: #000;
 }
 
-.footer_wrap  a:hover{
-    color: #e9457a;
-}
-
 .body_wrap{
     background-color: #BEEBED;
     margin: 0px;
@@ -50,9 +46,10 @@ button {
 .footer_wrap{
     background-color: #B0D69F;
     width: 100%;
-    min-height: 8vh;
+    height: 8vh;
     position: absolute;/* ←絶対位置 */
     bottom: 0;
+    display: flex;
 }
 
 .footer_wrap a{
@@ -61,11 +58,15 @@ button {
     font-weight: bold;
     white-space: nowrap;
 }
+.footer_wrap  a:hover{
+    color: #e9457a;
+}
 
 .nav_wrapper {
     list-style: none;
     display: flex;
     justify-content: right;
+    margin:0px;
 }
 
 .nav_wrapper a{
@@ -91,10 +92,26 @@ button {
     margin-left: auto;
 }
 
-.footer_end{
-/*    padding-top:3vh;*/
+.header_end a{
+    font-weight: bold;
+    color: #707070;
+    background-color: #ffe897;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+}
+.header_end a:hover{
+    color: #000;
+    background-color: #f2c714;
 }
 
+.footer_end{
+    padding-top:3vh;
+    margin-left: auto;
+}
+
+.footer_start{
+    padding-top:3vh;
+}
 
 .assign_form{
     background-color: #fff;
@@ -130,7 +147,7 @@ button {
     border-bottom: solid 1px #B0D69F;
     margin-top: 0px;       /* 上線の外側の余白はナシ */
     padding-top: 0px;      /* 上線の内側の余白はナシ */
-    /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    margin-bottom: 0.3em;/* 下線の外側の余白量 */
     padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
 
@@ -145,6 +162,8 @@ button {
 .form_lead{
     margin-bottom: 5px;
     font-weight: bold;
+    font-size:2.5vh;
+    color:#707070;
 }
 
 .form_list{
@@ -202,7 +221,7 @@ button {
     text-decoration: none;
     font-weight: bold;
     color: #fff;
-    background-color: #e9457a;
+    background-color: #ed7fa3;
     border-radius: 0.5rem;
     padding: 10px 30px;
     margin-left: auto;
@@ -326,3 +345,85 @@ button {
     /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
     padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
+
+.cp_iptxt {
+/*大きさ*/
+	width: 100%;
+	margin: 5px 0px;
+}
+
+.cp_iptxt input[type=text] {
+	font: bold 15px/24px YuGothic;
+	box-sizing: border-box;
+	width: 100%;
+/*	margin: 8px 0;*/
+	padding: 1px 2px;
+/*	transition: 0.3s;*/
+	border: 1px solid #707070;
+	border-radius: 4px;
+	outline: none;
+}
+/*.cp_iptxt input[type=text]:focus {
+	border: 2px solid #000;
+	outline: none;
+}*/
+/*.cp_iptxt input[type=text] {
+	padding-left: 40px;
+}*/
+.cp_iptxt i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}
+/*.cp_iptxt input[type=text]:focus + i {
+	color: #da3c41;
+}*/
+
+.edit_form{
+    background-color: #fff;
+    padding: 40px 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+.edit_lead{
+    margin:0px;
+    font-weight:bold;
+    color:#707070;
+}
+.edit_lead2{
+    margin:0px;
+    font-weight:bold;
+    color:#000;
+    background-color:#ecedf2;
+    padding: 0px 10px;
+    margin-top:10px;
+}
+
+.end_btn{
+    margin-top:30px;
+    display: flex;
+    justify-content: center;
+}
+
+.cp_point input{
+/*大きさ*/
+	width: 15%;
+	height:40px;
+	margin: 5px 0px;
+	font-size:1.25vw;
+}
+
+/*
+.cp_point i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}*/

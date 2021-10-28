@@ -6,9 +6,13 @@
 
     <h1 class="page_name">お手伝いの編集</h1>
 
-    <div class="tasklist_form">
+    <div class="edit_form">
         <form action="" method="post">
             {% csrf_token %}
+
+            <p class="edit_lead">-変更する名前を入力してください-</p>
+            <p class="edit_lead2"><label for="title_input">お手伝い名</label></p>
+            <p class="cp_iptxt"><input type="text" name="job_name" id="title_input" value="{{ housework.job_name }}"></p>
 
 
             <p><label for="title_input" class="form_lead">お手伝い名</label></p>
@@ -16,9 +20,11 @@
             <p><label for="title_input" class="form_lead">ポイント</label></p>
             <p><input type="number" name="point" min="0" max="100000" id="title_input" value="{{ housework.point }}"></p>
 
-            <div>
-                <button type="submit" class="send_btn">更新</button>
-                <a href="{% url 'parent_tasklist' %}" class="back_btn">編集の取りやめ</a>
+            <div class="cp_point"><input type="number" name="point" min="0" max="100000" id="title_input" value="{{ housework.point }}"></div>
+
+            <div class="end_btn">
+                <button type="submit" class="send_btn">　　更新　　</button>
+                <a href="{% url 'parent_tasklist' %}" class="back_btn">編集をやめる</a>
             </div>
 
         </form>
