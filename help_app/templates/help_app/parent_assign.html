@@ -71,7 +71,11 @@
     <head>
         <title>お手伝いを依頼する</title>
     </head>
-
+    {% if messages %}
+    {% for message in messages %}
+            {{ message }}
+    {% endfor %}
+    {% endif %}
 
     {% block content %}
     <h1 class="page_name">お手伝いを依頼する</h1>
