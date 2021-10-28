@@ -1,14 +1,17 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>certification</title>
+{% extends "base.html" %}
 
-</head>
-<body>
-    certification
+{% block link %}
+                <li><a href="{% url 'child_tasklist' %}">こどもページへ</a></li>
+{% endblock%}
 
-
-
-</body>
-</html>
+{% block main %}
+<div class="login">
+<form method="post" class="login__form">
+    {% csrf_token%}
+    <p>認証コード(数字4桁)を入力してください</p>
+    <input  type="number" name="auth_code">
+    <br>
+    <input type="submit" value="送信" class="btn btn-warning"></input>
+</form>
+</div>
+{% endblock %}

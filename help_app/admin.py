@@ -31,5 +31,9 @@ class HouseworksAdmin(admin.ModelAdmin):
 class Days_commentAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
+
 
 # Register your models here.

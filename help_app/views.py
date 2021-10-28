@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from . import forms
 from django.http.response import HttpResponse
 from django.template.context_processors import csrf
-from .models import Parents, Children, Houseworks, Tasks
+from .models import Parents, Children, Houseworks, Tasks, Days_comment, Comment
 import datetime
 from datetime import date
 from django.utils import timezone
@@ -119,9 +119,11 @@ def child_page(request):
         today = datetime.date.today()
         task_list = []
         tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
+        comments = Comment.objects.filter(parent=request.user, child=child.id, date=today).all()
         for task in tasks:
             task_list.append(task)
         child_list.append(task_list)
+        child_list.append(comments)
         child_data.append(child_list)
     data['children'] = child_data
 
@@ -161,7 +163,7 @@ def parent_assign(request):
         default_work2.save()
 
     dataset = {}
-    labels = ['こども', '任せる仕事']
+    labels = ['こども', '任せる仕事','コメント','日にち']
     # 入力結果を格納する辞書
     results = {}
     radios = {}
@@ -170,20 +172,22 @@ def parent_assign(request):
 
         results[labels[0]] = request.POST.getlist("child")
         results[labels[1]] = request.POST.getlist("task")
+        results[labels[2]]  = request.POST['text']
+        results[labels[3]] = request.POST['date']
         ret = 'OK'
         c = {'results': results, 'ret': ret}
-        print(results[labels[1]])
-        print(results[labels[0]])
-        # child_result = results[labels[0]]
-
         # 今日既に割り振ったタスクを消去
-        old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=date.today())
-        print(old_task)
+        old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=results[labels[3]])
         old_task.delete()
 
+        if Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today()).count() > 0:
+            old_comment = Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=results[labels[3]])
+            old_comment.delete()
+
+        Comment(parent_id=request.user.id,child_id=int(results[labels[0]][0]),comment=results[labels[2]],date=results[labels[3]]).save()
+
         for result in results[labels[1]]:
-            print(result)
-            Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result)).save()
+            Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result),date=results[labels[3]]).save()
         return redirect(parent_assign)
         # return render(request, 'help_app/parent_assign.html', c)
     else:
@@ -197,33 +201,50 @@ def parent_assign(request):
         assign_children = Children.objects.filter(parent_id=request.user.id)
         choice2 = []
 
+        dataset2 = {}
+        comment_data = {}
         # 子供に割り振られたタスクのデータ化
         for child in assign_children:
             data = []
             choice2.append((child.id, child.name))
-            init_tasks = Tasks.objects.filter(child_id=child.id)
-            for task in init_tasks:
-                for housework in assign_houseworks:
-                    if task.work_id == housework.id:
-                        data.append(housework.id)
-            dataset[child.id] = data
-            # print(dataset)
+            insert_data = {}
+            for i in range(7):
+                day = datetime.date.today() + datetime.timedelta(days=i)
+                date_data = datetime.datetime.strftime(day, '%Y-%m-%d')
+                task_data = []
 
+                init_tasks = Tasks.objects.filter(child_id=child.id,date=date_data)
+                for task in init_tasks:
+                    for housework in assign_houseworks:
+                        if task.work_id == housework.id:
+                            task_data.append(housework.id)
+                insert_data[date_data]=task_data
+            dataset2[child.id] = insert_data
+
+            insert_comedata = {}
+            for i in range(7):
+                day = datetime.date.today() + datetime.timedelta(days=i)
+                date_data = datetime.datetime.strftime(day, '%Y-%m-%d')
+                comments = Comment.objects.filter(child_id=child.id, date=date_data)
+                for comment in comments:
+                    insert_comedata[date_data]=comment.comment
+                comment_data[child.id] = insert_comedata
 
         form.fields['child'].choices = choice2
-        # form.fields['child'].initial = [assign_children[0].id]
         form.fields['task'].choices = choice1
-        # ここでinitialに、選択済みのタスクを入れられるようにしたい
-        tasklist = Tasks.objects.filter(parent_id=request.user.id, state=-1).values()
-        form.fields['task'].initial = ['0']
 
+        init_child = 0
         if Children.objects.filter(parent=request.user).all().count() == 0:
             count = 0
         else:
             count = 1
+            form.fields['child'].initial = [assign_children[0].id]
+            init_child = next(iter(dataset2))
 
 
-        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset), 'count': count}
+        init_date = datetime.datetime.strftime(datetime.date.today(), '%Y-%m-%d')
+
+        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset2), 'count': count, 'comment_data': json.dumps(comment_data), 'init_child':init_child, 'init_date':init_date}
         # CFRF対策（必須）
         c.update(csrf(request))
         return render(request, 'help_app/parent_assign.html', c)
@@ -313,13 +334,130 @@ def child_history(request):
                 task_name = task.work.job_name
                 task_data[day].append(task_name)
         child_data.append(task_data)
+        child_data.append(str(year))
+        child_data.append(str(month))
+        child_data.append(child.id)
         all_data.append(child_data)
     params['histry'] = all_data
+
+    if request.method == 'POST':
+        value = request.POST['key']
+        keyWord = value.split(',')
+        if keyWord[0] == '+':
+            get_date = keyWord[2].split('-')
+            get_year = get_date[0]
+            get_month = get_date[1]
+            if get_month == '12':
+                next_year = str(int(get_year) + 1)
+                next_month = '01'
+            elif get_month == '09' or get_month == '10' or get_month == '11':
+                next_year = get_year
+                next_month = str(int(get_month) + 1)
+            else:
+                next_year = get_year
+                next_month = '0' + str(int(get_month) + 1)
+
+            if (int(next_month) + 1) == 13:
+                m_value = '01'
+                y_value = str(int(next_year) + 1)
+            else:
+                m_value = str(int(next_month) + 1)
+                y_value = next_year
+
+
+            firstDay = str(next_year) + '-' + str(next_month) + '-' + '01'
+            last = datetime.date(int(y_value), int(m_value), 1) - datetime.timedelta(days=1)
+            lastDay = str(next_year) + '-' + str(next_month) + '-' + str(last.day)
+            dayCount = int(last.day)
+
+            params['histry'][int(keyWord[1])][2] = 0
+            task_month = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                              date__lte=lastDay)
+            for point in task_month:
+                params['histry'][int(keyWord[1])][2] += point.work.point
+
+            task_data = []
+            for i in range(dayCount):
+                task_data.append(0)
+            tasks = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                         date__lte=lastDay)
+            for task in tasks:
+                day = int(task.date.day) - 1
+                if task_data[day] == 0:
+                    task_data[day] = []
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+                else:
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+            params['histry'][int(keyWord[1])][4] = task_data
+            params['histry'][int(keyWord[1])][5] = str(next_year)
+            params['histry'][int(keyWord[1])][6] = str(next_month)
+
+        else:
+            get_date = keyWord[2].split('-')
+            get_year = get_date[0]
+            get_month = get_date[1]
+            if get_month == '01':
+                last_year = str(int(get_year) - 1)
+                last_month = '12'
+            elif get_month == '11' or get_month == '12':
+                last_year = get_year
+                last_month = str(int(get_month) - 1)
+            else:
+                last_year = get_year
+                last_month = '0' + str(int(get_month) - 1)
+
+            if (int(last_month) + 1) == 13:
+                m_value = '01'
+                y_value = str(int(last_year) + 1)
+            else:
+                m_value = str(int(last_month) + 1)
+                y_value = last_year
+
+            firstDay = str(last_year) + '-' + str(last_month) + '-' + '01'
+            last = datetime.date(int(y_value), int(m_value), 1) - datetime.timedelta(days=1)
+            lastDay = str(last_year) + '-' + str(last_month) + '-' + str(last.day)
+            dayCount = int(last.day)
+
+            params['histry'][int(keyWord[1])][2] = 0
+            task_month = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                              date__lte=lastDay)
+            for point in task_month:
+                params['histry'][int(keyWord[1])][2] += point.work.point
+
+            task_data = []
+            for i in range(dayCount):
+                task_data.append(0)
+            tasks = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                         date__lte=lastDay)
+            for task in tasks:
+                day = int(task.date.day) - 1
+                if task_data[day] == 0:
+                    task_data[day] = []
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+                else:
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+            params['histry'][int(keyWord[1])][4] = task_data
+            params['histry'][int(keyWord[1])][5] = str(last_year)
+            params['histry'][int(keyWord[1])][6] = str(last_month)
+
     return render(request, 'help_app/child_history.html', params)
 
 
 def certification(request):
-    return render(request, 'help_app/certification.html', {})
+    if request.method == 'GET':
+        return render(request, 'help_app/certification.html', {})
+    else:
+        user_input = request.POST['auth_code']
+        authCode = Parents.objects.filter(id=request.user.id).first()
+
+        if user_input == authCode.authcode:
+            return redirect('parent_assign')
+        else:
+            return render(request, 'help_app/certification.html', {})
 
 def parent_userslist(request):
     params = {'name': '', 'on_user': request.user, 'children': Children.objects.filter(parent=request.user).all()}
@@ -367,11 +505,27 @@ def parent_users_delete(request, pk):
     return redirect(parent_userslist)
 
 def parent_approval(request):
-    tasklist = Tasks.objects.filter(parent_id=request.user.id,state=-1).values()
-    childlist = Children.objects.filter(parent_id=request.user.id).values()
-    houseworklist = Houseworks.objects.filter(parent_id=request.user.id).values()
+    params = {}
+    child_data = []
+    #today = datetime.date.today()
+    children = Children.objects.filter(parent=request.user)
+    for child in children:
+        array = []
+        array.append(child.name)
+        tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=-1)
+        task_data = []
+        for task in tasks:
+            data = []
+            date = str(task.date.year) + '年' + str(task.date.month) + '月' + str(task.date.day) + '日'
+            data.append(task.work.job_name)
+            data.append(date)
+            data.append(task.id)
+            task_data.append(data)
+        array.append(task_data)
+        child_data.append(array)
+    params['children'] = child_data
 
-    return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist})
+    return render(request, 'help_app/parent_approval.html', params)
 
 def parent_usersedit(request, pk):
     try:
@@ -395,11 +549,6 @@ def parent_users_delete(request, pk):
     child.delete()
     return redirect(parent_userslist)
 
-    if Tasks.objects.filter(parent_id=request.user.id,state=-1).count == 0:
-        count = 0
-    else:
-        count = 1
-    return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist, 'count': count})
 
 def parent_approval_on(request, pk):
     try:
@@ -410,8 +559,36 @@ def parent_approval_on(request, pk):
     task.save()
     return redirect(parent_approval)
 #
-# def (request):
-#     return render(request, 'help_app/.html', {})
+def child_test(request):
+    params = {}
+    data = {}
+    if request.method == 'POST':
+        update_id = request.POST['complete_id']
+        task = Tasks.objects.filter(id=update_id).first()
+        task.state = -1
+        task.save()
+
+    child_data = []
+    params['children'] = Children.objects.filter(parent=request.user).all()
+    for child in params.get('children'):
+        child_list = []
+        child_list.append(child.name)
+        today = datetime.date.today()
+        task_list = []
+        tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
+        for task in tasks:
+            task_list.append(task)
+        child_list.append(task_list)
+        child_data.append(child_list)
+    data['children'] = child_data
+
+    kids_list = []
+    kids = Children.objects.filter(parent=request.user).all()
+    for kid in kids:
+        kids_list.append(kid.name)
+    data['name'] = kids_list
+
+    return render(request, 'registration/child_test.html', data)
 
 
 

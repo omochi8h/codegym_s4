@@ -4,44 +4,42 @@
         <title>承認待ちタスク</title>
     </head>
 
+
     <h1 class="page_name">承認待ちタスク</h1>
+
 
     <div class="tasklist_form">
         {% for child in children %}
-            <div class="approval_child">{{ child.name }}</div>
-            <div class="approval_list">
+            <div class="approval_child">{{ child.0 }}</div>
+            <div class="childform_list">
 
-                {% for task in tasks %}
-                    {% if child.id == task.child_id %}
-                        <div class="approval_table">
-                            {% for housework in houseworks %}
-                                {% if task.work_id == housework.id %}
-                                    <table>
-                                        <tr>
-                                            <th>
-                                                <span class="updated_datetime">
-                                                    {{ housework.job_name }}<!--仕事名表示-->
-                                                </span>
-                                            </th>
-                                        </tr>
-                                    </table>
+        {% for task in child.1 %}
+                <div class="task_table">
+                            <table>
+                                <tr>
+                                    <th>
+                                        <span class="updated_datetime">
+                                            {{ task.0 }}<!--仕事名表示-->
+                                        </span>
+                                    </th>
+                                </tr>
+                            </table>
 
-                                    <table style="margin-left: auto;">
-                                        <tr>
-                                            <td>
-                                                {{ task.date }}<!--日付表示-->
-                                            </td>
-                                            <td>
-                                                 <a href="{% url 'parent_approval_on' task.id %}" class="task_approval">承認</a>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-
+                    <table style="margin-left: auto;">
+                        <tr>
+                            <td>
+                                {{ task.1 }}<!--日付表示-->
+                            </td>
+                            <td>
+                                 <a href="{% url 'parent_approval_on' task.2 %}" class="task_approval">承認</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+        {% empty %}
+            <p>承認待ちタスクはありません</p>
+            <br>
+        {% endfor %}
             </div>
         {% endfor %}
     </div>

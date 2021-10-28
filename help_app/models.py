@@ -116,3 +116,30 @@ class Days_comment(models.Model):
         null=False
     )
 
+
+class Comment(models.Model):
+    parent = models.ForeignKey(
+        Parents,
+        on_delete=models.CASCADE
+    )
+
+    child = models.ForeignKey(
+        Children,
+        on_delete=models.CASCADE
+    )
+
+    date = models.DateField(
+        default=timezone.now,
+        blank=False,
+        null=False
+    )
+
+    comment = models.TextField(
+        verbose_name='コメント',
+        blank=False,
+        null=False
+    )
+
+
+
+
