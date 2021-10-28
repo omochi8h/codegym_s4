@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from . import forms
 from django.http.response import HttpResponse
 from django.template.context_processors import csrf
-from .models import Parents, Children, Houseworks, Tasks
+from .models import Parents, Children, Houseworks, Tasks, Days_comment, Comment
 import datetime
 from datetime import date
 from django.utils import timezone
@@ -119,14 +119,44 @@ def child_page(request):
         today = datetime.date.today()
         task_list = []
         tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
+        comments = Comment.objects.filter(parent=request.user, child=child.id, date=today).all()
         for task in tasks:
             task_list.append(task)
         child_list.append(task_list)
+        child_list.append(comments)
         child_data.append(child_list)
     data['children'] = child_data
+    data['tab_name'] = ['1', '2', '3', '4', '5']
 
     return render(request, 'registration/child_tasklist.html', data)
 
+def child_page_tab(request, idName):
+    params = {}
+    data = {}
+    if request.method == 'POST':
+        update_id = request.POST['complete_id']
+        task = Tasks.objects.filter(id=update_id).first()
+        task.state = -1
+        task.save()
+
+    child_data = []
+    params['children'] = Children.objects.filter(parent=request.user).all()
+    for child in params.get('children'):
+        child_list = []
+        child_list.append(child.name)
+        today = datetime.date.today()
+        task_list = []
+        tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
+        comments = Comment.objects.filter(parent=request.user, child=child.id, date=today).all()
+        for task in tasks:
+            task_list.append(task)
+        child_list.append(task_list)
+        child_list.append(comments)
+        child_data.append(child_list)
+    data['children'] = child_data
+    data['tab_name'] = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5']
+
+    return render(request, 'registration/child_tasklist.html', data)
 
 ############
 
@@ -161,7 +191,7 @@ def parent_assign(request):
         default_work2.save()
 
     dataset = {}
-    labels = ['こども', '任せる仕事']
+    labels = ['こども', '任せる仕事','コメント','日にち']
     # 入力結果を格納する辞書
     results = {}
     radios = {}
@@ -170,20 +200,22 @@ def parent_assign(request):
 
         results[labels[0]] = request.POST.getlist("child")
         results[labels[1]] = request.POST.getlist("task")
+        results[labels[2]]  = request.POST['text']
+        results[labels[3]] = request.POST['date']
         ret = 'OK'
         c = {'results': results, 'ret': ret}
-        print(results[labels[1]])
-        print(results[labels[0]])
-        # child_result = results[labels[0]]
-
         # 今日既に割り振ったタスクを消去
-        old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=date.today())
-        print(old_task)
+        old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=results[labels[3]])
         old_task.delete()
 
+        if Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today()).count() > 0:
+            old_comment = Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=results[labels[3]])
+            old_comment.delete()
+
+        Comment(parent_id=request.user.id,child_id=int(results[labels[0]][0]),comment=results[labels[2]],date=results[labels[3]]).save()
+
         for result in results[labels[1]]:
-            print(result)
-            Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result)).save()
+            Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result),date=results[labels[3]]).save()
         return redirect(parent_assign)
         # return render(request, 'help_app/parent_assign.html', c)
     else:
@@ -197,33 +229,50 @@ def parent_assign(request):
         assign_children = Children.objects.filter(parent_id=request.user.id)
         choice2 = []
 
+        dataset2 = {}
+        comment_data = {}
         # 子供に割り振られたタスクのデータ化
         for child in assign_children:
             data = []
             choice2.append((child.id, child.name))
-            init_tasks = Tasks.objects.filter(child_id=child.id)
-            for task in init_tasks:
-                for housework in assign_houseworks:
-                    if task.work_id == housework.id:
-                        data.append(housework.id)
-            dataset[child.id] = data
-            # print(dataset)
+            insert_data = {}
+            for i in range(7):
+                day = datetime.date.today() + datetime.timedelta(days=i)
+                date_data = datetime.datetime.strftime(day, '%Y-%m-%d')
+                task_data = []
 
+                init_tasks = Tasks.objects.filter(child_id=child.id,date=date_data)
+                for task in init_tasks:
+                    for housework in assign_houseworks:
+                        if task.work_id == housework.id:
+                            task_data.append(housework.id)
+                insert_data[date_data]=task_data
+            dataset2[child.id] = insert_data
+
+            insert_comedata = {}
+            for i in range(7):
+                day = datetime.date.today() + datetime.timedelta(days=i)
+                date_data = datetime.datetime.strftime(day, '%Y-%m-%d')
+                comments = Comment.objects.filter(child_id=child.id, date=date_data)
+                for comment in comments:
+                    insert_comedata[date_data]=comment.comment
+                comment_data[child.id] = insert_comedata
 
         form.fields['child'].choices = choice2
-        # form.fields['child'].initial = [assign_children[0].id]
         form.fields['task'].choices = choice1
-        # ここでinitialに、選択済みのタスクを入れられるようにしたい
-        tasklist = Tasks.objects.filter(parent_id=request.user.id, state=-1).values()
-        form.fields['task'].initial = ['0']
 
+        init_child = 0
         if Children.objects.filter(parent=request.user).all().count() == 0:
             count = 0
         else:
             count = 1
+            form.fields['child'].initial = [assign_children[0].id]
+            init_child = next(iter(dataset2))
 
 
-        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset), 'count': count}
+        init_date = datetime.datetime.strftime(datetime.date.today(), '%Y-%m-%d')
+
+        c = {'form': form, 'ret': ret, 'dataset': json.dumps(dataset2), 'count': count, 'comment_data': json.dumps(comment_data), 'init_child':init_child, 'init_date':init_date}
         # CFRF対策（必須）
         c.update(csrf(request))
         return render(request, 'help_app/parent_assign.html', c)
@@ -528,11 +577,6 @@ def parent_users_delete(request, pk):
     child.delete()
     return redirect(parent_userslist)
 
-    if Tasks.objects.filter(parent_id=request.user.id,state=-1).count == 0:
-        count = 0
-    else:
-        count = 1
-    return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist, 'count': count})
 
 def parent_approval_on(request, pk):
     try:

@@ -1,30 +1,70 @@
 {% extends "parent_base.html" %}
 {% block head %}
+
         <script>
-            var data;
-            var child_id;
+            const data = JSON.parse('{{ dataset|safe }}');
+            var child_id = {{ init_child }};
+
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            let date_data = year + "-" + month + "-" + day;
+
+
             window.onload = function(){
+                sample(child_id,date_data);
+                $(`#child_0`).attr('checked', 'checked');
                 var checkOption = document.getElementsByName('child');
 
                 checkOption.forEach(function(e) {
                     e.addEventListener("click", function() {
-                        console.log(document.querySelector("input:checked[name=child]").value);
                         child_id = document.querySelector("input:checked[name=child]").value;
-                        sample(child_id);
+                        sample(child_id,date_data);
                     });
                 });
             };
-            function sample(child){
+
+            function try_event(e){
+                date_data = e.target.value;
+                console.log(date_data);
                 const data = JSON.parse('{{ dataset|safe }}');
+                console.log(data);
+                sample(child_id,date_data);
+            }
+
+            function sample(child,date){
+                console.log(date);
+                let child_data = []
+                $('input[name="child"]').each(function(i, elem) {
+                    const child_key = $(elem).val()
+                    child_data.push(child_key);
+                });
+                $('input[name="child"]').val('value-a');
+
                 console.log(data[child]);
-                const task = data[child]
+                const task = data[child][date]
+                $('.form-check-input').attr('checked', false);
                 task.forEach(function(elem, index) {
-                  console.log(`"${elem}"`);
-                  console.log($('input[value="' + elem + '"]'));
-                  console.log($('#task_3'));
-                  $(`input[value="' + elem + '"]`).attr('checked', 'checked');
+                    var id = $('input[value="' + elem + '"]').attr('id')
+                    $(`#${id}`).attr('checked', 'checked');
+                });
+
+                const comment = JSON.parse('{{ comment_data|safe }}');
+                console.log(comment[child]);
+                let element = document.getElementById('id_text');
+                if (comment[child][date]){
+                    element.value = comment[child][date];
+                }else{
+                    element.value = ""
+                }
+
+                $('input[name="child"]').each(function(i, elem) {
+                    $(elem).val(child_data[i]);
                 });
             }
+
+
         </script>
 {% endblock %}
 {% block main %}
@@ -59,7 +99,16 @@
                 {% endfor %}
 <!--                よくわからんとこEND-->
                 {% for field in form %}
-                {% if field.field.widget.input_type == "radio" %}
+                {% if field.label == '依頼日' %}
+                    <tr>
+                        <div class="form_lead"><td>依頼する日を選択してください</td></br></div>
+                        <div class="form_list">
+                            <td>
+                                {{ field }}
+                            </td>
+                        </div>
+                    </tr>
+                {% elif field.field.widget.input_type == "radio" %}
                     <tr>
                         <div class="form_lead"><td class="form_lead">誰に依頼しますか</td></div>
                     </tr>
@@ -73,7 +122,7 @@
                         </div>
 
                     </tr>
-                {% else %}
+                {% elif field.field.widget.input_type == "checkbox" %}
                     <tr>
 <!--                        field.label_tagのとこは「任せる仕事：」の表示になる。ここ消して自分で文入れても大丈夫-->
 
@@ -86,11 +135,23 @@
                             </td>
                         </div>
                     </tr>
+                {% else %}
+                    <tr>
+                        <div class="form_lead"><td>コメントを入れてください</td></br></div>
+                        <div class="form_list">
+                            <td>
+                                {{ field }}
+
+                            </td>
+                        </div>
+                    </tr>
                 {% endif %}
                 {% endfor %}
 
+
+
             <div style="text-align: center;">
-                <button type="submit" class="send_btn">お願いする</button>
+                <button type="submit" class="add_task">お願いする</button>
             </div>
              {% endif %}
          </form>

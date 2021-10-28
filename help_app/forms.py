@@ -13,6 +13,9 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 
+import datetime
+from django.utils import timezone
+
 User = get_user_model()
 
 subject = "登録確認"
@@ -77,7 +80,14 @@ class AddWork(forms.Form):
     point = forms.IntegerField()
 
 class ChkForm(forms.Form):
-    labels = ['こども', '任せる仕事']
+    labels = ['こども', '任せる仕事','コメント']
+    date = forms.DateTimeField(
+        label='依頼日',
+        required=True,
+        initial=timezone.now,
+        widget=forms.DateInput(attrs={"type": "date","onchange":"try_event(event);"}),
+        input_formats=['%Y-%m-%d']
+    )
 
     child = forms.MultipleChoiceField(
         label=labels[0],
@@ -92,6 +102,12 @@ class ChkForm(forms.Form):
         disabled=False,
         widget=forms.CheckboxSelectMultiple(attrs={
             'id': 'task', 'class': 'form-check-input'}))
+
+    text = forms.CharField(
+        label='コメント',
+        required=False,
+        widget=forms.Textarea
+    )
 
 
 

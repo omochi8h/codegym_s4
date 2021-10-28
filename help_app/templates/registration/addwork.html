@@ -9,11 +9,11 @@
 
     <form action = "{% url 'addwork'%}" method="POST" class="tasklist_form">
         {% csrf_token %}
-        <div style="text-align: center; margin-bottom: 30px;">
+        {{ form.as_p }}
+        <div>
+            <button type="submit" class="send_btn">送信</button>
             <a href="{% url 'parent_tasklist' %}" class="back_btn">追加をやめる</a>
         </div>
-        {{ form.as_p }}
-        <button type="submit">送信</button>
     </form>
 
     <p>{{ name }}</p>

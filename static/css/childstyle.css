@@ -68,7 +68,8 @@ nav{
 
 .login input[type="text"],
 .login input[type="email"],
-.login input[type="password"] {
+.login input[type="password"],
+.login input[type="number"]{
   background-color: #eee;
   color: #777;
   padding: 0.25em 0.625em;
