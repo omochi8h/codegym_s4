@@ -371,3 +371,9 @@ button {
     margin-right: auto;
     width: 20%;
 }
+
+.edit_lead{
+    margin:0px;
+    font-weight:bold;
+    color:#707070;
+}

@@ -7,15 +7,15 @@
 
     <h1 class="page_name">お手伝いの追加</h1>
 
-    <form action = "{% url 'addwork'%}" method="POST" class="tasklist_form">
+    <form action = "{% url 'addwork'%}" method="POST" class="edit_form">
         {% csrf_token %}
         {% for field in form %}
             {% if field.label == '名前' %}
-                    <p>名前を入力してください</p>
-                        {{ field }}
+                    <p class="edit_lead">名前を入力してください</p>
+                        <div class="cp_iptxt">{{ field }}</div>
             {% elif field.label == 'ポイント' %}
-                    <p>ポイントを入力してください</p>
-                        {{ field }}
+                    <p class="edit_lead">ポイントを入力してください</p>
+                        <div class="cp_iptxt">{{ field }}</div>
             {% endif %}
         {% endfor %}
         <div>

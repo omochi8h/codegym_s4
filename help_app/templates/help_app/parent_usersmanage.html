@@ -1,22 +1,25 @@
 {% extends "parent_base.html" %}
 {% block main %}
     <head>
-        <title>こどもの管理</title>
+        <title>こどもの追加</title>
     </head>
 
-    <h1 class="page_name">こどもの管理</h1>
+    <h1 class="page_name">こどもの追加</h1>
 
-    <form method="POST" class="tasklist_form">
-        {% csrf_token %}
-               {% for field in form %}
-                <p>依頼する日を選択してください</p>
-                    {{ field }}
-                {% endfor %}
+    <form method="POST" class="edit_form">
         <div>
-            <button type="submit" class="send_btn">追加</button>
-            <a href="{% url 'parent_userslist' %}" class="back_btn">追加をやめる</a>
+            {% csrf_token %}
+            {% for field in form %}
+                    <p class="edit_lead">子供の名前</p>
+                        <div class="cp_iptxt">{{ field }}</div>
+                    {% endfor %}
+            <div>
+                <button type="submit" class="send_btn">　追加　</button>
+                <a href="{% url 'parent_userslist' %}" class="back_btn">追加をやめる</a>
+            </div>
         </div>
     </form>
+
 
 
 {% endblock %}
