@@ -1,5 +1,8 @@
 {% extends "parent_base.html" %}
 {% block main %}
+    <head>
+        <title>承認待ちタスク</title>
+    </head>
 
     {% for child in children %}
         <h4>{{ child.0 }}</h4>
@@ -13,7 +16,7 @@
             <p>承認待ちタスクはありません</p>
             <br>
         {% endfor %}
-        </br>
+            </br>
     {% endfor %}
-
 {% endblock %}
+

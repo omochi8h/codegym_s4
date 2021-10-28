@@ -528,11 +528,6 @@ def parent_users_delete(request, pk):
     child.delete()
     return redirect(parent_userslist)
 
-    if Tasks.objects.filter(parent_id=request.user.id,state=-1).count == 0:
-        count = 0
-    else:
-        count = 1
-    return render(request, 'help_app/parent_approval.html', {'tasks': tasklist, 'children': childlist,'houseworks':houseworklist, 'count': count})
 
 def parent_approval_on(request, pk):
     try:
