@@ -71,6 +71,12 @@
                 <label class="tab_class" for='tab2'>{{ child.0 }}</label>
                 <div class="content_class">
                     <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/exampleIcon.png" style="width:30px;">
+                        </div>
 
                     <div class="tasks">
                    {% for task in child.1 %}
@@ -81,6 +87,7 @@
                          </div>
                     {% endfor%}
                     </div>
+                    </div>
                 </div>
 
             {% elif forloop.counter == 3 %}
@@ -88,6 +95,12 @@
                 <label class="tab_class" for='tab3'>{{ child.0 }}</label>
                 <div class="content_class">
                     <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/exampleIcon.png" style="width:30px;">
+                        </div>
                     <div class="tasks">
                    {% for task in child.1 %}
                         <div class="task" onclick="window.open({{ task.id }});">
@@ -97,6 +110,7 @@
                         </div>
                     {% endfor %}
                     </div>
+                    </div>
                 </div>
 
             {% elif forloop.counter == 4 %}
@@ -105,6 +119,12 @@
 
                 <div class="content_class">
                     <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/exampleIcon.png" style="width:30px;">
+                        </div>
                     <div class="tasks">
                    {% for task in child.1 %}
                         <div class="task" onclick="window.open({{ task.id }});">
@@ -115,12 +135,19 @@
                     {% endfor%}
                     </div>
                 </div>
+                </div>
 
             {% elif forloop.counter == 5 %}
                 <input type="radio" name="tab_name" id='tab5'>
                 <label class="tab_class" for='tab5'>{{ child.0 }}</label>
                 <div class="content_class">
                     <div class="nakami">
+                        <div class ="comment">
+                            <div class="balloon1-right">
+                                <p>こんにちは。これは例です。</p>
+                            </div>
+                            <img src="static/img/exampleIcon.png" style="width:30px;">
+                        </div>
                     <div class="tasks">
                    {% for task in child.1 %}
                         <div class="task" onclick="window.open({{ task.id }});">
@@ -134,6 +161,7 @@
             {% endif %}
         {% endfor %}
                 </div>
+    </div>
 </div>
 
 
