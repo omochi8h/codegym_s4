@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
-<<<<<<< HEAD
 {% block title %}こどもーおてつだいリスト{% endblock %}
 
-<<<<<<< HEAD
+
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -44,10 +43,10 @@
                             <img src="static/img/exampleIcon.png" style="width:30px;">
                         </div>
 
-                    <div id="tasks">
+                    <div class="tasks">
                     {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
+                        <div class ="task" onclick="window.open({{ task.id }});">
+                            <div class ="taskContent">
                                 <a class="open_modal" id ="{{ task.work }}" onclick="window.open({{ task.id }});">{{ task.work }}</a><br>
 
                                 <!--{% if id == "お片付け" %}
@@ -64,22 +63,19 @@
                         </div>
                     {% endfor%}
                     </div>
-
-
                 </div>
-
-
-
                 </div>
 
             {% elif forloop.counter == 2 %}
                 <input type="radio" name="tab_name" id='tab2'>
                 <label class="tab_class" for='tab2'>{{ child.0 }}</label>
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+
+                    <div class="tasks">
                    {% for task in child.1 %}
-                         <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
+                         <div class ="task" onclick="window.open({{ task.id }});">
+                            <div  class="taskContent">
                                 <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
                             </div>
                          </div>
@@ -91,10 +87,11 @@
                 <input type="radio" name="tab_name" id='tab3' >
                 <label class="tab_class" for='tab3'>{{ child.0 }}</label>
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+                    <div class="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
+                        <div class="task" onclick="window.open({{ task.id }});">
+                            <div class="taskContent">
                        <a class="open_modal" >{{ task.work }}</a>
                             </div>
                         </div>
@@ -107,10 +104,11 @@
                 <label class="tab_class" for='tab4'>{{ child.0 }}</label>
 
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+                    <div class="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
+                        <div class="task" onclick="window.open({{ task.id }});">
+                            <div class="taskContent">
                        <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
                             </div>
                         </div>
@@ -122,10 +120,11 @@
                 <input type="radio" name="tab_name" id='tab5'>
                 <label class="tab_class" for='tab5'>{{ child.0 }}</label>
                 <div class="content_class">
-                    <div id="tasks">
+                    <div class="nakami">
+                    <div class="tasks">
                    {% for task in child.1 %}
-                        <div id="task" onclick="window.open({{ task.id }});">
-                            <div id="taskContent">
+                        <div class="task" onclick="window.open({{ task.id }});">
+                            <div calss="taskContent">
                                 <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
                             </div>
                         </div>
@@ -134,7 +133,7 @@
                 </div>
             {% endif %}
         {% endfor %}
-
+                </div>
 </div>
 
 

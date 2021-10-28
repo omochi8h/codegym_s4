@@ -60,7 +60,7 @@ function createCalendar(histry, p_year, p_month) {
 
   let dayCount = 1;
   let createHtml = '';
-
+　
   createHtml = '<h3>' + year + 'ねん' + month + 'がつ' + '</h3>';
   createHtml += '<table>' + '<tr>';
 
