@@ -258,6 +258,7 @@ def parent_taskregister(request, pk):
 
     if request.method == "POST":
         houseworks.job_name = request.POST["job_name"]
+        houseworks.point = request.POST["point"]
         houseworks.save()
         return redirect(parent_tasklist)
     else:
