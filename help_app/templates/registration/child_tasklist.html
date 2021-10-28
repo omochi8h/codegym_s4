@@ -14,8 +14,8 @@
 
                 <li><a href="{% url 'child_history' %}">がんばりをみる</a></li>
                 <li><a href="{% url 'certification' %}">おやページへ</a></li>
-{% endblock %}
 
+{% endblock %}
 
 {% block h2 %}おてつだいをしよう！{% endblock %}
 
@@ -46,9 +46,11 @@
 
                     <div class="tasks">
                     {% for task in child.1 %}
-                        <div class ="task" onclick="window.open({{ task.id }});">
-                            <div class ="taskContent">
-                                <a class="open_modal" id ="{{ task.work }}" onclick="window.open({{ task.id }});">{{ task.work }}</a><br>
+
+                        <div class="task" onclick="window.open({{ task.id }},'tab1');">
+                            <div class="taskContent">
+                                <a class="open_modal">{{ task.work }}</a><br>
+
 
                                 <!--{% if id == "お片付け" %}
                             <img src="static/img/katduke.png" style="width:100px;">
@@ -81,9 +83,11 @@
 
                     <div class="tasks">
                    {% for task in child.1 %}
-                         <div class ="task" onclick="window.open({{ task.id }});">
-                            <div  class="taskContent">
-                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+
+                         <div class="task" onclick="window.open({{ task.id }},'tab2');">
+                            <div class="taskContent">
+                                <a class="open_modal">{{ task.work }}</a>
+
                             </div>
                          </div>
                     {% endfor%}
@@ -103,10 +107,12 @@
                             <img src="static/img/icon.PNG" style="width:100px;">
                         </div>
                     <div class="tasks">
+
                    {% for task in child.1 %}
-                        <div class="task" onclick="window.open({{ task.id }});">
+
+                        <div class="task" onclick="window.open({{ task.id }},'tab3');">
                             <div class="taskContent">
-                       <a class="open_modal" >{{ task.work }}</a>
+                       <a class="open_modal">{{ task.work }}</a>
                             </div>
                         </div>
                     {% endfor %}
@@ -115,8 +121,10 @@
                 </div>
 
             {% elif forloop.counter == 4 %}
-                <input type="radio" name="tab_name" id='tab4' checked>
+
+                <input type="radio" name="tab_name" id='tab4'>
                 <label class="tab_class" for='tab4'>{{ child.0 }}</label>
+
 
                 <div class="content_class">
                     <div class="nakami">
@@ -128,9 +136,11 @@
                         </div>
                     <div class="tasks">
                    {% for task in child.1 %}
-                        <div class="task" onclick="window.open({{ task.id }});">
+
+                        <div class="task" onclick="window.open({{ task.id }},'tab4');">
                             <div class="taskContent">
-                       <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+                       <a class="open_modal">{{ task.work }}</a>
+
                             </div>
                         </div>
                     {% endfor%}
@@ -151,9 +161,11 @@
                         </div>
                     <div class="tasks">
                    {% for task in child.1 %}
-                        <div class="task" onclick="window.open({{ task.id }});">
-                            <div calss="taskContent">
-                                <a class="open_modal" onclick="window.open({{ task.id }});">{{ task.work }}</a>
+
+                        <div class="task" onclick="window.open({{ task.id }},'tqab5');">
+                            <div class="taskContent">
+                                <a class="open_modal">{{ task.work }}</a>
+
                             </div>
                         </div>
                     {% endfor%}
@@ -163,7 +175,6 @@
         {% endfor %}
                 </div>
     </div>
-
 
 
         {% csrf_token %}
