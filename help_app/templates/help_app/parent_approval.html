@@ -11,7 +11,7 @@
     <div class="tasklist_form">
         {% for child in children %}
             <div class="approval_child">{{ child.0 }}</div>
-            <div class="childform_list">
+            <div class="approval_list">
 
         {% for task in child.1 %}
                 <div class="task_table">
@@ -37,8 +37,7 @@
                     </table>
                 </div>
         {% empty %}
-            <p>承認待ちタスクはありません</p>
-            <br>
+            <p style="color:#ffb443;font-weight:bold;">承認待ちタスクはありません</p>
         {% endfor %}
             </div>
         {% endfor %}

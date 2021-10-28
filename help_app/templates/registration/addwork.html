@@ -11,7 +11,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <div>
-            <button type="submit" class="send_btn">送信</button>
+            <button type="submit" class="send_btn">追加</button>
             <a href="{% url 'parent_tasklist' %}" class="back_btn">追加をやめる</a>
         </div>
     </form>
