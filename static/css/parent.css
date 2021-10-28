@@ -49,6 +49,7 @@ button {
     height: 8vh;
     position: absolute;/* ←絶対位置 */
     bottom: 0;
+    display: flex;
 }
 
 .footer_wrap a{
@@ -104,6 +105,11 @@ button {
 }
 
 .footer_end{
+    padding-top:3vh;
+    margin-left: auto;
+}
+
+.footer_start{
     padding-top:3vh;
 }
 
