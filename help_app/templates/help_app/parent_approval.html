@@ -2,22 +2,16 @@
 {% block main %}
 
     {% for child in children %}
-        {{ child.name }}</br>
+        <h4>{{ child.0 }}</h4>
 
-       {% for task in tasks %}
-            {% if child.id == task.child_id %}
-
-                {{ task.date }}<!--日付表示-->
-
-                {% for housework in houseworks %}
-                    {% if task.work_id == housework.id %}
-                         {{ housework.job_name }}<!--仕事名表示-->
-                    {% endif %}
-                {% endfor %}
-
-                <a href="{% url 'parent_approval_on' task.id %}">承認</a>
-            </br>
-            {% endif %}
+        {% for task in child.1 %}
+            {{ task.0 }}
+            {{ task.1 }}
+            <a href="{% url 'parent_approval_on' task.2 %}">承認</a>
+            <br>
+        {% empty %}
+            <p>承認待ちタスクはありません</p>
+            <br>
         {% endfor %}
         </br>
     {% endfor %}

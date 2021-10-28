@@ -93,7 +93,7 @@ class Tasks(models.Model):
     comment = models.CharField(
         verbose_name='コメント',
         max_length=50,
-        blank=False,
+        blank=True,
         null=True
     )
 
@@ -115,4 +115,29 @@ class Days_comment(models.Model):
         blank=False,
         null=False
     )
+
+class Comment(models.Model):
+    parent = models.ForeignKey(
+        Parents,
+        on_delete=models.CASCADE
+    )
+
+    child = models.ForeignKey(
+        Children,
+        on_delete=models.CASCADE
+    )
+
+    date = models.DateField(
+        auto_now_add=True,
+        editable=False,
+        blank=False,
+        null=False
+    )
+
+    comment = models.TextField(
+        verbose_name='コメント',
+        blank=False,
+        null=False
+    )
+
 

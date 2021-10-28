@@ -1,0 +1,41 @@
+.tab_area{
+ overflow:hidden;
+ display:table;
+ margin:0;
+ }
+
+.tab_area li{
+ /*Tabの装飾*/
+ width:139px;
+ height:49px;
+ text-align:center;
+ border-right: 1px dotted #909090;
+ cursor: pointer;
+ vertical-align:middle;
+ display:table-cell;
+ color:#333333;
+ background-color:#ffffff;
+ }
+
+.all_area {
+ background:#efefef;
+ padding:10px;
+ overflow: hidden;
+ }
+
+.all_area div.content_area{
+ /*Tabの内容を表示するエリアの装飾*/
+ background:#ffffff;
+ padding:10px 10px 10px 2px;
+ border-top: 1px dotted #bbbbbb;
+ }
+
+.tab_area li.select{
+ /*アクティブタブの装飾*/
+ background-color:#ffffff;
+ background-image:none;
+ color:#333333;
+ border-top:2px solid #e94545;
+ }
+
+.hide{display:none;}
