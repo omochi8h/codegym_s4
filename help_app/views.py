@@ -590,6 +590,19 @@ def child_test(request):
 
     return render(request, 'registration/child_test.html', data)
 
+def parent_taskregister(request, pk):
+    try:
+        houseworks = Houseworks.objects.get(pk=pk)
+    except Houseworks.DoesNotExist:
+        raise Http404
 
+    if request.method == "POST":
+        houseworks.job_name = request.POST["job_name"]
+        houseworks.point = request.POST["point"]
+        houseworks.save()
+        return redirect(parent_tasklist)
+    else:
+        context = {"housework": houseworks}
+        return render(request, 'help_app/parent_taskregister.html', context)
 
 

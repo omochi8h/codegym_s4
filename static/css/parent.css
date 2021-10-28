@@ -141,7 +141,7 @@ button {
     border-bottom: solid 1px #B0D69F;
     margin-top: 0px;       /* 上線の外側の余白はナシ */
     padding-top: 0px;      /* 上線の内側の余白はナシ */
-    /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    margin-bottom: 0.3em;/* 下線の外側の余白量 */
     padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
 
