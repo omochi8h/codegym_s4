@@ -67,6 +67,7 @@ urlpatterns = [
     path('child_tasklist/<idName>', views.child_page_tab, name='child_tasklist_tab'),
     path('child_tasklist', views.child_page, name='child_tasklist'),
     path('child_complete', views.child_complete, name='child_complete'),
+    path('child_history/<idName>', views.child_history_tab, name='child_history_tab'),
     path('child_history', views.child_history, name='child_history'),
     path('certification', views.certification, name='certification'),
 
