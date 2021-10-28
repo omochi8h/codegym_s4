@@ -11,8 +11,7 @@
 {% block link %}
 
                 <li><a href="{% url 'child_tasklist' %}">おてつだいをする！</a></li>
-                <li><a href="{% url 'index' %}">おやページへ</a></li>
-                <li><a href="{% url 'logout' %}">ログアウト</a></li>
+                <li><a href="{% url 'certification' %}">おやページへ</a></li>
 {% endblock%}
 
 
@@ -35,6 +34,11 @@
                             createCalendar({{ child.4 }}, {{ child.5 }}, {{ child.6}});
                         {% endautoescape %}
                     </script>
+
+                <form method="post">
+                        <button name="key" value="-,1,{{ child.5 }}-{{ child.6 }},{{ child.7 }}" class="arrow1">前の月</button>
+                        <button name="key" value="+,1,{{ child.5 }}-{{ child.6 }},{{ child.7 }}" class="arrow">次の月</button>
+                </form>
 
                 </div>
 

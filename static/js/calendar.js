@@ -40,7 +40,7 @@ function open_modal(work_list) {
 
 
 
-function createCalendar(histry, p_year, p_month) {
+function createCalendar(histry, p_year, p_month,) {
   const date = new Date();
   var year = date.getFullYear();
   if (year != p_year) {
@@ -61,7 +61,9 @@ function createCalendar(histry, p_year, p_month) {
   let dayCount = 1;
   let createHtml = '';
 　
-  createHtml = '<h3>' + year + 'ねん' + month + 'がつ' + '</h3>';
+
+  createHtml += '<h3>' + year + 'ねん' + month + 'がつ' + '</h3>';
+
   createHtml += '<table>' + '<tr>';
 
   const weeks = ['にち','げつ','か','すい','もく','きん','ど'];

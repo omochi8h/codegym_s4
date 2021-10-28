@@ -42,7 +42,8 @@ button {
     overflow: hidden;
     position: relative;
     background-color: #fff;
-    min-width: 100vh;
+    min-width: 100vw;
+    min-height:12vh;
 }
 
 .footer_wrap{
