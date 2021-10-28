@@ -16,7 +16,7 @@
 
         <div class="header_wrap">
             <div class="header_start">
-                <h3>プロダクト名</h3>
+                <a href="{% url 'parent_assign' %}" class="logo"><img src="{% static 'img/piyorupu.png'%}" style="height:6vh; padding-top:2vh;"></a>
             </div>
 
             <div class="header_middle">
@@ -31,7 +31,7 @@
             </div>
 
             <div class="header_end">
-                <a class="button" href="{% url 'child_tasklist' %}">こどもページ</a>
+                <a class="button" href="{% url 'child_tasklist' %}">こどもページへ</a>
             </div>
         </div>
 
@@ -42,12 +42,18 @@
         </div>
 
         <div class="footer_wrap">
-            <nav class="nav">
-                <ul class="nav_wrapper">
-                    <li class="nav__item"><a href="{% url 'password_change' %}">パスワードの変更</a></li>
-                    <li class="nav__item"><a href="{% url 'logout' %}">ログアウト</a></li>
-                </ul>
-            </nav>
+            <div class="footer_start">
+                <img src="{% static 'img/niwatori.png' %}" style="width:200px;bottom: 0;position: absolute;">
+            </div>
+
+            <div class="footer_end">
+                <nav class="nav">
+                    <ul class="nav_wrapper">
+                        <li class="nav__item"><a href="{% url 'password_change' %}">パスワードの変更</a></li>
+                        <li class="nav__item"><a href="{% url 'logout' %}">ログアウト</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
 
     </body>

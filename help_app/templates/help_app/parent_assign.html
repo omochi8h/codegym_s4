@@ -63,15 +63,19 @@
                     $(elem).val(child_data[i]);
                 });
             }
-
-
         </script>
+
 {% endblock %}
 {% block main %}
+
     <head>
         <title>お手伝いを依頼する</title>
     </head>
-
+    {% if messages %}
+    {% for message in messages %}
+            {{ message }}
+    {% endfor %}
+    {% endif %}
 
     {% block content %}
     <h1 class="page_name">お手伝いを依頼する</h1>
@@ -149,10 +153,35 @@
                 {% endfor %}
 
 
-
+    <div class="bootstrap">
             <div style="text-align: center;">
-                <button type="submit" class="add_task">お願いする</button>
+                <button type="submit" data-toggle="modal" data-target="#sampleA" class="add_task">お願いする</button>
             </div>
+
+            <!--ポップアップつき削除-->
+              <!-- モーダルダイアログ -->
+                <div class="modal fade" id="sampleA" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+
+                            <div class="modal-body" style="text-align: center;">
+                                 登録が完了しました
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                            </div>
+
+                        </div><!-- modal-content -->
+                    </div><!-- modal-dialog -->
+                </div><!-- modal fade -->
+    </div>
+
              {% endif %}
          </form>
 {% endif %}

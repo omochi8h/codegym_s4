@@ -73,11 +73,15 @@ def activate_user(uidb64, token):
 
 
 class AddChild(forms.Form):
-    name = forms.CharField()
+    name = forms.CharField(label='名前')
 
 class AddWork(forms.Form):
-    name = forms.CharField()
-    point = forms.IntegerField()
+    name = forms.CharField(label='名前')
+    point = forms.IntegerField(
+        label='ポイント',
+        max_value=200,
+        min_value=0
+    )
 
 class ChkForm(forms.Form):
     labels = ['こども', '任せる仕事','コメント']
