@@ -8,7 +8,10 @@
 
     <form method="POST" class="tasklist_form">
         {% csrf_token %}
-        {{ form.as_p }}
+               {% for field in form %}
+                <p>依頼する日を選択してください</p>
+                    {{ field }}
+                {% endfor %}
         <div>
             <button type="submit" class="send_btn">追加</button>
             <a href="{% url 'parent_userslist' %}" class="back_btn">追加をやめる</a>
