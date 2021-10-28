@@ -145,6 +145,8 @@ button {
 .form_lead{
     margin-bottom: 5px;
     font-weight: bold;
+    font-size:2.5vh;
+    color:#707070;
 }
 
 .form_list{
@@ -325,4 +327,47 @@ button {
     padding-top: 0.3em;      /* 上線の内側の余白はナシ */
     /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
     padding-bottom: 0.3em; /* 下線の内側の余白量 */
+}
+
+.cp_iptxt {
+/*大きさ*/
+	width: 100%;
+	margin: 5px 0px;
+}
+
+.cp_iptxt input[type=text] {
+	font: bold 15px/24px YuGothic;
+	box-sizing: border-box;
+	width: 60%;
+/*	margin: 8px 0;*/
+	padding: 0.3em;
+	transition: 0.3s;
+	border: 1px solid #707070;
+	border-radius: 4px;
+	outline: none;
+}
+/*.cp_iptxt input[type=text]:focus {
+	border-color: #da3c41;
+}
+.cp_iptxt input[type=text] {
+	padding-left: 40px;
+}*/
+.cp_iptxt i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}
+/*.cp_iptxt input[type=text]:focus + i {
+	color: #da3c41;
+}*/
+
+.edit_form{
+    background-color: #fff;
+    padding: 40px 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
 }
