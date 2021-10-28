@@ -28,8 +28,6 @@ from django.shortcuts import render
 from django.views import generic
 import datetime
 
-# from datetime import datetime, date, timedelta
-
 # from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
@@ -189,7 +187,6 @@ def parent_assign(request):
         Comment(parent_id=request.user.id,child_id=int(results[labels[0]][0]),comment=results[labels[2]],date=results[labels[3]]).save()
 
         for result in results[labels[1]]:
-            print(result)
             Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result),date=results[labels[3]]).save()
         return redirect(parent_assign)
         # return render(request, 'help_app/parent_assign.html', c)
@@ -217,13 +214,11 @@ def parent_assign(request):
                 task_data = []
 
                 init_tasks = Tasks.objects.filter(child_id=child.id,date=date_data)
-                print(init_tasks)
                 for task in init_tasks:
                     for housework in assign_houseworks:
                         if task.work_id == housework.id:
                             task_data.append(housework.id)
                 insert_data[date_data]=task_data
-                print(insert_data)
             dataset2[child.id] = insert_data
 
             insert_comedata = {}
