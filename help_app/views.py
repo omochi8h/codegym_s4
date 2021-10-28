@@ -27,6 +27,7 @@ import json
 from django.shortcuts import render
 from django.views import generic
 import datetime
+from django.contrib import messages
 
 # from django.contrib.staticfiles.templatetags.staticfiles import static
 
@@ -216,6 +217,7 @@ def parent_assign(request):
 
         for result in results[labels[1]]:
             Tasks(child_id=int(results[labels[0]][0]), parent_id=request.user.id, work_id=int(result),date=results[labels[3]]).save()
+        messages.success(request, 'フォームを送信しました')
         return redirect(parent_assign)
         # return render(request, 'help_app/parent_assign.html', c)
     else:
@@ -286,6 +288,7 @@ def parent_taskregister(request, pk):
 
     if request.method == "POST":
         houseworks.job_name = request.POST["job_name"]
+        houseworks.point = request.POST["point"]
         houseworks.save()
         return redirect(parent_tasklist)
     else:
@@ -618,6 +621,19 @@ def child_test(request):
 
     return render(request, 'registration/child_test.html', data)
 
+def parent_taskregister(request, pk):
+    try:
+        houseworks = Houseworks.objects.get(pk=pk)
+    except Houseworks.DoesNotExist:
+        raise Http404
 
+    if request.method == "POST":
+        houseworks.job_name = request.POST["job_name"]
+        houseworks.point = request.POST["point"]
+        houseworks.save()
+        return redirect(parent_tasklist)
+    else:
+        context = {"housework": houseworks}
+        return render(request, 'help_app/parent_taskregister.html', context)
 
 

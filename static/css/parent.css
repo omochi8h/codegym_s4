@@ -1,5 +1,5 @@
 html {
-    font-family:  “メイリオ”, Meiryo;
+    font-family:  "游ゴシック体", "Yu Gothic", YuGothic;
     font-size:1vw;
 }
 
@@ -11,18 +11,16 @@ button {
 	-moz-appearance: none;
 	appearance: none;
 }
+
 .header_wrap  a {
     text-decoration: none;
     color: #707070;
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .header_wrap  a:hover{
     color: #000;
-}
-
-.footer_wrap  a:hover{
-    color: #ff122e;
 }
 
 .body_wrap{
@@ -30,38 +28,49 @@ button {
     margin: 0px;
     min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
     position: relative;/* ←相対位置 */
-    padding-bottom: 10px; /* ←フッターの高さを指定 */
     box-sizing: border-box;
 }
 
 .header_wrap {
     display: flex;
     align-items: center;
-    padding-top: 20px;
+/*    padding-top: 20px;*/
     list-style: none;
     overflow: hidden;
     position: relative;
     background-color: #fff;
     min-width: 100vh;
+    min-height: 12vh;
 }
 
 .footer_wrap{
     background-color: #B0D69F;
     width: 100%;
+    height: 8vh;
     position: absolute;/* ←絶対位置 */
     bottom: 0;
+    display: flex;
 }
 
 .footer_wrap a{
     text-decoration: none;
     color: #707070;
     font-weight: bold;
+    white-space: nowrap;
+}
+.footer_wrap  a:hover{
+    color: #e9457a;
 }
 
 .nav_wrapper {
     list-style: none;
     display: flex;
     justify-content: right;
+    margin:0px;
+}
+
+.nav_wrapper a{
+    font-size:17px;
 }
 
 .nav__item{
@@ -73,14 +82,36 @@ button {
 }
 
 .header_middle{
-    padding-left: 50px;
+    padding-top:3vh;
+/*    padding-left: 50px;*/
 }
 
 .header_end{
     padding: 0px 40px;
+    padding-top:3vh;
     margin-left: auto;
 }
 
+.header_end a{
+    font-weight: bold;
+    color: #707070;
+    background-color: #ffe897;
+    border-radius: 0.5rem;
+    padding: 10px 30px;
+}
+.header_end a:hover{
+    color: #000;
+    background-color: #f2c714;
+}
+
+.footer_end{
+    padding-top:3vh;
+    margin-left: auto;
+}
+
+.footer_start{
+    padding-top:3vh;
+}
 
 .assign_form{
     background-color: #fff;
@@ -113,10 +144,10 @@ button {
 
 .task_table{
     display: flex;
-    border-bottom: solid 3px #B0D69F;
+    border-bottom: solid 1px #B0D69F;
     margin-top: 0px;       /* 上線の外側の余白はナシ */
     padding-top: 0px;      /* 上線の内側の余白はナシ */
-    /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    margin-bottom: 0.3em;/* 下線の外側の余白量 */
     padding-bottom: 0.3em; /* 下線の内側の余白量 */
 }
 
@@ -131,6 +162,8 @@ button {
 .form_lead{
     margin-bottom: 5px;
     font-weight: bold;
+    font-size:2.5vh;
+    color:#707070;
 }
 
 .form_list{
@@ -188,7 +221,7 @@ button {
     text-decoration: none;
     font-weight: bold;
     color: #fff;
-    background-color: #e3364a;
+    background-color: #ed7fa3;
     border-radius: 0.5rem;
     padding: 10px 30px;
     margin-left: auto;
@@ -198,7 +231,7 @@ button {
 }
 .back_btn:hover {
     color: #fff;
-    background: #ff122e;
+    background: #ef2868;
 }
 
 .user{
@@ -253,7 +286,8 @@ button {
 
 .main_wrap{
     position: relative;/*←相対位置*/
-    padding-bottom: 100px;/*←footerの高さ*/
+/*    padding-top: 12vh;*//*←headerの高さ*/
+    padding-bottom: 12vh;/*←footerの高さ*/
     box-sizing: border-box;/*←全て含めてmin-height:100vhに*/
 }
 
@@ -269,7 +303,7 @@ button {
 
 .delete a:hover{
     color:#fff;
-    background: #ff122e;
+    background: #e9457a;
 }
 
 .task_approval{
@@ -291,11 +325,105 @@ button {
 .updated_datetime{　/*日付の装飾*/
 
 }
-.childform_list{
+.approval_list{
     margin-left: 20px;
+    margin-bottom:20px;
 }
 
 .approval_child{
     font-weight:bold;
-    margin-bottom:1vh;
+    font-size:2.5vh;
+    color:#707070;
+    /*margin-bottom:1vh;*/
 }
+
+.approval_table{
+    display: flex;
+    border-bottom: solid 1px #B0D69F;
+    margin-top: 0px;       /* 上線の外側の余白はナシ */
+    padding-top: 0.3em;      /* 上線の内側の余白はナシ */
+    /*   margin-bottom: 0.3em; */ /* 下線の外側の余白量 */
+    padding-bottom: 0.3em; /* 下線の内側の余白量 */
+}
+
+.cp_iptxt {
+/*大きさ*/
+	width: 100%;
+	margin: 5px 0px;
+}
+
+.cp_iptxt input[type=text] {
+	font: bold 15px/24px YuGothic;
+	box-sizing: border-box;
+	width: 100%;
+/*	margin: 8px 0;*/
+	padding: 1px 2px;
+/*	transition: 0.3s;*/
+	border: 1px solid #707070;
+	border-radius: 4px;
+	outline: none;
+}
+/*.cp_iptxt input[type=text]:focus {
+	border: 2px solid #000;
+	outline: none;
+}*/
+/*.cp_iptxt input[type=text] {
+	padding-left: 40px;
+}*/
+.cp_iptxt i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}
+/*.cp_iptxt input[type=text]:focus + i {
+	color: #da3c41;
+}*/
+
+.edit_form{
+    background-color: #fff;
+    padding: 40px 60px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
+
+.edit_lead{
+    margin:0px;
+    font-weight:bold;
+    color:#707070;
+}
+.edit_lead2{
+    margin:0px;
+    font-weight:bold;
+    color:#000;
+    background-color:#ecedf2;
+    padding: 0px 10px;
+    margin-top:10px;
+}
+
+.end_btn{
+    margin-top:30px;
+    display: flex;
+    justify-content: center;
+}
+
+.cp_point input{
+/*大きさ*/
+	width: 15%;
+	height:40px;
+	margin: 5px 0px;
+	font-size:1.25vw;
+}
+
+/*
+.cp_point i {
+	position: absolute;
+	top: 8px;
+	left: 0;
+	padding: 9px 8px;
+	transition: 0.3s;
+	color: #aaaaaa;
+}*/
