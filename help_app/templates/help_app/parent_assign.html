@@ -1,4 +1,5 @@
 {% extends "parent_base.html" %}
+{% load static %}
 {% block head %}
 
         <script>
@@ -74,9 +75,13 @@
     {% if messages %}
     {% for message in messages %}
         <div id='hideMe' class="assgin_comp">
-            <img src="{% static 'img/niwatori.png' %}" style="width:200px;bottom: 0;position: absolute;">
-            {{ message }}
-        <div>
+            <div class="balloon1">
+                <p style="font-weight:bold; color:#707070;">お願いしたよ！</p>
+            </div>
+            <div>
+                <img src="{% static 'img/niwatori_handsup.png' %}" style="width:100px; bottom: 50; margin-left:25px;">
+            </div>
+        </div>
     {% endfor %}
     {% endif %}
 
