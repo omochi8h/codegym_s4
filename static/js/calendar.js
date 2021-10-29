@@ -186,7 +186,7 @@ function createCalendar2(histry, p_year, p_month, get_child_id) {
                     array.push(work);
                   }
                 }
-                createHtml += '<td class="good"><a onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
+                createHtml += '<td class="good"><img class="p_img" src="../../static/img/good.png"><a class="day" onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
                 dayCount += 1;
               }
 
@@ -266,7 +266,7 @@ function createCalendar3(histry, p_year, p_month, get_child_id) {
                     array.push(work);
                   }
                 }
-                createHtml += '<td class="good"><a onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
+                createHtml += '<td class="good"><img class="p_img" src="../../static/img/good.png"><a class="day" onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
                 dayCount += 1;
               }
 
@@ -343,7 +343,7 @@ function createCalendar4(histry, p_year, p_month, get_child_id) {
                     array.push(work);
                   }
                 }
-                createHtml += '<td class="good"><a onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
+                createHtml += '<td class="good"><img class="p_img" src="../../static/img/good.png"><a class="day" onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
                 dayCount += 1;
               }
 
@@ -421,7 +421,7 @@ function createCalendar5(histry, p_year, p_month, get_child_id) {
                     array.push(work);
                   }
                 }
-                createHtml += '<td class="good"><a onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
+                createHtml += '<td class="good"><img class="p_img" src="../../static/img/good.png"><a class="day" onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
                 dayCount += 1;
               }
 
