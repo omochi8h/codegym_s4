@@ -63,7 +63,7 @@ function createCalendar(histry, p_year, p_month, get_child_id) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<form method="post"><button class="mae" name="key" value=\"-,0,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml = '<form method="post" action="http://127.0.0.1:8000/child_history/tab1"><button class="mae" name="key" value=\"-,0,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,0,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
 
@@ -106,7 +106,7 @@ function createCalendar(histry, p_year, p_month, get_child_id) {
                     array.push(work);
                   }
                 }
-                createHtml += '<td class="good"><a onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
+                createHtml += '<td class="good"><img class="p_img" src="../../static/img/good.png"><a class="day" onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
                 dayCount += 1;
               }
 
@@ -142,7 +142,9 @@ function createCalendar2(histry, p_year, p_month, get_child_id) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<form method="post"><button name="key" class="mae" value=\"-,1,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+
+  createHtml = '<form method="post" action="http://127.0.0.1:8000/child_history/tab2"><button name="key" class="mae" value=\"-,1,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key"  class ="usiro" value=\"+,1,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
@@ -220,7 +222,9 @@ function createCalendar3(histry, p_year, p_month, get_child_id) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<form method="post"><button class="mae" name="key" value=\"-,2,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+
+  createHtml = '<form method="post" action="http://127.0.0.1:8000/child_history/tab3"><button class="mae" name="key" value=\"-,2,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,2,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
@@ -297,7 +301,7 @@ function createCalendar4(histry, p_year, p_month, get_child_id) {
 
   let dayCount = 1;
   let createHtml = '';
-  createHtml = '<form method="post"><button name="key" class="mae"　value=\"-,3,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml = '<form method="post" action="http://127.0.0.1:8000/child_history/tab4"><button class="mae" name="key" value=\"-,3,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,3,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
@@ -374,7 +378,8 @@ function createCalendar5(histry, p_year, p_month, get_child_id) {
 
   let dayCount = 1;
   let createHtml = '';
-  createHtml = '<form method="post"><button name="key" class="mae" value=\"-,4,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+
+  createHtml = '<form method="post" action="http://127.0.0.1:8000/child_history/tab5"><button name="key" value=\"-,4,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,4,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
@@ -430,6 +435,26 @@ function createCalendar5(histry, p_year, p_month, get_child_id) {
 
   document.querySelector('#calendar5').innerHTML = createHtml;
 }
+window.addEventListener('DOMContentLoaded', function(){
+
+	var input_genders = document.querySelectorAll("input[name=gender]");
+
+	for(var element of input_genders) {
+		element.checked = false;
+	}
+
+	var url = location.href;
+    if (url.length >= 37) {
+        var get_id = url.substr(36,39);
+    } else {
+        var get_id = 'tab1';
+    }
+    console.log(get_id);
+
+    var element = document.getElementById(get_id) ;
+    element.checked = true ;
+});
+
 
 
 

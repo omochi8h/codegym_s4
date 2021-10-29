@@ -36,9 +36,10 @@
 
                     <div class ="comment">
                             <div class="balloon1-right">
-
-                                {% for comment in child.2 %}
-                                <p>{{ comment.comment }}</p>
+                                 {% for comment in child.2 %}
+                                <p>{{ comment }}</p>
+                                {% empty %}
+                                <p>きょうもがんばろう！</p>
 
                                 {% endfor %}
 
@@ -78,7 +79,11 @@
                     <div class="nakami">
                         <div class ="comment">
                             <div class="balloon1-right">
-                                <p>こんにちは。これは例です。</p>
+                                 {% for comment in child.2 %}
+                                <p>{{ comment }}</p>
+                                {% empty %}
+                                <p>きょうもがんばろう！</p>
+                                {% endfor %}
                             </div>
                             <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
@@ -104,7 +109,11 @@
                     <div class="nakami">
                         <div class ="comment">
                             <div class="balloon1-right">
-                                <p>こんにちは。これは例です。</p>
+                                 {% for comment in child.2 %}
+                                <p>{{ comment }}</p>
+                                {% empty %}
+                                <p>きょうもがんばろう！</p>
+                                {% endfor %}
                             </div>
                             <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
@@ -132,7 +141,11 @@
                     <div class="nakami">
                         <div class ="comment">
                             <div class="balloon1-right">
-                                <p>こんにちは。これは例です。</p>
+                                 {% for comment in child.2 %}
+                                <p>{{ comment }}</p>
+                                {% empty %}
+                                <p>きょうもがんばろう！</p>
+                                {% endfor %}
                             </div>
                             <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
@@ -157,7 +170,11 @@
                     <div class="nakami">
                         <div class ="comment">
                             <div class="balloon1-right">
-                                <p>こんにちは。これは例です。</p>
+                                 {% for comment in child.2 %}
+                                <p>{{ comment }}</p>
+                                {% empty %}
+                                <p>きょうもがんばろう！</p>
+                                {% endfor %}
                             </div>
                             <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>

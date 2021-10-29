@@ -121,10 +121,16 @@ def child_page(request):
         task_list = []
         tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
         comments = Comment.objects.filter(parent=request.user, child=child.id, date=today).all()
+
         for task in tasks:
             task_list.append(task)
         child_list.append(task_list)
-        child_list.append(comments)
+
+        insert_come = []
+        for comment in comments:
+            if comment.comment != '':
+                insert_come.append(comment.comment)
+        child_list.append(insert_come)
         child_data.append(child_list)
     data['children'] = child_data
     data['tab_name'] = ['1', '2', '3', '4', '5']
@@ -477,6 +483,168 @@ def child_history(request):
 
     return render(request, 'help_app/child_history.html', params)
 
+def child_history_tab(request, idName):
+    params = {}
+
+    today = datetime.date.today()
+    year = today.year
+    month = today.month
+    firstDay = str(year) + '-' + str(month) + '-' + '01'
+    last = datetime.date(year, month + 1, 1) - datetime.timedelta(days=1)
+    lastDay = str(year) + '-' + str(month) + '-' + str(last.day)
+    dayCount = int(last.day)
+
+    all_data = []
+    children = Children.objects.filter(parent=request.user).all()
+    for child in children:
+        child_data = []
+        child_data.append(child.name)
+        child_data.append(0)
+        child_data.append(0)
+        child_data.append(0)
+
+        task_all = Tasks.objects.filter(parent=request.user, child=child.id, state=1)
+        for point in task_all:
+            child_data[1] += point.work.point
+
+        task_month = Tasks.objects.filter(parent=request.user, child=child.id, state=1, date__gte=firstDay,
+                                          date__lte=lastDay)
+        for point in task_month:
+            child_data[2] += point.work.point
+
+        task_today = Tasks.objects.filter(parent=request.user, child=child.id, state=1, date=today)
+        for point in task_today:
+            child_data[3] += point.work.point
+
+        task_data = []
+        for i in range(dayCount):
+            task_data.append(0)
+        tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=1, date__gte=firstDay,
+                                     date__lte=lastDay)
+        for task in tasks:
+            day = int(task.date.day) - 1
+            if task_data[day] == 0:
+                task_data[day] = []
+                task_name = task.work.job_name
+                task_data[day].append(task_name)
+            else:
+                task_name = task.work.job_name
+                task_data[day].append(task_name)
+        child_data.append(task_data)
+        child_data.append(str(year))
+        child_data.append(str(month))
+        child_data.append(child.id)
+        all_data.append(child_data)
+    params['histry'] = all_data
+
+    if request.method == 'POST':
+        value = request.POST['key']
+        keyWord = value.split(',')
+        if keyWord[0] == '+':
+            get_date = keyWord[2].split('-')
+            get_year = get_date[0]
+            get_month = get_date[1]
+            if get_month == '12':
+                next_year = str(int(get_year) + 1)
+                next_month = '01'
+            elif  get_month == '10' or get_month == '11':
+                next_year = get_year
+                next_month = str(int(get_month) + 1)
+            elif get_month == '9':
+                next_month = '10'
+                next_year = get_year
+            else:
+                next_year = get_year
+                next_month = '0' + str(int(get_month) + 1)
+
+            if (int(next_month) + 1) == 13:
+                m_value = '01'
+                y_value = str(int(next_year) + 1)
+            else:
+                m_value = str(int(next_month) + 1)
+                y_value = next_year
+
+
+            firstDay = str(next_year) + '-' + str(next_month) + '-' + '01'
+            last = datetime.date(int(y_value), int(m_value), 1) - datetime.timedelta(days=1)
+            lastDay = str(next_year) + '-' + str(next_month) + '-' + str(last.day)
+            dayCount = int(last.day)
+
+            params['histry'][int(keyWord[1])][2] = 0
+            task_month = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                              date__lte=lastDay)
+            for point in task_month:
+                params['histry'][int(keyWord[1])][2] += point.work.point
+
+            task_data = []
+            for i in range(dayCount):
+                task_data.append(0)
+            tasks = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                         date__lte=lastDay)
+            for task in tasks:
+                day = int(task.date.day) - 1
+                if task_data[day] == 0:
+                    task_data[day] = []
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+                else:
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+            params['histry'][int(keyWord[1])][4] = task_data
+            params['histry'][int(keyWord[1])][5] = str(next_year)
+            params['histry'][int(keyWord[1])][6] = str(next_month)
+
+        else:
+            get_date = keyWord[2].split('-')
+            get_year = get_date[0]
+            get_month = get_date[1]
+            if get_month == '1':
+                last_year = str(int(get_year) - 1)
+                last_month = '12'
+            elif get_month == '11' or get_month == '12':
+                last_year = get_year
+                last_month = str(int(get_month) - 1)
+            else:
+                last_year = get_year
+                last_month = '0' + str(int(get_month) - 1)
+
+            if (int(last_month) + 1) == 13:
+                m_value = '01'
+                y_value = str(int(last_year) + 1)
+            else:
+                m_value = str(int(last_month) + 1)
+                y_value = last_year
+
+            firstDay = str(last_year) + '-' + str(last_month) + '-' + '01'
+            last = datetime.date(int(y_value), int(m_value), 1) - datetime.timedelta(days=1)
+            lastDay = str(last_year) + '-' + str(last_month) + '-' + str(last.day)
+            dayCount = int(last.day)
+
+            params['histry'][int(keyWord[1])][2] = 0
+            task_month = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                              date__lte=lastDay)
+            for point in task_month:
+                params['histry'][int(keyWord[1])][2] += point.work.point
+
+            task_data = []
+            for i in range(dayCount):
+                task_data.append(0)
+            tasks = Tasks.objects.filter(parent=request.user, child=params['histry'][int(keyWord[1])][7], state=1, date__gte=firstDay,
+                                         date__lte=lastDay)
+            for task in tasks:
+                day = int(task.date.day) - 1
+                if task_data[day] == 0:
+                    task_data[day] = []
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+                else:
+                    task_name = task.work.job_name
+                    task_data[day].append(task_name)
+            params['histry'][int(keyWord[1])][4] = task_data
+            params['histry'][int(keyWord[1])][5] = str(last_year)
+            params['histry'][int(keyWord[1])][6] = str(last_month)
+
+    return render(request, 'help_app/child_history.html', params)
 
 def certification(request):
     if request.method == 'GET':

@@ -1,4 +1,5 @@
 {% extends "parent_base.html" %}
+{% load static %}
 {% block head %}
 
         <script>
@@ -73,7 +74,14 @@
     </head>
     {% if messages %}
     {% for message in messages %}
-            {{ message }}
+        <div id='hideMe' class="assgin_comp">
+            <div class="balloon1">
+                <p style="font-weight:bold; color:#707070;">お願いしたよ！</p>
+            </div>
+            <div>
+                <img src="{% static 'img/niwatori_handsup.png' %}" style="width:100px; bottom: 50; margin-left:25px;">
+            </div>
+        </div>
     {% endfor %}
     {% endif %}
 
@@ -152,35 +160,9 @@
                 {% endif %}
                 {% endfor %}
 
-
-    <div class="bootstrap">
             <div style="text-align: center;">
                 <button type="submit" data-toggle="modal" data-target="#sampleA" class="add_task">お願いする</button>
             </div>
-
-            <!--ポップアップつき削除-->
-              <!-- モーダルダイアログ -->
-                <div class="modal fade" id="sampleA" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                                <h4 class="modal-title"></h4>
-                            </div>
-
-                            <div class="modal-body" style="text-align: center;">
-                                 登録が完了しました
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                            </div>
-
-                        </div><!-- modal-content -->
-                    </div><!-- modal-dialog -->
-                </div><!-- modal fade -->
-    </div>
 
              {% endif %}
          </form>
