@@ -1,8 +1,24 @@
- td.good {
+td.good {
     color: red;
     cursor: pointer;
 }
 
+img.good {
+position: relative;
+width: 26px;
+height: 18px;
+}
+
+img.p_img {
+position: relative;
+width: 26px;
+height: 18px;
+}
+
+a.good {
+position: absolute;
+z-index: 1;
+}
 
 .open_modal {
   text-decoration: none;
