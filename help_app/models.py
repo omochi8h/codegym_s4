@@ -15,7 +15,7 @@ class Parents(AbstractUser):
     )
 
     authcode = models.CharField(
-        verbose_name='認証コード',
+        verbose_name='認証コード(数字4桁)',
         max_length=20,
         blank=False,
         null=True

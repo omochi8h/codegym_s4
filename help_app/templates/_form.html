@@ -2,9 +2,15 @@
     {% csrf_token %}
     {% for field in form %}
             <p>
-                <label>{{ field.label }}</label>
+                {% if field.label == "認証コード(数字4桁)" %}
+                    <label>{{ field.label }}</label>
+                    <br><span>※親ページ遷移の際に使用します</span>
+                    {{ field }}
+                {% else %}
+                    <label>{{ field.label }}</label>
 
-                {{ field }}
+                    {{ field }}
+                {% endif %}
             </p>
             {% endfor %}
     <!--{{ form.as_p }}-->
