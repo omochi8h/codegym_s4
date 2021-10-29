@@ -84,13 +84,37 @@ class AddWork(forms.Form):
     )
 
 class ChkForm(forms.Form):
+    def get_week():
+        today = datetime.date.today()
+        year = today.year
+        month = today.month
+        day = today.day
+        last = datetime.date(year, month + 1, 1) - datetime.timedelta(days=1)
+        list = []
+
+        for i in range(7):
+            value = str(year) + '-' + str(month) + '-' + str(day)
+            option = str(year) + '年' + str(month) + '月' + str(day) + '日'
+            tup = (value, option)
+            list.append(tup)
+            day = int(day) + 1
+            if day == '1' or day == '2' or day == '3' or day == '4' or day == '5' or day == '6' or day == '7' or day == '8' or day == '9':
+                day = '0' + str(day)
+
+            if month == '12' and int(day) > (last.day):
+                year = int(year) + 1
+                month = '01'
+                day = '01'
+            elif int(day) > int(last.day):
+                month = int(month) + 1
+                day = '01'
+        return list
     labels = ['こども', '任せる仕事','コメント']
-    date = forms.DateTimeField(
+    date_list = get_week()
+    date = forms.ChoiceField(
         label='依頼日',
         required=True,
-        initial=timezone.now,
-        widget=forms.DateInput(attrs={"type": "date","onchange":"try_event(event);"}),
-        input_formats=['%Y-%m-%d']
+        choices=date_list
     )
 
     child = forms.MultipleChoiceField(
