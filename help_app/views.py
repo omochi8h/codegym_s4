@@ -213,7 +213,19 @@ def parent_assign(request):
         c = {'results': results, 'ret': ret}
         # 今日既に割り振ったタスクを消去
         old_task = Tasks.objects.filter(child_id=int(results[labels[0]][0]),parent_id=request.user.id,date=results[labels[3]])
-        old_task.delete()
+        # 今日の日付だったら、過去に割り振られたお手伝いのstateが-1or1だった場合そのお手伝いのデータは残す。
+        if results[labels[3]] != datetime.date.today():
+            for task in old_task:
+                if task.state == 0:
+                    task.delete()
+                else:
+                    for result in results[labels[1]]:
+                        if int(result) == task.work_id:
+                            number = results[labels[1]].index(result)
+                            results[labels[1]].pop(number)
+        # 明日以降だったらまとめて過去の依頼記録消す
+        else:
+            old_task.delete()
 
         if Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=date.today()).count() > 0:
             old_comment = Comment.objects.filter(parent_id=request.user.id,child_id=int(results[labels[0]][0]),date=results[labels[3]])
