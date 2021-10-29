@@ -113,52 +113,102 @@
             <div class="popup-content content-demo">
             <div class="ofitem">
                 <img src="{% static 'img/box2.gif' %}" id="boxanime">
-                <div class="point">
+
+                    {% for child in histry %}
+                    {% if forloop.counter == 1 %}
+                <div class="point1">
                     <div class="point_item">
                     <img src="{% static 'img/box_open.png' %}" id="boxopen">
                     </div>
-                    {% for child in histry %}
-                    {% if forloop.counter == 1 %}
                     <div class="point_item" id="child_point1">
-                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
-                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
-                    </div>
+                        <p>こんげつのポイントは<br>
+                            <b>{{child.1}}ポイント！！</b>
+                        </p>
+                        <p>これまでのぜんぶの<br>
+                            <b>{{child.2}}ポイント！！</b>
+                        </p>
+                    </div></div>
+
                     {% elif forloop.counter == 2 %}
+                    <div class="point2">
+                    <div class="point_item">
+                    <img src="{% static 'img/box_open.png' %}" id="boxopen">
+                    </div>
                     <div class="point_item" id="child_point2">
-                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
-                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
-                    </div>
+                        <p>こんげつのポイントは<br>
+                            <b>{{child.1}}ポイント！！</b>
+                        </p>
+                        <p>これまでのぜんぶの<br>
+                            <b>{{child.2}}ポイント！！</b>
+                        </p>
+                    </div></div>
+
                     {% elif forloop.counter == 3 %}
-                    <div class="point_item" id="child_point3">
-                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
-                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
+                        <div class="point3">
+                    <div class="point_item">
+                    <img src="{% static 'img/box_open.png' %}" id="boxopen">
                     </div>
+                    <div class="point_item" id="child_point3">
+                        <p>こんげつのポイントは<br>
+                            <b>{{child.1}}ポイント！！</b>
+                        </p>
+                        <p>これまでのぜんぶの<br>
+                            <b>{{child.2}}ポイント！！</b>
+                        </p>
+                    </div>
+                        </div>
                     {% elif forloop.counter == 4 %}
+                        <div class="point4">
+                    <div class="point_item">
+                    <img src="{% static 'img/box_open.png' %}" id="boxopen">
+                    </div>
                     <div class="point_item" id="child_point4">
                         <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
                         <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
-                    </div>
+                    </div></div>
                     {% elif forloop.counter == 5 %}
-                    <div class="point_item" id="child_point5">
-                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
-                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
+                        <div class="point5">
+                    <div class="point_item">
+                    <img src="{% static 'img/box_open.png' %}" id="boxopen">
                     </div>
+                    <div class="point_item" id="child_point5">
+                        <p>こんげつのポイントは<br>
+                            <b>{{child.1}}ポイント！！</b>
+                        </p>
+                        <p>これまでのぜんぶの<br>
+                            <b>{{child.2}}ポイント！！</b>
+                        </p>
+                    </div></div>
                     {% endif %}
                     {% endfor %}
-                </div>
             </div>
             <i class="close far fa-times-circle"></i>
             </div><!-- /popup-content -->
         </div><!-- /popup-demo -->
 
 {% endblock %}
+
 {% block script%}
 
+
+
+
 $(function() {
+console.log(change);
+
+var url = location.href;
+    if (url.length >= 37) {
+        var get_class = url.slice(-1);
+    } else {
+        var get_class = '1';
+    }
+var change = '.point' + String(get_class);
+
+
 $('.item-demo').on('click',function(){
     $('.popup-demo').addClass('popup-show').fadeIn();
     $('#boxanime').fadeIn();
-    $('.point').removeClass('point_show');
+    $(change).removeClass('point_show');
 });
 $('.close').on('click',function(){
     $('.popup-demo').fadeOut();
@@ -166,10 +216,10 @@ $('.close').on('click',function(){
 $('#boxanime').on('click',function(){
     $('#boxanime').fadeOut();
     setTimeout(function(){
-        $('.point').addClass('point_show').fadeIn();
+        $(change).addClass('point_show').fadeIn();
     },1000);
 
+});
+});
 
-});
-});
 {% endblock %}

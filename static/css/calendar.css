@@ -290,7 +290,23 @@ justify-content: center;
 align-items: center;
 }
 
-.point{
+.point1{
+display:none;
+}
+
+.point2{
+display:none;
+}
+
+.point3{
+display:none;
+}
+
+.point4{
+display:none;
+}
+
+.point5{
 display:none;
 }
 
@@ -299,6 +315,37 @@ display:flex;
 justify-content: center;
 align-items: center;
 }
+
+.point_show1{
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
+.point_show2{
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
+.point_show3{
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
+.point_show4{
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
+.point_show5{
+display:flex;
+justify-content: center;
+align-items: center;
+}
+
 /*
 .ofitem{
 margin:40px auto 0 auto;
@@ -311,4 +358,5 @@ align-content: center;
 .point_item{
 width:300px;
 color:white;
+font-size:18pt;
 }
