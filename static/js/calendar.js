@@ -106,7 +106,7 @@ function createCalendar(histry, p_year, p_month, get_child_id) {
                     array.push(work);
                   }
                 }
-                createHtml += '<td class="good"><img class="p_img" src="../../static/img/good.png"><a class="day" onclick=\"window.open_modal(' + array + ')\">' + dayCount + '</a></td>';
+                createHtml += '<td class="good" onclick=\"window.open_modal(' + array + ')\"><img class="p_img" src="../../static/img/good.png"><a class="day">' + dayCount + '</a></td>';
                 dayCount += 1;
               }
 
@@ -157,6 +157,9 @@ function createCalendar2(histry, p_year, p_month, get_child_id) {
 
   for (let n = 0; n < 6; n++) {
       createHtml += '<tr>';
+      if (dayCount > lastDayCount) {
+        break;
+      }
 
       for (let d = 0; d < 7; d++) {
           if (n == 0 && d < firstDay) {

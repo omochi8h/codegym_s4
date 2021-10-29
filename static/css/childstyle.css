@@ -48,11 +48,11 @@ align-content: center;
 }
 
 .main-nav .logo {
-	background: #fff;
+	background: none;
 	color:#000;
 }
 .main-nav .hello {
-	background: #fff;
+	background: none;
 	color:#000;
 }
 
@@ -249,4 +249,7 @@ height :5vh;
 position:fixed;
 bottom:0;
 z-index:6;
+}
+.background{
+    background-color:none;
 }
