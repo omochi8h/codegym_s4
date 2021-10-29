@@ -10,8 +10,8 @@ function open(task_id, id_name) {
 
 
     createHtml = '<div class="main_modal active"><div class="modalContents"><h5>お手伝いできた？</h5>';
-    createHtml += '<form method="post" action=\"http://127.0.0.1:8000/child_tasklist/' + tab_name + '\"><button type="button" class="close_modal" onclick="window.close();"><img src="static/img/batu.png" style="height:3vh;"></button>';
-    createHtml += '<button type="submit" class="complete_task" value=\"' + update_id + '\" name="complete_id"><img src="static/img/maru.png" style="height:3vh;"></button>';
+    createHtml += '<form method="post" action=\"http://127.0.0.1:8000/child_tasklist/' + tab_name + '\"><button type="button" class="close_modal" onclick="window.close();"><img src="http://127.0.0.1:8000/static/img/batu.png" style="height:3vh;"></button>';
+    createHtml += '<button type="submit" class="complete_task" value=\"' + update_id + '\" name="complete_id"><img src="http://127.0.0.1:8000/static/img/maru.png" style="height:3vh;"></button>';
 /*
     createHtml = '<div class="main_modal active"><h2>確認</h2><div class="modalContents"><h5>お手伝いできた？</h5>';
     createHtml += '<form method="post" action=\"http://127.0.0.1:8000/child_tasklist/' + tab_name + '\"><a class="close_modal" onclick="window.close();">できてない</a>';

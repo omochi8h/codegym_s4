@@ -4,6 +4,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 <link rel="stylesheet" media="(min-width: 600px)" href="{% static 'css/chtaskliststyle_web.css' %}">
 <script src="{% static 'js/calendar.js' %}"></script>
 {% endblock %}
@@ -52,7 +53,7 @@
                 </div>
 
             {% elif forloop.counter == 3 %}
-                <input type="radio" name="tab_name" id='tab3' checked>
+                <input type="radio" name="tab_name" id='tab3'>
                 <label class="tab_class" for='tab3'>{{ child.0 }}</label>
                 <!--タブのコンテンツ-->
                 <div class="content_class">
@@ -65,7 +66,7 @@
                 </div>
 
             {% elif forloop.counter == 4 %}
-                <input type="radio" name="tab_name" id='tab4' checked>
+                <input type="radio" name="tab_name" id='tab4'>
                 <label class="tab_class" for='tab4'>{{ child.0 }}</label>
                 <!--タブのコンテンツ-->
                 <div class="content_class">
@@ -78,7 +79,7 @@
                 </div>
 
             {% elif forloop.counter == 5 %}
-                <input type="radio" name="tab_name" id='tab5' checked>
+                <input type="radio" name="tab_name" id='tab5'>
                 <label class="tab_class" for='tab5'>{{ child.0 }}</label>
                 <!--タブのコンテンツ-->
                 <div class="content_class">
@@ -96,4 +97,79 @@
     <div id="modal"></div>
     <div id="mask"　onclick="window.close_modal();"></div>
 
+{% endblock %}
+
+
+
+{% block footer%}
+
+        <a class="item-demo">
+        <div class="box">
+            <img src="{% static 'img/box.gif' %}" style="width:100px;">
+        </div>
+        </a>
+
+        <div class="popup-demo">
+            <div class="popup-content content-demo">
+            <div class="ofitem">
+                <img src="{% static 'img/box2.gif' %}" id="boxanime">
+                <div class="point">
+                    <div class="point_item">
+                    <img src="{% static 'img/box_open.png' %}" id="boxopen">
+                    </div>
+                    {% for child in histry %}
+                    {% if forloop.counter == 1 %}
+                    <div class="point_item" id="child_point1">
+                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
+                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
+                    </div>
+                    {% elif forloop.counter == 2 %}
+                    <div class="point_item" id="child_point2">
+                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
+                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
+                    </div>
+                    {% elif forloop.counter == 3 %}
+                    <div class="point_item" id="child_point3">
+                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
+                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
+                    </div>
+                    {% elif forloop.counter == 4 %}
+                    <div class="point_item" id="child_point4">
+                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
+                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
+                    </div>
+                    {% elif forloop.counter == 5 %}
+                    <div class="point_item" id="child_point5">
+                        <p>こんげつのポイントは<b>{{child.1}}ポイント！！</b></p>
+                        <p>これまでのぜんぶの<b>{{child.2}}ポイント！！</b></p>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <i class="close far fa-times-circle"></i>
+            </div><!-- /popup-content -->
+        </div><!-- /popup-demo -->
+
+{% endblock %}
+{% block script%}
+
+$(function() {
+$('.item-demo').on('click',function(){
+    $('.popup-demo').addClass('popup-show').fadeIn();
+    $('#boxanime').fadeIn();
+    $('.point').removeClass('point_show');
+});
+$('.close').on('click',function(){
+    $('.popup-demo').fadeOut();
+});
+$('#boxanime').on('click',function(){
+    $('#boxanime').fadeOut();
+    setTimeout(function(){
+        $('.point').addClass('point_show').fadeIn();
+    },1000);
+
+
+});
+});
 {% endblock %}

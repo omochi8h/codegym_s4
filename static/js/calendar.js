@@ -142,7 +142,7 @@ function createCalendar2(histry, p_year, p_month, get_child_id) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<form method="post"><button name="key" class="mae"　class="mae" value=\"-,1,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml = '<form method="post"><button name="key" class="mae" value=\"-,1,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key"  class ="usiro" value=\"+,1,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
@@ -220,7 +220,7 @@ function createCalendar3(histry, p_year, p_month, get_child_id) {
   let dayCount = 1;
   let createHtml = '';
 
-  createHtml = '<form method="post"><button name="key"　class="mae" value=\"-,2,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml = '<form method="post"><button class="mae" name="key" value=\"-,2,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,2,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';
@@ -374,7 +374,7 @@ function createCalendar5(histry, p_year, p_month, get_child_id) {
 
   let dayCount = 1;
   let createHtml = '';
-  createHtml = '<form method="post"><button name="key" value=\"-,4,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
+  createHtml = '<form method="post"><button name="key" class="mae" value=\"-,4,' + year + '-' + month + ',' +  get_child_id + '\">まえのつき</button>'
   createHtml += '<span>' + year + 'ねん' + month + 'がつ' + '</span>';
   createHtml += '<form method="post"><button name="key" class ="usiro" value=\"+,4,' + year + '-' + month + ',' +  get_child_id + '\">つぎのつき</button></form>'
   createHtml += '<table>' + '<tr>';

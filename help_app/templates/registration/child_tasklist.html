@@ -36,11 +36,14 @@
 
                     <div class ="comment">
                             <div class="balloon1-right">
-                                 {% for comment in child.2 %}
+
+                                {% for comment in child.2 %}
                                 <p>{{ comment.comment }}</p>
+
                                 {% endfor %}
+
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
 
                     <div class="tasks">
@@ -77,7 +80,7 @@
                             <div class="balloon1-right">
                                 <p>こんにちは。これは例です。</p>
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
 
                     <div class="tasks">
@@ -103,7 +106,7 @@
                             <div class="balloon1-right">
                                 <p>こんにちは。これは例です。</p>
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
                     <div class="tasks">
 
@@ -131,7 +134,7 @@
                             <div class="balloon1-right">
                                 <p>こんにちは。これは例です。</p>
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
                     <div class="tasks">
                    {% for task in child.1 %}
@@ -156,7 +159,7 @@
                             <div class="balloon1-right">
                                 <p>こんにちは。これは例です。</p>
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
                     <div class="tasks">
                    {% for task in child.1 %}
