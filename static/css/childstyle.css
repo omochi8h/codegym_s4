@@ -8,20 +8,25 @@ body{
 }
 /*footer固定のため*/
 .content{
+display:flex;
+flex-wrap: wrap;
+flex-flow: column;
+align-items: center;
+justify-content: center;
 
+min-height:80vh;
 }
 /*header*/
 nav{
 	background:white;
-
-
 }
+
 ul{
 margin-bottom:0px;
 }
 
 .main-nav {
-height:12vh;
+min-height:12vh;
 display: flex;
 align-items: center;
 justify-content: space-around;

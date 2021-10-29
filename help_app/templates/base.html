@@ -10,7 +10,6 @@
 		<link rel="stylesheet" href="{% static 'css/childstyle_mobile.css' %}" media="(max-width: 601px)" type="text/css">
         {% block head %}
         {% endblock %}
-
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <!--<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
@@ -28,7 +27,7 @@
         <nav>
 	       <ul class="main-nav" style="list-style: none; padding-left:0px;">
 
-		        <li><a href="{% url 'child_tasklist' %}" class="logo"><img src="{% static 'img/piyorupu.png'%}" style="height:6vh;"></a></li>
+		        <li><a href="{% url 'child_tasklist' %}" class="logo"><img src="{% static 'img/piyorupu.png'%}" style="height:5vh;"></a></li>
 
                 {% if request.user.is_authenticated %}
                　<li><a href="#" class="hello">{{ user }}さん、<br>こんにちは！</a></li>
@@ -38,6 +37,7 @@
                {% endblock%}
 	        </ul>
         </nav>
+<div class="content">
 
         <h2 style="text-align:center;margin-top:30px;margin-bottom:30px;color:#707070;" >{% block h2 %}{% endblock %}</h2>
         <main>
@@ -46,24 +46,24 @@
         {% endblock %}
 
         </main>
-
+</div>
 
 
         <footer>
             <div class="hiyoko">
-            <img src="{% static 'img/hiyoko.gif' %}" style="width:80px;margin-left:50px;">
-        </div>
-        <div class="grass">
-        </div>
-            {% block footer %}
-        {% endblock %}
+            <img src="{% static 'img/hiyoko.gif' %}" style="width:80px;margin-left:10px;">
+
+            </div>
+                {% block footer %}
+                {% endblock %}
+            <div class="grass"></div>
 
         </footer>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-        <script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script type="text/javascript">
 {% block script %}
 {% endblock %}
 </script>

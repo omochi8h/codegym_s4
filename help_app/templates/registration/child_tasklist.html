@@ -40,9 +40,11 @@
                                 <p>{{ comment }}</p>
                                 {% empty %}
                                 <p>きょうもがんばろう！</p>
+
                                 {% endfor %}
+
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
 
                     <div class="tasks">
@@ -83,7 +85,7 @@
                                 <p>きょうもがんばろう！</p>
                                 {% endfor %}
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
 
                     <div class="tasks">
@@ -113,7 +115,7 @@
                                 <p>きょうもがんばろう！</p>
                                 {% endfor %}
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
                     <div class="tasks">
 
@@ -145,7 +147,7 @@
                                 <p>きょうもがんばろう！</p>
                                 {% endfor %}
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
                     <div class="tasks">
                    {% for task in child.1 %}
@@ -174,7 +176,7 @@
                                 <p>きょうもがんばろう！</p>
                                 {% endfor %}
                             </div>
-                            <img src="static/img/icon.PNG" style="width:100px;">
+                            <img src="{% static 'img/icon.PNG' %}" style="width:100px;">
                         </div>
                     <div class="tasks">
                    {% for task in child.1 %}
