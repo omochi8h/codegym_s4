@@ -121,11 +121,16 @@ def child_page(request):
         task_list = []
         tasks = Tasks.objects.filter(parent=request.user, child=child.id, state=0, date=today).all()
         comments = Comment.objects.filter(parent=request.user, child=child.id, date=today).all()
-        print(comments)
+
         for task in tasks:
             task_list.append(task)
         child_list.append(task_list)
-        child_list.append(comments)
+
+        insert_come = []
+        for comment in comments:
+            if comment.comment != '':
+                insert_come.append(comment.comment)
+        child_list.append(insert_come)
         child_data.append(child_list)
     data['children'] = child_data
     data['tab_name'] = ['1', '2', '3', '4', '5']
