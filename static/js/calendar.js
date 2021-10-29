@@ -77,6 +77,9 @@ function createCalendar(histry, p_year, p_month, get_child_id) {
 
   for (let n = 0; n < 6; n++) {
       createHtml += '<tr>';
+      if (dayCount > lastDayCount) {
+        break;
+      }
 
       for (let d = 0; d < 7; d++) {
           if (n == 0 && d < firstDay) {
@@ -157,10 +160,9 @@ function createCalendar2(histry, p_year, p_month, get_child_id) {
 
   for (let n = 0; n < 6; n++) {
       createHtml += '<tr>';
-      if (dayCount > lastDayCount) {
+    if (dayCount > lastDayCount) {
         break;
       }
-
       for (let d = 0; d < 7; d++) {
           if (n == 0 && d < firstDay) {
               createHtml += '<td></td>';
@@ -240,6 +242,9 @@ function createCalendar3(histry, p_year, p_month, get_child_id) {
 
   for (let n = 0; n < 6; n++) {
       createHtml += '<tr>';
+      if (dayCount > lastDayCount) {
+        break;
+      }
 
       for (let d = 0; d < 7; d++) {
           if (n == 0 && d < firstDay) {
